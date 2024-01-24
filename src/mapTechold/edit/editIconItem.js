@@ -10,7 +10,7 @@ export default class EditIconItem extends EditItem {
 
 
   render(){
-    let html = <img className={this.state.cell.class?this.state.cell.class:this.state.theme.MCEditImgItem} style={this.state.cell.style} onClick={this.edit} src={this.cell.imgSrc?this.cell.imgSrc:Edit} />
+    let html = <img onClick={this.edit} src={this.cell.imgSrc?this.cell.imgSrc:Edit} />
   return (
     <>
     {this.getHtml(html)}

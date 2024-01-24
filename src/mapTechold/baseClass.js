@@ -6,20 +6,16 @@ export default class BaseClass extends Component {
   constructor(props){
     super(props);
     this.getHtml = this.getHtml.bind(this);
-    
+
     this.p = props.props;
     this.cell = this.p.cell;
     this.obj = this.p.obj;
-    this.interface= this.p.interface;
-    this.themeFactory = this.interface.getThemeFactory();
     if(this.cell){
       this.useId = this.cell.useId===false?"":this.cell.useId===undefined?this.obj.getJson()._id: this.obj.getJson()[this.cell.useId];
     }
-    let theme = this.p.theme? this.themeFactory.getComponent(this.p.theme):this.themeFactory.getComponent("defaultColumn") 
    
     this.state={
       p:this.p,
-      theme: theme,
       cell:this.cell,
       obj:this.obj,
       useId:this.useId,
@@ -48,16 +44,13 @@ export default class BaseClass extends Component {
 
 
   getHtml(option){
+    debugger
     let clicks = undefined
-    if(this.cell.func){
-      clicks = this.cell.func
+    if(this.state.cell.func){
+      clicks = this.state.cell.func
     }
-    let cellStyle = clicks? {...this.state.p.props.cellStyle, cursor:"pointer"}: this.state.p.props.cellStyle;
-    let linkClass = this.state.p?.props.linkClass?this.state.p.props.linkClass:this.state.theme.MCLink;
-    let cellClass = this.state.p?.props.cellClass?this.state.p.props.cellClass:this.state.theme.MCCell;
-
-    return <>{this.cell.hasLink?(<Link style={this.state.p.props.linkStyle} className={linkClass} to={this.cell.to + this.useId}>{option}</Link>
-    ):(<span style={cellStyle} className={cellClass} onClick={()=>{
+    return <>{this.cell.hasLink?(<Link to={this.cell.to + this.useId}>{option}</Link>):(<span onClick={()=>{
+      debugger
       if(clicks){
         clicks(this.state.obj)
       }}}>{option}</span>)}</>

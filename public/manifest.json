@@ -3,17 +3,17 @@
   "name": "Dream Maker",
   "icons": [
     {
-      "src": "DreamMakers.png",
+      "src": "logoava2.webp",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     },
     {
-      "src": "DreamMakers.png",
+      "src": "logoava2.webp",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "DreamMakers.png",
+      "src": "logoava2.webp",
       "type": "image/png",
       "sizes": "512x512"
     }

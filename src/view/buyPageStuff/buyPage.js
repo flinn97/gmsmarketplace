@@ -39,8 +39,10 @@ export default class BuyPage extends Component {
 
 
     return (
-      <div style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"row",  }} >
+      <div style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"column", marginTop:"150px"  }} >
+        <div style={{height:"500px"}}>
          <PurchaseCard app={app} type="card" options={{cardType:"bigcard"}}/>
+         </div>
          <StatCard app={app} type="card" options={{cardType:"bigcard"}}/>
          
         

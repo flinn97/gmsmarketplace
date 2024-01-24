@@ -19,7 +19,7 @@ export default class EditItem extends BaseClass {
 
 
   render(){
-    let html = <span className={this.state.cell.class?this.state.cell.class:this.state.theme.MCEditItem} style={this.state.cell.style} onClick={this.edit}>edit</span>
+    let html = <span onClick={this.edit}>edit</span>
   return (
     <>
     {this.getHtml(html)}

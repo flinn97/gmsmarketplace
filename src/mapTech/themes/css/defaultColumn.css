@@ -1,0 +1,80 @@
+.DC-Map-Container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .DC-Map-Section {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    /* flex-wrap: wrap;  */
+    /* justify-content: space-between; */
+  }
+/* General styling for all items */
+.DC-Link,
+.DC-Cell,
+.DC-Custom-Del-Item,
+.DC-Del-Item,
+.DC-Del-imgItem,
+.DC-Custom-Edit-Item,
+.DC-Edit-imgItem,
+.DC-Edit-Item,
+.DC-Attribute-Item,
+.DC-imgItem,
+.DC-Text-Item {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+/* .DC-Link:hover,
+.DC-Cell:hover,
+.DC-Custom-Del-Item:hover,
+.DC-Del-Item:hover,
+.DC-Del-imgItem:hover,
+.DC-Custom-Edit-Item:hover,
+.DC-Edit-imgItem:hover,
+.DC-Edit-Item:hover,
+.DC-Attribute-Item:hover,
+.DC-imgItem:hover,
+.DC-Text-Item:hover {
+  background-color: #e0e0e0;
+} */
+
+/* Add specific styles for each item type if needed */
+.DC-Link {
+  text-decoration: none;
+  cursor: pointer;
+  color:black
+}
+
+.DC-Custom-Del-Item,
+.DC-Del-Item,
+.DC-Del-imgItem {
+  color: #dc3545;
+  cursor: pointer;
+
+}
+
+.DC-imgItem{
+    width: 100px;
+    border-radius: 15px;
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+.DC-Custom-Edit-Item,
+.DC-Edit-imgItem,
+.DC-Edit-Item {
+  color: #ffc107;
+  cursor: pointer;
+
+}
+

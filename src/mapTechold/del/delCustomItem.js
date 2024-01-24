@@ -8,7 +8,7 @@ export default class DelCustomItem extends DelItem {
 
 
   render(){
-    let html = <span className={this.state.cell.class?this.state.cell.class:this.state.theme.MCCustomDelItem} style={this.state.cell.style} onClick={this.del}>{this.state.cell.custom}</span>
+    let html = <span onClick={this.del}>{this.cell.custom}</span>
   return (
     <>
     {this.getHtml(html)}

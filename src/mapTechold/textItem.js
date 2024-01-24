@@ -17,7 +17,7 @@ export default class AttributeItem extends BaseClass {
       name = this.cell
     }
 
-    let html = <span style={this.state.cell.style} className={this.state.cell.class?this.state.cell.class:this.state.theme.MCTextItem}>{name}</span>
+    let html = <span>{name}</span>
   return (
     <>
     {this.getHtml(html)}

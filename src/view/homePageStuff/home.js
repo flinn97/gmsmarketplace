@@ -41,7 +41,7 @@ export default class Home extends Component {
 
 
     return (
-      <div style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"column", alignItems: "center" }} >
+      <div style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"column", alignItems: "center", marginTop:"150px" }} >
         {/* enter cards here */}
         <SearchCard app={app} type="card" options={{cardType:"bigcard"}}/>
         <FilterCard app={app} type="card" options={{cardType:"bigcard"}}/> 

@@ -5,7 +5,6 @@ export default class DelItem extends BaseClass {
   constructor(props){
     super(props);
     this.del = this.del.bind(this);
-
     //define options for base class.
 
   }
@@ -30,8 +29,7 @@ export default class DelItem extends BaseClass {
 
 
   render(){
-    let html = <span className={this.state.cell.class?this.state.cell.class:this.state.theme.MCDelItem} style={this.state.cell.style} onClick={this.del}>X</span>
-    
+    let html = <span onClick={this.del}>X</span>
   return (
     <>
     {this.getHtml(html)}

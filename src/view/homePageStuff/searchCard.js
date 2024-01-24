@@ -9,6 +9,7 @@ import { async } from 'videojs-record';
 import arr from '../../pics/dreamArrow.png'
 import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
 import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
+import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
 
 
 /**
@@ -105,11 +106,8 @@ class MainContent extends Component {
 
 
     return (
-      <div>
-        searchCard
-        <input name="searchFilter" onChange={(e)=>{
-          app.handlechange(e);
-        }}/>
+      <div style={{width:"200px", height:"30px"}}>
+        <SearchMapComponent name="tag" attribute="name"/>
       </div>
 
     )

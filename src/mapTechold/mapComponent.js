@@ -1,7 +1,7 @@
 import BaseClass from './baseClass';
 
 
-//this could be updated to use the baseclass getHtml
+//model
 export default class MapComponentItem extends BaseClass {
   constructor(props){
     super(props);
@@ -18,19 +18,17 @@ export default class MapComponentItem extends BaseClass {
     let list = props.list
     let cells = props.cells;
     let factory = props.interface.getFactory();
-    let themeFactory = props.interface.getThemeFactory();
-    let theme = props.theme? props.theme: "defaultColumn"
-    theme = themeFactory.getComponent(theme)
    
 
   return (
-    <div className= {props.mapContainerClass? props.mapContainerClass: theme.MCMapContainer} style={{...this.props.mapContainerStyle}} >
+    <div>
         {list.map((obj, index)=>
-        <div className={props.mapSectionClass? props.mapSectionClass: theme.MCMapSection} style={{...this.props.mapSectionStyle}} key = {index}>
+        <div key = {index}>
             {cells.map((cell, i)=>{
              let type = cell.type
             
              if(!type){
+                
                 let arr = ["del", "edit", "img"]
 
                  type=arr[arr.indexOf(cell)]
@@ -45,7 +43,7 @@ export default class MapComponentItem extends BaseClass {
                  
              }
 
-             let p = {obj:obj, props:props, interface: this.interface, cell:cell, theme:props.theme};
+             let p = {obj:obj, props:props, cell:cell};
              
             return <>{factory.getComponent(type, p)}</>}
             )}
@@ -54,5 +52,3 @@ export default class MapComponentItem extends BaseClass {
     </div>
   )}
 }
-
-

@@ -1,0 +1,72 @@
+.DR-Map-Container {
+    display: flex;
+    flex-direction: row; /* Switched to row layout */
+    width: 100%;
+    height: 100%;
+    /* flex-wrap: wrap;  */
+  }
+  
+  .DR-Map-Section {
+    display: flex;
+    flex-direction: column; /* Switched to column layout */
+    align-items: center;
+    margin: 8px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    border-radius: 10px; /* Border radius */
+  }
+  
+  /* General styling for all items */
+  .DR-Link,
+  .DR-Cell,
+  .DR-Custom-Del-Item,
+  .DR-Del-Item,
+  .DR-Del-imgItem,
+  .DR-Custom-Edit-Item,
+  .DR-Edit-imgItem,
+  .DR-Edit-Item,
+  .DR-Attribute-Item,
+  .DR-imgItem,
+  .DR-Text-Item {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  
+  
+  /* Add specific styles for each item type if needed */
+  .DR-Link {
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .DR-Custom-Del-Item,
+  .DR-Del-Item,
+  .DR-Del-imgItem {
+    color: #dc3545;
+    cursor: pointer;
+    position: absolute;
+    padding: 0px;
+    right: 3px;
+    top: 3px;
+  }
+  
+  .DR-imgItem {
+    width: 100px;
+    border-radius: 15px;
+  }
+  
+  .DR-Custom-Edit-Item,
+  .DR-Edit-imgItem,
+  .DR-Edit-Item {
+    color: #ffc107;
+    background-color: none;
+    cursor: pointer;
+    position: absolute;
+    padding: 0px;
+    left: 3px;
+    top: 3px;
+  }

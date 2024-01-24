@@ -166,8 +166,8 @@ handleChange = (event) => {
         list= await this.state.componentListInterface.createComponentList();
         let fakeData = json
         
-        mapInterface.setApp({state:this.state, dispatch:this.dispatch})
-        mapInterface.setComponentList({list})
+        mapInterface.setApp({state:this.state, dispatch:this.dispatch});
+        mapInterface.setComponentList(list);
         await this.setState({
           componentList:list,
           opps: list.getOperationsFactory()

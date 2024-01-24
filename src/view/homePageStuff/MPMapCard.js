@@ -107,18 +107,8 @@ class MainContent extends Component {
     return (
       <div>
         mapCard
-        <MapComponent name={state.filter} cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]} filter={{search:true, attribute:"topDisplay"}} filterFunc={(obj)=>{
-          if(state.searchFilter){
-            let l = componentList.getList("tag");
-            l = l.filter(obj1=> obj1.getJson().name.toLowerCase().includes(state.searchFilter.toLowerCase()));
-            let arr= l.map((obj2, index)=>{return obj2.getJson().compID});
-            let l1 = componentList.getComponents().filter(obj3=>{return arr.includes(obj3.getJson()._id)})
-            return  l1.includes(obj);
-          }
-          else{return true}
-          
-
-        }}/>
+        <MapComponent name={state.filter} attribute ="compID" tagList={state.searchTags}
+         theme="defaultRow" cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]} filter={{search:true, attribute:"topDisplay"}}  />
       </div>
 
     )

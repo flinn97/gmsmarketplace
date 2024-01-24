@@ -10,7 +10,7 @@ export default class UseTheirImgItem extends ImgItem {
   
   
     render(){
-      let html = <img style={this.state.cell.style} className={this.state.cell.class?this.state.cell.class:this.state.theme.MCImgItem} src={this.state.cell.src}/>
+      let html = <img src={this.state.cell.src}/>
       
 
     return (

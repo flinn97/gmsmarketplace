@@ -13,7 +13,6 @@ import DelCustomItem from "./del/delCustomItem";
 import EditIconItem from "./edit/editIconItem";
 import EditCustomItem from "./edit/editCustomItem";
 import UseTheirImgItem from "./useTheirImgItem";
-import InteractiveMap from "./interactiveMapComponent";
 /**
  * factory for getting different items for the map component
  */
@@ -33,7 +32,7 @@ export default class MapFactory {
         editIcon: EditIconItem,
         editCustom: EditCustomItem,
         map: MapComponentItem,
-        interactiveMap: InteractiveMap
+        
 
 
 
