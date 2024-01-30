@@ -10,6 +10,7 @@ import Home from './view/homePageStuff/home';
 import { mapInterface } from './mapTech/mapComponentInterface';
 import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
+import Admin from './view/buyPageStuff/admin';
 // import NavThemeFactory from './componentListNPM/navThemes/navThemeFactory';
 
 //fonts
@@ -65,7 +66,7 @@ export default class App extends Component {
       //allows to know which card is which
       switchCase:[
         {path:"/", comp:Home, name: "home" }, 
-
+      {path:"/admin", comp:Admin, name: "admin" },
       ],
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
@@ -181,7 +182,7 @@ handleChange = (event) => {
         }
 
         for(let c of fakeData){
-          debugger
+          
           await list.getOperationsFactory().cleanJsonPrepareRun({["add"+c.type]:c})
         }
         // await auth.createInitialStages(list);

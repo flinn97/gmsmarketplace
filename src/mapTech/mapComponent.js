@@ -29,7 +29,7 @@ export default class MapComponentItem extends BaseClass {
         <div className={props.mapSectionClass? props.mapSectionClass: theme.MCMapSection} style={{...this.props.mapSectionStyle}} key = {index}>
             {cells.map((cell, i)=>{
              let type = cell.type
-            
+            console.log(type);
              if(!type){
                 let arr = ["del", "edit", "img"]
 
@@ -46,7 +46,7 @@ export default class MapComponentItem extends BaseClass {
              }
 
              let p = {obj:obj, props:props, interface: this.interface, cell:cell, theme:props.theme};
-             
+
             return <>{factory.getComponent(type, p)}</>}
             )}
             </div>

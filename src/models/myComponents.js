@@ -154,9 +154,16 @@ class Promotional extends componentBase{
     }
 }
 
-
+class Buy extends componentBase{
+    json={
+        type:"buy",
+        email:"",
+        boughtItem:"",
+        _id: "",
+    }
+}
 function forFactory(){
-    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage  }
+    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
 }
 
 
