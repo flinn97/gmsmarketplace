@@ -7,8 +7,7 @@ import Nav from './componentListNPM/navTech/nav.js';
 // import Register from './view/register';
 import './index.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import Login from './componentListNPM/componentForms/fullForms/registrationStuff/dreammakerLogin';
-import Register from './view/register';
+import Login from './view/login.js';
 import BuyPopup from './view/buyPageStuff/buyPopup';
 // import DeletePopup from './view/deletePopup';
 // import KeepDel from './view/keepDelete';
@@ -115,7 +114,7 @@ export default class Dispatch extends Component {
       width:"100%", 
       height:"96vh",
       }}>
-        {/* {state.user&&( */}
+        {state.user?(
         <>
      <Nav  app={app} type="topBarNav"  template="legato"  theme="legato"
      options={{
@@ -145,7 +144,7 @@ export default class Dispatch extends Component {
 </Routes>
 </div>
 </>
-{/* )} */}
+ ):(<Login app={app}/>)} 
      </div>
        {/* )} */}
 

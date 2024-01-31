@@ -14,7 +14,7 @@ export default class MapComponentItem extends BaseClass {
 
 
   render(){
-    let props = this.props.props
+    let props = this.props
     let list = props.list
     let cells = props.cells;
     let factory = props.interface.getFactory();
@@ -36,7 +36,7 @@ export default class MapComponentItem extends BaseClass {
                  type=arr[arr.indexOf(cell)]
                  if(!type){
                     type = "attribute";
-                    let attribute = obj.getJson()[cell];
+                    let attribute = obj.getJson&& obj?.getJson()[cell];
                     if(!attribute){
                         type="text"
                      }
@@ -45,7 +45,7 @@ export default class MapComponentItem extends BaseClass {
                  
              }
 
-             let p = {obj:obj, props:props, interface: this.interface, cell:cell, theme:props.theme};
+             let p = {obj:obj, ...props, interface: this.interface, cell:cell, theme:props.theme};
              
             return <>{factory.getComponent(type, p)}</>}
             )}

@@ -22,3 +22,9 @@
     user-select: none;
     pointer-events: none;
   }
+
+  .IM-addButton{
+    position: absolute;
+    left: 0;
+    top:0;
+  }

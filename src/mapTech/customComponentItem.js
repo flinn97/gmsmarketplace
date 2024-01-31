@@ -10,7 +10,7 @@ export default class CustomComponentItem extends BaseClass {
 
   render(){
     
-    let html = this.state.cell.custom;
+    let html = <this.state.cell.custom {...this.props}/>;
   return (
     <>{this.getHtml(html)}</>
   )}

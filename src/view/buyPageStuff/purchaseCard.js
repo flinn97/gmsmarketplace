@@ -110,7 +110,7 @@ class MainContent extends Component {
     return (
       <div>
         
-        <MapComponent name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent app={app} name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
         <div onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
       </div>
 

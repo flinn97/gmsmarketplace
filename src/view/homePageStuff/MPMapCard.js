@@ -107,8 +107,8 @@ class MainContent extends Component {
     return (
       <div>
         mapCard
-        <MapComponent name={state.filter} attribute ="compID" tagList={state.searchTags}
-         theme="defaultRow" cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]} filter={{search:true, attribute:"topDisplay"}}  />
+        <MapComponent app={app} name={state.filter} attribute ="compID" tagList={state.searchTags}
+         theme="defaultRow" cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]}  />
       </div>
 
     )

@@ -40,6 +40,13 @@ class Auth {
         }
 
     }
+    async getAllMPItems(componentList){
+        const components =  query(collection(db,  "MPusers","MPAPP", "components"), where('type', '!=', "user"));
+        let comps = await getDocs(components);
+        let rawData = comps.docs.map(doc => doc.data());
+        await componentList.addComponents(rawData, false);
+    }
+
     async getuser(email, componentList, dispatch) {
 
         try {
@@ -173,21 +180,7 @@ class Auth {
         }
         return user;
     }
-    async registerStudent(obj, email) {
-        await setDoc(doc(db, this.urlEnpoint + 'users', email + "@dreammaker.com"), obj);
-
-    }
-    async registerStudentWithEmail(email, obj,) {
-
-        await setDoc(doc(db, 'users', email), obj);
-
-    }
-    async getStudentsTeacher(email) {
-        const docRef = doc(db, this.urlEnpoint + "users", email);
-        const docSnap = await getDoc(docRef);
-        return docSnap.data();
-
-    }
+   
     async register(email, password, addToCache) {
 
         let user;
@@ -254,81 +247,73 @@ class Auth {
          * @param {*} changeData 
          * @returns change any data I want.
          */
-    async dispatch(obj, email, dispatch) {
-
+    async dispatch(obj, email, dispatch, backendReloader) {
+        
         for (const key in obj) {
             let operate = obj[key];
             for (let i = 0; i < operate.length; i++) {
                 const delay = ms => new Promise(res => setTimeout(res, ms));
                 await delay(1000);
                 let component = key !== "del" ? { ...operate[i].getJson() } : operate[i];
-                let localData = await localStorage.getItem("rawData");
-                if (localData) {
-                    localData = JSON.parse(localData);
+
+                for (const key in component) {
+
+                    if (component[key] === undefined) {
+                        component[key] = "";
+                    }
+                    if(Array.isArray(component[key])){
+                        component[key] =""
+                    }
                 }
-                switch (key) {
-                    case "add":
-                        component.collection = email;
-                        if (!component.owner) {
-                            component.owner = email
-                        }
-                        if (component.type === "coachCard") {
-                            component.type = "card";
-                        }
-                        if (component.type === "coachAssignedCard") {
-                            component.type = "assignedCard";
-                        }
-                        if (component.type === "coachRoutine") {
-                            component.type = "routine";
-                        }
-                        component.date = await serverTimestamp();
-                        if (localData) {
-                            localData.push(component);
-                        }
-                        await setDoc(doc(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components", component._id), component);
-                        break;
-                    case "del":
-                        if (localData) {
-                            localData = localData.filter(delObj => { return delObj._id !== component });
-                        }
+
+                try {
+
+
+                    switch (key) {
+                        case "add":
+                            if (email === undefined) {
+                                email = component.owner
+                            }
+                            component.collection = email;
+                            if (!component.owner) {
+                                component.owner = email
+                            }
+                            if(component.type ==="user"){
+                                component._id = email;
+                            }
+                            component.date = await serverTimestamp();
+                            await setDoc(doc(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components", component._id), component);
+                            break;
+                        case "del":
 
 
                             await deleteDoc(doc(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components", component));
                             break;
-                    case "update":
-                        
-                        if (component.type === "coachCard") {
-                            component.type = "card";
-                        }
-                        if (component.type === "coachAssignedCard") {
-                            component.type = "assignedCard";
-                        }
-                        if (component.type === "coachRoutine") {
-                            component.type = "routine";
-                        }
-                        component.date = await serverTimestamp();
-                        if (localData) {
+                        case "update":
+                            if(component.type !=="post"){
+                                component.date = await serverTimestamp();
 
-                            for (let updateobj of localData) {
-                                if (updateobj._id === component._id) {
-                                    updateobj = {...component}
-                                }
                             }
-                        }
-                        await updateDoc(doc(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components", component._id), component);
-                        break;
-                }
-                if(localData){
-                    localData = JSON.stringify(localData);
 
+                            await updateDoc(doc(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components", component._id), component);
+                            break;
+                    }
+                } catch (error) {
+                    console.log(error);
+                    console.log(component)
                 }
-                localStorage.setItem("rawData", localData)
 
             }
         }
+        
         if (dispatch) {
+            
+
             dispatch({ dispatchComplete: true, data: obj })
 
+        }
+        if(backendReloader){
+            window.location.reload();
         }
     }
 
