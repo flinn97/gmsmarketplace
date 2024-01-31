@@ -10,6 +10,7 @@ import Home from './view/homePageStuff/home';
 import { mapInterface } from './mapTech/mapComponentInterface.js';
 import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
+import Admin from './view/buyPageStuff/admin';
 // import NavThemeFactory from './componentListNPM/navThemes/navThemeFactory';
 
 //fonts
@@ -65,7 +66,7 @@ export default class App extends Component {
       //allows to know which card is which
       switchCase:[
         {path:"/", comp:Home, name: "home" }, 
-
+      {path:"/admin", comp:Admin, name: "admin" },
       ],
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 

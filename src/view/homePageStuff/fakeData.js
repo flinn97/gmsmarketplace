@@ -10,7 +10,8 @@ let json=[
     stripePrice:"2000",
     picURL:"https://firebasestorage.googleapis.com/v0/b/flinnapps.appspot.com/o/media%2F16758691346190c167c_fe2ab2d3f6404c3685f39b8eaa5b5d86_mv2.webp?alt=media&token=9cbe3a11-3062-42a8-a081-a3fdf11dc608",
     topDisplay:true,
-    _id: "1"
+    _id: "1",
+    owner:"taylormdavidson@gmail.com"
 },
 {
   type:"mpCampaign",
@@ -18,7 +19,8 @@ let json=[
   description: "asdfg",   promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "2"
+  _id: "2",
+  owner:"taylormdavidson@gmail.com"
 },
 {
   type:"mpCampaign",
@@ -34,7 +36,9 @@ let json=[
   description: "asdf",    promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "4"
+  _id: "4",
+  owner:"taylormdavidson@gmail.com"
+
 },
 {
 type:"mpLore",
@@ -66,6 +70,7 @@ name: "fake1",
 description: "asdfg",    promotional: "this is cool",
 price:"$20",
 topDisplay:true,
+owner:"taylormdavidson@gmail.com",
 _id: "8"
 },
 {
@@ -98,7 +103,9 @@ name: "fake2",
 description: "asdfgh",    promotional: "this is cool",
 price:"$20",
 topDisplay:true,
-_id: "12"
+_id: "12",
+owner:"taylormdavidson@gmail.com"
+
 },
 {
   type:"mpImage",
@@ -106,7 +113,8 @@ _id: "12"
   description: "asdf",    promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "13"
+  _id: "13",
+  owner:"taylormdavidson@gmail.com"
 },
 {
 type:"mpImage",
@@ -129,7 +137,9 @@ _id: "15"
   description: "asdf",    promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "16"
+  _id: "16",
+  owner:"taylormdavidson@gmail.com"
+
 },
 {
 type:"mpMap",
@@ -145,7 +155,9 @@ name: "fake2",
 description: "asdfgh",    promotional: "this is cool",
 price:"$20",
 topDisplay:true,
-_id: "18"
+_id: "18",
+owner:"taylormdavidson@gmail.com"
+
 },
 {     
   type: "tag",
@@ -205,5 +217,48 @@ _id: "18"
 
           _id: "25"
           },
+          {
+            type:"user",
+            email:"taylormdavidson@gmail.com",
+            owner:"taylormdavidson@gmail.com",
+            _id:"taylormdavidson@gmail.com",
+
+          },
+    
+  {
+    type:"buy",
+    email:"jaredmichaeldavidson@gmail.com",
+    owner: "taylormdavidson@gmail.com",
+    boughtItem: "1",
+    _id: "26"
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "27",
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "28",
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "29",
+  },
+  {
+    type: "buy",
+    email:"taylormdavidson@gmail.com",
+    boughtItem: "3",
+    owner: "jmd@gmail.com",
+    _id: "30",
+  }
 ]
 export {json}

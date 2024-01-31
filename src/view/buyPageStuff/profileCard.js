@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.css"
-
+import { MapComponent } from '../../mapTech/mapComponentInterface';
 import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
 import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
@@ -9,7 +9,8 @@ import { async } from 'videojs-record';
 import arr from '../../pics/dreamArrow.png'
 import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
 import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
-import { MapComponent } from '../../mapTech/mapComponentInterface';
+import BuyNumber from './buyNumber';
+
 
 /**
  * condensed version of the cards.
@@ -21,7 +22,7 @@ import { MapComponent } from '../../mapTech/mapComponentInterface';
  * options
  * options can include cardType, cardContent, tabType, 
  */
-export default class PurchaseCard extends Component {
+export default class ProfileCard extends Component {
   constructor(props) {
     super(props);
 
@@ -102,22 +103,24 @@ class MainContent extends Component {
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-    let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-
-
+    let user = state.componentList.getComponent("user");
+   
     return (
-      <div>
-        
-        <MapComponent name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMonster" cells={["name","descsription"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-
-        <div onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
+      <div style={{marginTop:"200px", color:"black"}}>
+        campaigns:
+        <MapComponent name="mpCampaign" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}}/>
+        maps:
+        <MapComponent name="mpMap" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        lore:
+        <MapComponent name="mpLore" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        encounters:
+        <MapComponent name="mpEncounter" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        monsters:
+        <MapComponent name="mpMonster" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        images:
+        <MapComponent name="mpImage" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        My Purchases:
+        <MapComponent name="buy" cells={["boughtItem"]} filter={{search:user.getJson()._id, attribute:"email"}} />
       </div>
 
     )
