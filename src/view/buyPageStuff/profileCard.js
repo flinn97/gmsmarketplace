@@ -108,19 +108,19 @@ class MainContent extends Component {
     return (
       <div style={{marginTop:"200px", color:"black"}}>
         campaigns:
-        <MapComponent name="mpCampaign" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}}/>
+        <MapComponent name="mpCampaign" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}}/>
         maps:
-        <MapComponent name="mpMap" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        <MapComponent name="mpMap" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
         lore:
-        <MapComponent name="mpLore" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        <MapComponent name="mpLore" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
         encounters:
-        <MapComponent name="mpEncounter" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        <MapComponent name="mpEncounter" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
         monsters:
-        <MapComponent name="mpMonster" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        <MapComponent name="mpMonster" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
         images:
-        <MapComponent name="mpImage" cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
+        <MapComponent name="mpImage" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
         My Purchases:
-        <MapComponent name="buy" cells={["boughtItem"]} filter={{search:user.getJson()._id, attribute:"email"}} />
+        <MapComponent name="buy" app={app} cells={["boughtItem"]} filter={{search:user.getJson()._id, attribute:"email"}} />
       </div>
 
     )

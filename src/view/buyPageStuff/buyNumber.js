@@ -29,7 +29,7 @@ export default class BuyNumber extends Component {
 
   render() {
     debugger
-    let props = this.props.props;
+    let props = this.props;
     let componentList = props.interface.getComponentList();
     let purchases = componentList.getList("buy", props.obj.getJson()._id, "boughtItem")
     // let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
