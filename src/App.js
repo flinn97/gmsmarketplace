@@ -7,7 +7,7 @@ import auth from './services/auth';
 import ThemeFactory from './componentListNPM/themes/themeFactory';
 import navThemeFactory from './componentListNPM/navThemes/navThemeFactory';
 import Home from './view/homePageStuff/home';
-import { mapInterface } from './mapTech/mapComponentInterface';
+import { mapInterface } from './mapTech/mapComponentInterface.js';
 import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
 import Admin from './view/buyPageStuff/admin';
@@ -58,7 +58,7 @@ export default class App extends Component {
       searchFilter:undefined,
       backend: false,
       myswitch: "home",
-      defaultTheme: "dreamMaker",
+      defaultTheme: "adventure",
       globalTheme: "",
       currentStudent: undefined,
       currentRoutine: undefined,
@@ -147,7 +147,7 @@ handleChange = (event) => {
     if(this.state.themeFactory){
       
       let f = await this.state.themeFactory.getThemeFactory();
-      let style = this.state.globalTheme!==""? this.state.globalTheme: this.state.defaultTheme!==""? this.state.defaultTheme: "default"
+      let style = this.state.globalTheme!==""? this.state.globalTheme: this.state.defaultTheme!=="adventure"? this.state.defaultTheme: "adventure"
       let styles = f[style];
       
       this.setState({styles:styles});
@@ -167,8 +167,7 @@ handleChange = (event) => {
         list= await this.state.componentListInterface.createComponentList();
         let fakeData = json
         
-        mapInterface.setApp({state:this.state, dispatch:this.dispatch});
-        mapInterface.setComponentList(list);
+        
         await this.setState({
           componentList:list,
           opps: list.getOperationsFactory()
@@ -188,16 +187,21 @@ handleChange = (event) => {
         // await auth.createInitialStages(list);
           
         let user = await auth.getCurrentUser();
-        if(user){
+        
+        if(user&&user!=="undefined"){
+          
           this.setState({splash:true});
           user = JSON.parse(user);
           await auth.getuser(user.email, list, this.dispatch);
+          await auth.getAllMPItems(list);
          
           
         
           
         }
-
+        await mapInterface.setAppComponent(this);
+        await mapInterface.setApp(["state", "dispatch"]);
+        await mapInterface.setComponentList(list);
         
         
     }
@@ -225,6 +229,7 @@ handleChange = (event) => {
       width:"100vw", 
       height:"100vh", 
       display:"flex", 
+      background:"#095581",
       zIndex:"100",
       flexDirection:"column"}}>
       

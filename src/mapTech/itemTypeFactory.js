@@ -13,7 +13,9 @@ import DelCustomItem from "./del/delCustomItem";
 import EditIconItem from "./edit/editIconItem";
 import EditCustomItem from "./edit/editCustomItem";
 import UseTheirImgItem from "./useTheirImgItem";
-import InteractiveMap from "./interactiveMapComponent";
+import InteractiveMap from "./interactiveMap/interactiveMapComponent";
+import AddComponentButton from "./interactiveMap/addButtonComponent";
+import PlainDisplay from "./plainDisplay";
 /**
  * factory for getting different items for the map component
  */
@@ -33,7 +35,9 @@ export default class MapFactory {
         editIcon: EditIconItem,
         editCustom: EditCustomItem,
         map: MapComponentItem,
-        interactiveMap: InteractiveMap
+        interactiveMap: InteractiveMap,
+        addComponentButton: AddComponentButton,
+        plain: PlainDisplay
 
 
 
@@ -54,7 +58,8 @@ export default class MapFactory {
             Comp = this.factory[type]
 
         }
-        return <Comp props={props}/>;
+        
+        return <Comp  {...props} />;
 
     }
 

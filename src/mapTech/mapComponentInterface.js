@@ -1,16 +1,20 @@
 import MapFactory from "./itemTypeFactory";
 import { Component } from 'react';
 import ThemeFactory from "./themes/themeFactory";
-import "./mapComponent.css"
+import FilterFactory from "./filterFacotry";
 class MapComponentInterface {
     factory;
     componentList;
     app;
     themeFactory;
-
+    appComponent;
+    setUpArr;
+    set;
+    FilterFactory;
     constructor() {
         this.getFactory();
         this.getThemeFactory();
+        this.getFilterFactory();
 
     }
     /**
@@ -22,6 +26,7 @@ class MapComponentInterface {
             this.factory = new MapFactory();
         }
         return this.factory;
+        
     }
 
     /**
@@ -35,23 +40,55 @@ class MapComponentInterface {
         return this.themeFactory;
     }
 
+
+    /**
+     * 
+     * @returns singleton filter factory;
+     */
+    getFilterFactory(){
+        if (this.filterFactory === undefined) {
+            this.filterFactory = new FilterFactory();
+        }
+        return this.filterFactory;
+    }
+
     getMapComponent(props) {
+        
         let type = props.type?props.type:"map"
         let map = this.factory.getComponent(type, props);
         return map;
 
     }
+    getAppComponent(){
+        return this.appComponent
 
-    setApp(app) {
-        this.app = app;
+    }
+    setAppComponent(APP){
+        this.appComponent = APP
+    }
+
+    setApp(arr) {
+        let obj = {}
+        for(let str of arr){
+            obj[str] = this.appComponent[str]
+        }
+
+        this.app = obj;
+        this.setUpArr = arr;
+        return this.app
     }
     getApp() {
-        return this.app
+        return this.setApp(this.setUpArr); 
     }
     setComponentList(c) {
         this.componentList = c;
+        this.set=true;
     }
     getComponentList() {
+        if(!this.set){
+            this.componentList = this.appComponent.getComponentList();
+
+        }
         return this.componentList
     }
 
@@ -65,7 +102,6 @@ const mapInterface = new MapComponentInterface()
 class MapComponent extends Component {
     constructor(props) {
         super(props);
-        this.filterByTag = this.filterByTag.bind(this);
 
 
         this.state = {
@@ -73,38 +109,42 @@ class MapComponent extends Component {
         }
     }
 
-    filterByTag(list, tagList, attribute){
-        list = list.filter(obj=>{
-            let bool = tagList.find(tag=> {
-                let tagConnect = !attribute? tag.getJson().connectedId:tag.getJson()[attribute];
-                return tagConnect=== obj.getJson()._id
-            });
-            if(bool){
-                return true;
-            }
-            else{
-                return false
-            }
-        })
-        return list
-    }
+
 
 
 
 
     render() {
+        
         let mapComponentInterface = mapInterface;
-        let app = mapComponentInterface.getApp();
+        let filterFacotry = mapComponentInterface.getFilterFactory();
+        let app = this.props.app?this.props.app:mapComponentInterface.getApp();
         let state = app?.state;
         let componentList = mapComponentInterface?.getComponentList();
         let cells = this.props.cells;
         let name = this.props.name;
+        debugger
+        let filters = this.props.filters;
         let filterFunc = this.props.filterFunc;
-        let filter = this.props.filter
-        let list = this.props.list ? this.props.list : filter ? componentList?.getList(name, this.props.filter?.search, this.props.filter?.attribute) : componentList?.getList(name);
+        if(!filterFunc && filters!==undefined){
+            let funcOb = filters?.find(obj=>obj.type==="filterFunc");
+            if(funcOb){
+                filterFunc = funcOb.func 
+            }
+        }
+        let filter = this.props.filter;
+        if(!filter&& filters!==undefined){
+            let filterOb = filters?.find(obj=>obj.type==="filter");
+            if(filterOb){
+                filter = {...filterOb}
+            }
+        }
+
+        
+        let list = this.props.list ? this.props.list : filter ? componentList?.getList(name, filter?.search, filter?.attribute) : componentList?.getList(name);
         if (list) {
-            list.filter((obj) => {
-                if (this.props.filterFunc) {
+            list =list.filter((obj) => {
+                if (filterFunc) {
                     return filterFunc(obj)
                 }
                 else {
@@ -113,19 +153,23 @@ class MapComponent extends Component {
             }
             );
         }
-        
-        if(this.props.tagList){
-            list = this.filterByTag(list, this.props.tagList, this.props.attribute);
+
+        if(filters){
+            for(let obj of filters){
+                let func = filterFacotry.getFilter(obj.type);
+                if(func){
+                    list = func({list:list, ...obj});
+                }
+            }
+
         }
-        if(this.props.textAttributeFilter){
-            list = list.filter(obj=> obj.getJson()[this.props.textAttributeFilter.attribute]===this.props.textAttributeFilter.search);
-        }
+
 
         let props = { interface: mapComponentInterface, app: app, cells: cells, list: list, theme:this.props.theme, type:this.props.type, ...this.props }
 
 
         return (
-            <>{mapComponentInterface.getMapComponent(props)}</>
+            <>{mapComponentInterface.getMapComponent({...props})}</>
         )
     }
 }
@@ -144,7 +188,7 @@ class SearchMapComponent extends Component {
 
     render() {
         let mapComponentInterface = mapInterface;
-        let app = mapComponentInterface.getApp();
+        let app = this.props.app?this.props.app:mapComponentInterface.getApp();
         let componentList = mapComponentInterface?.getComponentList();
         let name = this.props.name;
         let attribute = this.props.attribute;
@@ -153,13 +197,14 @@ class SearchMapComponent extends Component {
       
 
         return (
-            <input name={attribute} style={this.props.style} class={this.props.class? this.props.class: "flinntechInput"} onChange={(e)=>{
+            <input name={attribute} style={this.props.style? this.props.style: {width:"120px"}} class={this.props.class? this.props.class: "flinntechInput"} onChange={(e)=>{
+                
                 const { name, value } = e.target
-                if(this.props.onChange){
-                    this.props.onChange(e);
+                if(this.props.onTextChange){
+                    this.props.onTextChange(e);
                 }
                 else{
-                    list = list.filter(obj=> obj.getJson()[attribute].toLowerCase().includes(value.toLowerCase()));
+                    list = list.filter(obj=> obj.getJson()[attribute].includes(value));
                     app.dispatch({searchTags:[...list]})
                 }
             }}/>
@@ -173,10 +218,18 @@ export { MapComponent, SearchMapComponent, mapInterface }
 
  * TODO: TEST if I can create mulitple classes to add to the factory. and test adding different themes.
  * test everythingP
+ * Test filtering
  * create other really cool map options.
- * add a filter factory
+ *  Create a new map type that allows for any type a list. (non getJson lists are fine. components that use them)
  * refactor the mapComponent so that we can use multiple and also make it so that we don't have to change two things all at once. also it needs to have style ability
  * Also refactor css so that things that are the same can be in one spot
  * Check for null pointers everywhere so people can put in whatever.
+ * setup so that individual things can be setup with a different theme then the rest of the map *
+ * set up searchMapComponent to be set up with themes *
+ * make a component for zoom in zoom out and then use the type.
+ * searchcomponent needs to be more refined to work with all sorts of searches
+ * make it so that you can do dropdown search
+ * make it so interactive map does not need pin type if they provide an object
+ * The props do not update in the map component. Either we need to add an observer it can't be done that way. * This actually can't be done on the react side. So temporarily we will add the ability to pass in app as a prop.
  * 
  */

@@ -12,7 +12,7 @@ export default class EditItem extends BaseClass {
    * delete or send a popup dispatch according to user preference.
    */
   edit(){
-    let app = this.p.props.app;
+    let app = this.props.app;
     app.dispatch({popupSwitch:"edit", currentComponent:this.obj})
 
   }

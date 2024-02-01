@@ -5,12 +5,13 @@ import {getAuth} from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBF-muwfVknY5Q-dloU1JZOJe51RN0VDdU",
-  authDomain: "dreammakers-d94ef.firebaseapp.com",
-  projectId: "dreammakers-d94ef",
-  storageBucket: "dreammakers-d94ef.appspot.com",
-  messagingSenderId: "538219967934",
-  appId: "1:538219967934:web:300d996d6b68bd7e4c35ef"
+  apiKey: "AIzaSyCVG7lppxce_QCnpYX1-gp3h7ym5mZClxI",
+  authDomain: "avagms-c2fee.firebaseapp.com",
+  projectId: "avagms-c2fee",
+  storageBucket: "avagms-c2fee.appspot.com",
+  messagingSenderId: "858751843821",
+  appId: "1:858751843821:web:58f0464e4285ea53de7be4",
+  measurementId: "G-QNWHBZM0GQ"
 };
 
 // Initialize Firebase
