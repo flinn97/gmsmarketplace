@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FormsThemeFactory from '../formThemes/formThemeFactory';
+import IdService from "../../idService";
 
 class DelButton extends Component {
     constructor(props) {
@@ -32,9 +33,10 @@ class DelButton extends Component {
         }
     }
     render() {
-
-   
-
+        let app = this.props.app;
+        let state = app.state;
+        let styles =state.styles;
+       
         let theme= undefined;
         if(this.props.theme){
             theme = FormsThemeFactory.getFormsThemeFactory()[this.props.theme]
@@ -43,14 +45,20 @@ class DelButton extends Component {
 
 
         return (
-            <div ref={this.wrapperRef} style={this.props.wrapperStyle? this.props.wrapperStyle: theme!==undefined? theme.delbuttonWrapperStyle:{width:"100px", height:"20px", background:"red", borderRadius:"7px", display:"flex", justifyContent:"center", alignItems:"center"}} className={this.props.wrapperClass}>
-                <div style={this.props.buttonTextStyle?{...this.props.buttonTextStyle}:theme!==undefined?theme.buttonTextStyle:{}}  onClick={this.props.onClick?this.props.onClick: ()=>{
+            <div ref={this.wrapperRef} style={this.props.wrapperStyle? this.props.wrapperStyle: theme!==undefined? 
+            theme.delbuttonWrapperStyle:{width:"100px", height:"fit-content", cursor:"pointer",background:"red", borderRadius:"7px", display:"flex", justifyContent:"center", alignItems:"center"}} className={this.props.wrapperClass}>
+                <div style={this.props.buttonTextStyle?{...this.props.buttonTextStyle}:theme!==undefined?theme.buttonTextStyle:{}}  
+                onClick={this.props.onClick?this.props.onClick: ()=>{
                     this.props.obj.getOperationsFactory().cleanPrepareRun({del:this.props.obj});
                     if(this.props.onChange){
                         this.props.onChange();
                     }
+                    this.props.app.dispatch({});
+                    
+                    
                 }}
-                >{this.props.text? this.props.text: "delete"}</div>
+                >
+                 {this.props.text? this.props.text: "delete"}</div>
             </div>
         );
     }

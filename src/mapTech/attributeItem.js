@@ -2,7 +2,7 @@ import BaseClass from './baseClass';
 
 
 //model
-export default class AttributeItem extends BaseClass {
+export default class QuillItem extends BaseClass {
   constructor(props){
     super(props);
 
@@ -22,3 +22,4 @@ export default class AttributeItem extends BaseClass {
   )}
   
 }
+

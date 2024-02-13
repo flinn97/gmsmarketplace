@@ -33,7 +33,6 @@ export default class MPMapCard extends Component {
    * OPTIONS
    */
 
-
   render() {
     let app = { ...this.props.app };
     let dispatch = app.dispatch;
@@ -106,9 +105,11 @@ class MainContent extends Component {
 
     return (
       <div>
-        mapCard
-        <MapComponent app={app} name={state.filter} attribute ="compID" tagList={state.searchTags}
-         theme="defaultRow" cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]}  />
+        MPMapCard.js
+        <MapComponent app={app} name={state.filter} attribute="compID" tagList={state.searchTags}
+          theme="defaultRow" cells={[{type:"attribute", name:"name", class: ""}, "_id", {type:"quill"}, { name: "purchase", hasLink: true, to: "/purchase/" }]}
+
+        />
       </div>
 
     )
@@ -131,7 +132,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -267,12 +268,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }} className='scroller'>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }

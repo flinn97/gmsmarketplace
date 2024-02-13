@@ -18,7 +18,7 @@ class MapComponentInterface {
 
     }
     /**
-     * 
+     
      * @returns factory for map items
      */
     getFactory() {
