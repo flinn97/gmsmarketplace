@@ -111,7 +111,7 @@ class MainContent extends Component {
 
 
     return (
-      <div>
+      <div style={{color: "white"}}>
         {state.searchState}
         <div style={{display:"flex", flexDirection: "row"}}>
       <div onClick={()=>{dispatch({searchState:"Campaigns", filter:"mpCampaign"})}}>Campaigns</div>

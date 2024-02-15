@@ -105,9 +105,9 @@ class MainContent extends Component {
 
 
     return (
-      <div>
+      <div style={{color:"white"}}>
         mapCard
-        <MapComponent app={app} name={state.filter} attribute ="compID" tagList={state.searchTags}
+        <MapComponent app={app} name={state.filter}  filters={[{type:"tag", tagList:state.searchTags, attribute:"compID"}]} 
          theme="defaultRow" cells={["name", "_id", {name:"purchase", hasLink:true, to:"/purchase/"}]}  />
       </div>
 
