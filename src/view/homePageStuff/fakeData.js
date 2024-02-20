@@ -13,6 +13,7 @@ let json=[
     _id: "1",
     owner:"taylormdavidson@gmail.com"
 },
+
 {
   type:"mpCampaign",
   name: "FIRE emblem",
@@ -20,15 +21,18 @@ let json=[
   price:"$20",
   topDisplay:true,
   _id: "2",
+  picURL:"https://firebasestorage.googleapis.com/v0/b/flinnapps.appspot.com/o/media%2F16758691346190c167c_fe2ab2d3f6404c3685f39b8eaa5b5d86_mv2.webp?alt=media&token=9cbe3a11-3062-42a8-a081-a3fdf11dc608",
   owner:"taylormdavidson@gmail.com"
 },
+
 {
   type:"mpCampaign",
   name: "straud",
   description: "asdfgh",    promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "3"
+  _id: "3",
+  picURL:"https://firebasestorage.googleapis.com/v0/b/flinnapps.appspot.com/o/media%2F16758691346190c167c_fe2ab2d3f6404c3685f39b8eaa5b5d86_mv2.webp?alt=media&token=9cbe3a11-3062-42a8-a081-a3fdf11dc608",
 },
 {
   type:"mpLore",
