@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
-
+import searchimg from '../../pics/search.png'
 
 /**
  * condensed version of the cards.
@@ -106,8 +98,10 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{width:"200px", height:"30px"}}>
-        <SearchMapComponent name="tag" attribute="name"/>
+      <div style={{width:"100%", height:"100%", }}>
+        <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg}
+        style={{borderRadius:"50px",  background:"#ffdead05", width:"60vw", color:"white", border:"none",
+        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem"}}/>
       </div>
 
     )

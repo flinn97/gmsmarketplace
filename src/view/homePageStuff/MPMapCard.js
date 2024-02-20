@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css"
 
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 
 /**
@@ -107,7 +100,10 @@ class MainContent extends Component {
       <div>
         MPMapCard.js
         <MapComponent app={app} name={state.filter} attribute="compID" tagList={state.searchTags}
-          theme="defaultRow" cells={[{type:"attribute", name:"name", class: ""}, "_id", {type:"quill"}, { name: "purchase", hasLink: true, to: "/purchase/" }]}
+          theme="defaultRow" cells={[{type:"attribute", name:"name", class:""},
+          //  "_id", 
+          
+          { name: "purchase", hasLink: true, to: "/purchase/" , }]}
 
         />
       </div>

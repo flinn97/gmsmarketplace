@@ -5,9 +5,6 @@ import FilterCard from './filterCard';
 import PromotionalCard from './promotionalCard';
 import MPMapCard from './MPMapCard';
 
-// import mummy from "../pics/runesTest1/2red.png";
-// import kinstone from "../pics/runesTest1/1red.png";
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -41,8 +38,11 @@ export default class Home extends Component {
 
 
     return (
-      <div style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"column", alignItems: "center", marginTop:"150px" }} >
-        {/* enter cards here */}
+      <div className='scroller2' style={{...center, width:"100%", height:"100%", minHeight:"100vh", display:"flex", 
+      flexDirection:"column", alignItems: "center", 
+      padding:"100px", 
+      }} >
+        
         <SearchCard app={app} type="card" options={{cardType:"bigcard"}}/>
         <FilterCard app={app} type="card" options={{cardType:"bigcard"}}/> 
         <PromotionalCard app={app} type="card" options={{cardType:"bigcard"}}/>

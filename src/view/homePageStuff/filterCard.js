@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
-import { MapComponent } from '../../mapTech/mapComponentInterface';
 
 
 
@@ -111,14 +103,14 @@ class MainContent extends Component {
 
 
     return (
-      <div>
+      <div style={{background:"#ffdead22", width:"100%"}}>
         {state.searchState}
         <div style={{display:"flex", flexDirection: "row"}}>
       <div onClick={()=>{dispatch({searchState:"Campaigns", filter:"mpCampaign"})}}>Campaigns</div>
       <div onClick={()=>{dispatch({searchState:"Maps", filter:"mpMap"})}} >Maps</div>
       <div onClick={()=>{dispatch({searchState:"Lore", filter:"mpLore"})}}>Lore</div>
       <div onClick={()=>{dispatch({searchState:"Encounters", filter:"mpEncounter"})}}>Encounters</div>
-      <div onClick={()=>{dispatch({searchState:"Monsters", filter:"mpMonster"})}}>Monsters</div>
+      {/* <div onClick={()=>{dispatch({searchState:"Monsters", filter:"mpMonster"})}}>Monsters</div> */}
       <div onClick={()=>{dispatch({searchState:"Images", filter:"mpImage"})}}>Images</div>
       <div></div>
       </div>
