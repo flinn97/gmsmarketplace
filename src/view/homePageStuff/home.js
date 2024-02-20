@@ -38,15 +38,18 @@ export default class Home extends Component {
 
 
     return (
-      <div className='scroller2' style={{...center, width:"100%", height:"100%", minHeight:"100vh", display:"flex", 
-      flexDirection:"column", alignItems: "center", fontFamily:"inria" ,
-      padding:"100px", 
+      <div style={{...center, width:"100%", height:"100vh", minHeight:"100vh", display:"flex", 
+      flexDirection:"column", alignItems: "center", fontFamily:"inria" , overflowY:"auto", marginTop:"52px",
+      paddingBottom:"101px",
       }} >
-        
         <SearchCard app={app} type="card" options={{cardType:"bigcard"}}/>
+      <div className='scroller2' style={{width:"100%", paddingLeft:"100px", height:"fit-content", paddingRight:"100px", alignItems: "center", display:"flex",  flexDirection:"column",  marginTop:"2px",}}>
+        
+        
         <FilterCard app={app} type="card" options={{cardType:"bigcard"}}/> 
         <PromotionalCard app={app} type="card" options={{cardType:"bigcard"}}/>
         <MPMapCard app={app} type="card" options={{cardType:"bigcard"}}/>   
+      </div>
       </div>
     )
 

@@ -17,7 +17,7 @@ let json=[
 {
   type:"mpCampaign",
   name: "FIRE emblem",
-  description: "asdfg",   promotional: "this is cool",
+  description: "asdfg",   promotional: "Uncover the secrets of Phandalin and the lost mine. Face dangerous foes, delve into ancient ruins, and form alliances.",
   price:"$20",
   topDisplay:true,
   _id: "2",
@@ -27,12 +27,13 @@ let json=[
 
 {
   type:"mpCampaign",
-  name: "straud",
-  description: "asdfgh",    promotional: "this is cool",
-  price:"$20",
+  name: "The Curse of Strahd",
+  description: "asdfgh",    promotional: "Adventurers are mysteriously drawn to the realm of Barovia which is surrounded by deadly fog and ruled by the vampire wizard Strahd von Zarovich. This gothic horror adventure takes the players on a course through Barovia that culminates with a vampire hunt inside Castle Ravenloft.",
+  price:"$49.99",
   topDisplay:true,
   _id: "3",
-  picURL:"https://firebasestorage.googleapis.com/v0/b/flinnapps.appspot.com/o/media%2F16758691346190c167c_fe2ab2d3f6404c3685f39b8eaa5b5d86_mv2.webp?alt=media&token=9cbe3a11-3062-42a8-a081-a3fdf11dc608",
+  picURL:"https://images.ctfassets.net/swt2dsco9mfe/5ufckdRJoL1Nh1XJv6clTt/1e8faa90bb0cfef53e3e5dbefc54b661/cos-rp.jpg",
+  isPromo: "priority1"
 },
 {
   type:"mpLore",
@@ -156,7 +157,7 @@ _id: "17"
 {
 type:"mpMap",
 name: "fake2",
-description: "asdfgh",    promotional: "this is cool",
+description: "asdfgh",    promotional: "Uncover the secrets of Phandalin and the lost mine. Face dangerous foes, delve into ancient ruins, and form alliances.",
 price:"$20",
 topDisplay:true,
 _id: "18",

@@ -107,11 +107,12 @@ class MainContent extends Component {
     return (
       <div style={{ width: "100%", color: styles.colors.colorWhite+"99", cursor:"pointer", userSelect:"none" }}>
 
-        <div style={{display:"flex", width:"100%", color: styles.colors.colorWhite, justifyContent:"center", fontSize:"2rem", fontFamily:'Luminari', marginBottom:"12px" }}>
+        <div style={{display:"flex", width:"100%", color: styles.colors.colorWhite,
+        justifyContent:"space-evenly", fontSize:"2rem", fontFamily:'Luminari', marginBottom:"12px" }}>
         {state.searchState}
         </div>
 
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", }}>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent:"space-evenly", width: "100%", }}>
           <div style={styling}
           onClick={() => { dispatch({ searchState: "Campaigns", filter: "mpCampaign" }) }}>
             Campaigns</div>
