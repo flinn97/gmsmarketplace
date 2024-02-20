@@ -204,12 +204,17 @@ class SearchMapComponent extends Component {
             style={this.props.style? this.props.style: {width:"120px"}} class={this.props.class? this.props.class: "flinntechInput"} onChange={(e)=>{
                 
                 const { name, value } = e.target
+                
                 if(this.props.onTextChange){
                     this.props.onTextChange(e);
                 }
                 else{
                     list = list.filter(obj=> obj.getJson()[attribute].includes(value));
                     app.dispatch({searchTags:[...list]})
+                }
+
+                if (this.props.callBackFunc){
+                    this.props.callBackFunc(e, {list:list,attribute:attribute,name:name})
                 }
             }}/>
             

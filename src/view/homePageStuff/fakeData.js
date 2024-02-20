@@ -66,7 +66,7 @@ _id: "6"
   description: "asdfgh",    promotional: "this is cool",
   price:"$20",
   topDisplay:true,
-  _id: "6"
+  _id: "6235"
   },
 {
 type:"mpEncounter",
@@ -204,7 +204,7 @@ owner:"taylormdavidson@gmail.com"
       name: "fake2",
       description: "asdfgh",
       topDisplayID:"1",
-      _id: "23"
+      _id: "234234"
       },
       {
         type:"mpEncounter",

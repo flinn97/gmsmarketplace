@@ -99,7 +99,10 @@ class MainContent extends Component {
     return (
       <div style={{color:styles.colors.colorWhite+"99",}}>
         MPMapCard.js
-        <MapComponent app={app} name={state.filter} attribute="compID" filters={[{type:"tag", tagList:state.searchTags, attribute:"compID"}]}
+        <MapComponent app={app} name={state.filter} 
+        filters={[
+        {type:"textAndTag", attribute:"name", tagList:state.searchTags, attributeTag:"compID", attribute2:"promotional", search: state.search},
+        ]}
           theme="defaultRow" cells={[
             "img", 
             {type:"attribute", name:"name", class:"Bold-Title DR-Attribute-Item"},

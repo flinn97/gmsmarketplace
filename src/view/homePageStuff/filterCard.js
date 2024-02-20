@@ -88,7 +88,9 @@ class MainContent extends Component {
 
 
 
-
+ componentDidMount(){
+  this.props.app.dispatch({ searchState: "Campaigns", filter: "mpCampaign" })
+ }
 
 
   render() {

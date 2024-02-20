@@ -62,7 +62,8 @@ export default class App extends Component {
       globalTheme: "",
       currentStudent: undefined,
       currentRoutine: undefined,
-      searchState: "Campaign",
+      searchState: "Campaigns",
+      searchTags:[],
       //allows to know which card is which
       switchCase:[
         {path:"/", comp:Home, name: "Home" }, 
