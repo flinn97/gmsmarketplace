@@ -105,7 +105,7 @@ class MainContent extends Component {
 
 
     return (
-      <div>
+      <div style={{color:"white"}}>
         PromotionalCard
         <MapComponent app={app} name="promotional"/>
       </div>

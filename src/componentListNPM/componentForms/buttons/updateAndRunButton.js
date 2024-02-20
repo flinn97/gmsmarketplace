@@ -68,7 +68,7 @@ class UpdateAndRunButton extends Component {
                     await obj.setCompState({...this.props.updateObj});
                 }
                     this.state.obj[0].getOperationsFactory().run();
-                    this.props.app.dispatch({updateRun:true, updateType:this.state.obj[0].getJson().type, updateObj: this.state.obj})
+                    this.props.app.dispatch({updateRun:true})
                 }}
                 >{this.props.text? this.props.text: "save"}</div>
             </div>

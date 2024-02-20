@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import authService from '../../../../services/auth';
 
@@ -28,10 +27,8 @@ export default class Login extends Component {
 
 	async handleSubmission()  {
         
-       let user = await authService.login(this.state.email, this.state.password, this.props.app.state.componentList, this.props.app.dispatch)
-        if(!user){
-            this.setState({message:"Email or password is incorrect."})
-        }
+        await authService.login(this.state.email, this.state.password, this.props.app.state.componentList, this.props.app.dispatch)
+
         
         
 	};
@@ -69,24 +66,23 @@ export default class Login extends Component {
                          alignItems: "center",
                          alignSelf: "center",
                         marginTop:styles?.margins?.marginSmallH, width:"100%"}}>
-                        <div style={{fontFamily: styles?.fonts?.fontTitle, fontSize: styles?.fonts?.fontHeader5,}}>DreamMaker Login</div>                     
+                        <div style={{fontFamily: styles?.fonts?.fontTitle, fontSize: styles?.fonts?.fontHeader5,}}>Login</div>                     
                      <div style={{marginTop:"2vh",}} >
                     
                             <label htmlFor="lastName"><div style={{fontFamily: styles?.fonts?.fontNormal, marginRight: styles?.margins?.marginSmallW, fontSize: styles?.fonts?.fontHeader1,}}>Email</div></label>
-                            <input style ={{fontFamily: styles?.fonts?.fontNormal, height: "3vh", width: window.innerWidth<state.phoneUIChange?"300px":"25vw",
+                            <input style ={{fontFamily: styles?.fonts?.fontNormal, height: "3vh", width: "18vw",
                     borderWidth: styles?.mySpawn?.border ,}} type="text" id="last"   onChange={this.handleChange} name="email"/>
                         </div>
                         <div style={{marginTop:"2vh", marginBottom:styles?.margins?.marginSmallH}} >
                             <label htmlFor="lastName"><div style={{fontFamily: styles?.fonts?.fontNormal,marginRight: styles?.margins?.marginSmallW, fontSize: styles?.fonts?.fontHeader1,}}>Password</div></label>
                             <input  style ={{fontFamily: styles?.fonts?.fontNormal, height: "3vh",
-                    borderWidth: styles?.mySpawn?.border, width:window.innerWidth<state.phoneUIChange?"300px": "25vw"}} type="password" id="pwd"   onChange={this.handleChange} name="password"/>
+                    borderWidth: styles?.mySpawn?.border, width: "18vw"}} type="password" id="pwd"   onChange={this.handleChange} name="password"/>
                         </div>
                         <div>
                          <button style={{...styles?.buttons?.buttonFollow, marginTop:"2vh", fontSize: styles?.fonts?.fontHeader2,}} class= "btn" onClick={this.handleSubmission}>Login</button>
-                        <div style={{color:"red"}}>{this.state.message}</div>
+                    
                      </div>
                      </div>
-                     
                  </div>
              )
     }

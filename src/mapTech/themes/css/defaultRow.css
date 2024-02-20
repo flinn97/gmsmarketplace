@@ -1,5 +1,5 @@
 .DR-Map-Container {
-    display: flex;
+    display: flex;font-family:"inria" ;
     flex-direction: row; /* Switched to row layout */
     width: 100%;
     height: 100%;
@@ -7,7 +7,7 @@
   }
   
   .DR-Map-Section {
-    display: flex;
+    display: flex; font-family:"inria" ;
     flex-direction: column; /* Switched to column layout */
     align-items: center;
     margin: 8px;
@@ -29,9 +29,11 @@
   .DR-imgItem,
   .DR-Text-Item {
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 11px;
     margin: 5px;
-    background-color: #f9f9f9;
+    background-color: #16161605;
+    font-family:"inria" ;
+    user-select: none;
   }
   
   
@@ -40,7 +42,7 @@
   .DR-Link {
     text-decoration: none;
     cursor: pointer;
-    color: black;
+    color: rgb(190, 221, 226);
   }
   
   .DR-Custom-Del-Item,
@@ -69,4 +71,9 @@
     padding: 0px;
     left: 3px;
     top: 3px;
+  }
+
+  .Bold-Title{
+    font-weight: 600;
+    
   }

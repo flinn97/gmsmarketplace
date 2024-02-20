@@ -108,7 +108,7 @@ class MainContent extends Component {
 
 
     return (
-      <div>
+      <div style={{display:"flex", flexDirection:"column",}}>
         
         <MapComponent name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
@@ -117,7 +117,7 @@ class MainContent extends Component {
         <MapComponent name="mpMonster" cells={["name","descsription"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
 
-        <div onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
+        <div style={{color:"yellow"}} onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
       </div>
 
     )

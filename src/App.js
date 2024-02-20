@@ -62,11 +62,12 @@ export default class App extends Component {
       globalTheme: "",
       currentStudent: undefined,
       currentRoutine: undefined,
-      searchState: "Campaign",
+      searchState: "Campaigns",
+      searchTags:[],
       //allows to know which card is which
       switchCase:[
-        {path:"/", comp:Home, name: "home" }, 
-      {path:"/admin", comp:Admin, name: "admin" },
+        {path:"/", comp:Home, name: "Home" }, 
+      {path:"/admin", comp:Admin, name: "Admin" },
       ],
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
@@ -229,7 +230,7 @@ handleChange = (event) => {
       width:"100vw", 
       height:"100vh", 
       display:"flex", 
-      background:"#095581",
+      background:"#111319",
       zIndex:"100",
       flexDirection:"column"}}>
       
