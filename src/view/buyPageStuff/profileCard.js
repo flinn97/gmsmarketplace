@@ -106,7 +106,7 @@ class MainContent extends Component {
     let user = state.componentList.getComponent("user");
    
     return (
-      <div style={{marginTop:"200px", color:"black"}}>
+      <div style={{marginTop:"200px", color:"white"}}>
         campaigns:
         <MapComponent name="mpCampaign" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}}/>
         maps:
