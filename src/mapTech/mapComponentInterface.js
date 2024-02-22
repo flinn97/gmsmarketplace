@@ -102,17 +102,9 @@ const mapInterface = new MapComponentInterface()
 class MapComponent extends Component {
     constructor(props) {
         super(props);
-
-
         this.state = {
-
         }
     }
-
-
-
-
-
 
     render() {
         
