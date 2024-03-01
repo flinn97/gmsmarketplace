@@ -1,7 +1,7 @@
 import './App.css';
 import { Component } from 'react';
 import logo from './pics/DreamMakers.png'
-// import Home from './view/home';
+
 import Nav from './componentListNPM/navTech/nav.js';
 // import Login from './view/login';
 // import Register from './view/register';
@@ -116,16 +116,17 @@ export default class Dispatch extends Component {
       }}>
         {state.user?(
         <>
-     <Nav  app={app} type="topBarNav"  template="legato"  theme="legato"
+     
+     <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
      options={{
       
      }}
   
      
-     /> 
+     />
      {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
     <div style={{}}>
-    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupSmallSolid" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined }) }}/>}
+    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined }) }}/>}
      <Routes>
       {state.switchCase?.map((obj, index)=>
         <Route path={obj.path} element={<obj.comp app={app}/>} />

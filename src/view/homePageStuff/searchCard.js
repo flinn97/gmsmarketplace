@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
-
+import searchimg from '../../pics/search.png'
 
 /**
  * condensed version of the cards.
@@ -106,8 +98,16 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{width:"200px", height:"30px"}}>
-        <SearchMapComponent name="tag" attribute="name"/>
+      <div style={{width:"100%", height:"100%", }}>
+        <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
+        callBackFunc={(e, json) =>
+          { let {list,attribute,name} = json
+          debugger
+          list = list.filter(obj=> obj.getJson()[attribute].includes(e.target.value));
+          app.dispatch({searchTags:[...list], search: e.target.value})}
+        }
+        style={{borderRadius:"50px",  background:"#ffdead05", width:"60vw", color:"white", border:"none",
+        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem"}}/>
       </div>
 
     )
@@ -170,7 +170,7 @@ class Popup extends Component {
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -215,7 +215,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -245,7 +245,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div  style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -268,7 +268,7 @@ class CardWithTab extends Component {
     return (
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller'>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
         

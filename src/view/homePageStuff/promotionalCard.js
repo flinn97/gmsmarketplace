@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
-
-
+import { MapComponent } from '../../mapTech/mapComponentInterface';
 /**
  * condensed version of the cards.
  * Works with themes.
@@ -105,9 +96,21 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{color:"white"}}>
-        PromotionalCard
-        <MapComponent app={app} name="promotional"/>
+      <div style={{color:"white", width:"100%", height:"fit-content", display:"flex", height:"fit-content" ,flexDirection:"column"}}>
+
+        {/* PromotionalCard */}
+        <MapComponent app={app} name={state.filter}
+        filters={[
+        {type:"text", attribute:"isPromo", search: "priority"},
+        ]}
+          theme="defaultRow" cells={[
+            {type:"img", class:"Img-Midsize"}, 
+            {type:"attribute", name:"name", class:"Bold-Title DR-Attribute-Item"},
+            {type:"attribute", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
+            { name:  "See More", class:"DR-Attribute-Item Button-Gold a", hasLink: true, to: "/purchase/" },
+        ]}
+
+        />
       </div>
 
     )
@@ -170,7 +173,7 @@ class Popup extends Component {
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -215,7 +218,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -245,7 +248,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -268,7 +271,7 @@ class CardWithTab extends Component {
     return (
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller'>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }}>
           <MainContent app={app} />
         </div>
         

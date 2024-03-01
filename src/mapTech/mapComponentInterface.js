@@ -18,7 +18,7 @@ class MapComponentInterface {
 
     }
     /**
-     * 
+     
      * @returns factory for map items
      */
     getFactory() {
@@ -102,17 +102,9 @@ const mapInterface = new MapComponentInterface()
 class MapComponent extends Component {
     constructor(props) {
         super(props);
-
-
         this.state = {
-
         }
     }
-
-
-
-
-
 
     render() {
         
@@ -196,10 +188,15 @@ class SearchMapComponent extends Component {
 
       
 
-        return (
-            <input name={attribute} style={this.props.style? this.props.style: {width:"120px"}} class={this.props.class? this.props.class: "flinntechInput"} onChange={(e)=>{
+        return (<div style={{display:"flex", flexDirection:"row", }}>
+        {this.props.imgLeft && <div style={{display:"flex", flexDirection:"column", justifyContent:"center", marginRight:"-41px"}}>
+            <img src={this.props.imgLeft} style={{width:"32px", height:"32px", opacity:"71%"}} />
+            </div>}
+            <input autocomplete="off" name={attribute} placeholder={this.props.placeholder?this.props.placeholder:"Search..."} 
+            style={this.props.style? this.props.style: {width:"120px"}} class={this.props.class? this.props.class: "flinntechInput"} onChange={(e)=>{
                 
                 const { name, value } = e.target
+                
                 if(this.props.onTextChange){
                     this.props.onTextChange(e);
                 }
@@ -207,7 +204,13 @@ class SearchMapComponent extends Component {
                     list = list.filter(obj=> obj.getJson()[attribute].includes(value));
                     app.dispatch({searchTags:[...list]})
                 }
+
+                if (this.props.callBackFunc){
+                    this.props.callBackFunc(e, {list:list,attribute:attribute,name:name})
+                }
             }}/>
+            
+            </div>
         )
     }
 }

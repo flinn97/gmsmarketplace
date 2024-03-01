@@ -10,6 +10,7 @@ import InputToRichTextComponent from './singleForms/inputToRichEditor.js';
 import CheckBox from './singleForms/checkComponent.js';
 import FormWithUpdateAndRun from './buttons/formWithUpdateAndRun.js';
 import SelectComponent from './singleForms/selectComponent.js';
+import QuillForm from './singleForms/quillForm.js';
 /**
  * Parent form component has every option that is a single form or a button
  * 
@@ -36,6 +37,7 @@ class ParentFormComponent extends Component {
           //
           
           for(const key in this.state.obj){
+            
               this.state.obj[key].setJson({...this.state.obj[key].getJson(), [this.props.name]:change});
               if(this.props.cleanPrepareRun){
                 
@@ -43,9 +45,14 @@ class ParentFormComponent extends Component {
             }
             if(this.props.prepareRun){
                 this.state.obj[key].getOperationsFactory().prepareRun({update:this.state.obj});
+
             }
               this.setState();
 
+          }
+
+          if (this.props.callbackFunc){
+            this.props.callbackFunc(this.state.obj)
           }
           
           if(this.props.sendUpdate &&this.props.app!==undefined){
@@ -152,25 +159,60 @@ class ParentFormComponent extends Component {
      * @param {*} event 
      */
     handleChange = async (event) => {
-        
-        const { name, value } = event.target
-        for(const key in this.state.obj){
-            this.state.obj[key].setJson({...this.state.obj[key].getJson(), [this.props.name]:value});
-            if(this.props.cleanPrepareRun){
-                this.state.obj[key].getOperationsFactory().cleanPrepareRun({update:this.state.obj});
-            }
-            if(this.props.prepareRun){
-                this.state.obj[key].getOperationsFactory().prepareRun({update:this.state.obj});
-            }
-            if(this.props.sendUpdate &&this.props.app){
-                this.props.app.dispatch({formUpdate:this.props.type})
-            }
-        }
-       
-       
-        // this.setState({obj:this.state.obj});
+        const { name, value } = event.target;
 
+       
+                        if (this.props.isPropArray) {
+                            //OVERWRITE [0] ALWAYS
+                        for (const key in this.state.obj) {
+                        let currentVal = this.state.obj[key].getJson()[this.props.name] || [];
+                        if (!Array.isArray(currentVal)) {
+                        currentVal = [currentVal];
+                        }
+                        if (!Array.isArray(currentVal[0])) {
+                            currentVal[0] = [currentVal[0]];
+                        }
+                        currentVal[0]= value;
+                
+                        this.state.obj[key].setJson({
+                        ...this.state.obj[key].getJson(),
+                        [this.props.name]: currentVal,
+                        });
+                
+                        if (this.props.cleanPrepareRun) {
+                        this.state.obj[key].getOperationsFactory().cleanPrepareRun({ update: this.state.obj });
+                        }
+                        if (this.props.prepareRun) {
+                        this.state.obj[key].getOperationsFactory().prepareRun({ update: this.state.obj });
+                        }
+                        if (this.props.sendUpdate && this.props.app) {
+                        this.props.app.dispatch({ formUpdate: this.props.type });
+                        }
+                    }
+                    } else {
+                    for (const key in this.state.obj) {
+                        this.state.obj[key].setJson({
+                        ...this.state.obj[key].getJson(),
+                        [this.props.name]: value,
+                        });
+                
+                        if (this.props.cleanPrepareRun) {
+                        this.state.obj[key].getOperationsFactory().cleanPrepareRun({ update: this.state.obj });
+                        }
+                        if (this.props.prepareRun) {
+                        this.state.obj[key].getOperationsFactory().prepareRun({ update: this.state.obj });
+                        }
+                        if (this.props.sendUpdate && this.props.app) {
+                        this.props.app.dispatch({ formUpdate: this.props.type });
+                        }
+                    }
+                    
     }
+    if (this.props.callbackFunc){
+        this.props.callbackFunc(this.state.obj)
+      }
+      };
+
     /**
      * update a value all at once. Same as handleHTMLChange but made to me more generic in clase the html change needs to be more complicated.
      * @param {} value 
@@ -179,7 +221,6 @@ class ParentFormComponent extends Component {
         for(const key in this.state.obj){
             this.state.obj[key].setJson({...this.state.obj[key].getJson(), [this.props.name]:value});
             if(this.props.cleanPrepareRun){
-                
                 this.state.obj[key].getOperationsFactory().cleanPrepareRun({update:this.state.obj});
             }
             if(this.props.prepareRun){
@@ -217,9 +258,12 @@ class ParentFormComponent extends Component {
     
     render() {
         let types;
+        
         if(this.state.start){
          types={
             text: <InputFormComponent 
+            doesMath={this.props.doesMath}
+            onFocus={this.props.onFocus}
             rows={this.props.rows}
             cols={this.props.cols}
             objDispatch={this.objDispatch}
@@ -234,11 +278,24 @@ class ParentFormComponent extends Component {
             labelStyle={this.props.labelStyle}
             onClick={this.props.prepareOnClickFunc? this.props.prepareOnClickFunc:this.prepareOnClick}
             wrapperStyle={this.props.wrapperStyle}
+            
             class = {this.props.class} 
             placeholder={this.props.placeholder} 
             handleChange={this.props.func? (value)=>{this.props.func(this.state.obj, value)}:this.handleChange} 
             name={this.props.name} 
-             value={!this.state.obj?"": this.state.obj[0].getJson()[this.props.name]}
+            //TAYLOR
+            value={
+                !this.state.obj ? "" :
+                (this.props.isPropArray && 
+                 this.state.obj[0] && 
+                 this.state.obj[0].getJson() && 
+                 this.state.obj[0].getJson()[this.props.name] ?
+                 this.state.obj[0].getJson()[this.props.name][0] :
+                 this.state.obj[0] && 
+                 this.state.obj[0].getJson() ? 
+                 this.state.obj[0].getJson()[this.props.name] : 
+                 "")
+              }
             min={this.props.min}
             max={this.props.max}
             autoComplete={this.props.autoComplete}
@@ -251,7 +308,7 @@ class ParentFormComponent extends Component {
             />,
 
             checkbox: <CheckBox 
-            
+            onFocus={this.props.onFocus}
             objDispatch={this.objDispatch}
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
@@ -267,6 +324,7 @@ class ParentFormComponent extends Component {
             class = {this.props.class} 
             tickClass={this.props.tickClass}
             handleChange={this.props.func? (value)=>{this.props.func(this.state.obj, value)}:this.objDispatch} 
+            outsideFunc={this.props.func? true:false}
 
             name={this.props.name} 
              value={!this.state.obj?"": this.state.obj[0].getJson()[this.props.name]}
@@ -275,7 +333,7 @@ class ParentFormComponent extends Component {
             requiredMessage={this.props.requiredMessage}
             />,
             switch: <SwitchComponent 
-           
+            onFocus={this.props.onFocus}
             objDispatch={this.objDispatch}
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
@@ -294,7 +352,7 @@ class ParentFormComponent extends Component {
             requiredMessage={this.props.requiredMessage}
             />,
             range: <RangeComponent 
-           
+            onFocus={this.props.onFocus}
             objDispatch={this.objDispatch}
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
@@ -313,7 +371,7 @@ class ParentFormComponent extends Component {
             requiredMessage={this.props.requiredMessage}
             />,
             radio: <RadioComponent 
-           
+            onFocus={this.props.onFocus}
             objDispatch={this.objDispatch}
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
@@ -333,11 +391,13 @@ class ParentFormComponent extends Component {
             requiredMessage={this.props.requiredMessage}
             />,
             textArea:<TextBoxComponent 
+            onFocus={this.props.onFocus}
             rows={this.props.rows}
             theme={this.props.theme}
             objDispatch={this.objDispatch}
             updateOnClickOutside= {this.props.updateOnClickOutside}
             cols={this.props.cols}
+            onInputChange={this.props.onChange} // Taylor
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
             inputStyle={this.props.inputStyle}
@@ -365,6 +425,7 @@ class ParentFormComponent extends Component {
 
 
             inputToTextArea:<InputToTextBoxComponent 
+            onFocus={this.props.onFocus}
             rows={this.props.rows}
             app={this.props.app}
             inputStartStyle={this.props.inputStartStyle}
@@ -397,6 +458,7 @@ class ParentFormComponent extends Component {
             requiredMessage={this.props.requiredMessage}/>,
 
             inputToRichEditor: <InputToRichTextComponent
+            onFocus={this.props.onFocus}
             rows={this.props.rows}
             theme={this.props.theme}
             objDispatch={this.objDispatch}
@@ -440,8 +502,8 @@ class ParentFormComponent extends Component {
             cols={this.props.cols}
             emitClickedOutside={this.props.emitClickedOutside}
             id={this.props.id}
-            
-            inputStyle={this.props.inputStyle}
+            linkLore={this.props.linkLore}
+            inputStyle={{...this.props.inputStyle, fontSize:""}}
             spellCheck={this.props.spellCheck}
             label={this.props.label}
             type={this.props.type? this.props.type: 'text'}
@@ -462,6 +524,26 @@ class ParentFormComponent extends Component {
             html ={!this.state.obj? undefined: this.state.obj[0].getJson().html}
             input={this.props.required? "required": this.props.disabled? "disabled": "normal"}
             requiredMessage={this.props.requiredMessage}
+            />,
+            quill: <QuillForm 
+            app={this.props.app}
+            theme={this.props.theme}
+            objDispatch={this.objDispatch}
+            updateOnClickOutside= {this.props.updateOnClickOutside}
+            handleChange={this.props.func? (value)=>{this.props.func(this.state.obj, value)}:this.handleHTMLChange} 
+            emitClickedOutside={this.props.emitClickedOutside}
+            id={this.props.id}
+            inputStyle={this.props.inputStyle}
+            label={this.props.label}
+            prepareOnClick={this.props.prepareOnClick}
+            labelStyle={this.props.labelStyle}
+            onClick={this.props.prepareOnClickFunc? this.props.prepareOnClickFunc:this.prepareOnClick}
+            wrapperStyle={this.props.wrapperStyle}
+            class = {this.props.class} 
+            placeholder={this.props.placeholder} 
+            name={this.props.name} 
+             value={!this.state.obj?"": this.state.obj[0].getJson()[this.props.name]}
+            html ={!this.state.obj? undefined: this.state.obj[0].getJson().html}
             />,
             select: <SelectComponent 
             name={this.props.name}

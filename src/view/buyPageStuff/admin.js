@@ -1,10 +1,6 @@
 import { Component } from 'react';
 import "../../App.css"
-import SearchCard from '../homePageStuff/searchCard';
-import FilterCard from '../homePageStuff/filterCard';
-import PromotionalCard from '../homePageStuff/promotionalCard';
-import MPMapCard from '../homePageStuff/MPMapCard';
-import { MapComponent } from '../../mapTech/mapComponentInterface';
+
 import ProfileCard from './profileCard';
 
 // import mummy from "../pics/runesTest1/2red.png";

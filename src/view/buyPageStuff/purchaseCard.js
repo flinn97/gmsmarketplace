@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import "../../App.css"
+import "../../App.css";
 
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
-
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 
 /**
@@ -110,14 +102,14 @@ class MainContent extends Component {
     return (
       <div style={{display:"flex", flexDirection:"column",}}>
         
-        <MapComponent name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Large" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMonster" cells={["name","descsription"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent name="mpMonster" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
 
-        <div style={{color:"yellow"}} onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
+        <div style={{color:styles.colors.color3}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
       </div>
 
     )
@@ -180,7 +172,7 @@ class Popup extends Component {
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -225,7 +217,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -255,7 +247,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -278,7 +270,7 @@ class CardWithTab extends Component {
     return (
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller'>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
         

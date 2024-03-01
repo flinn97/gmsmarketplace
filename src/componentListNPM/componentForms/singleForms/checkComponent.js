@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import "./checkbox.css"
 import FormsThemeFactory from '../formThemes/formThemeFactory';
 
+
 class CheckBox extends Component {
     constructor(props) {
         super(props);
         this.markcheckbox = this.markcheckbox.bind(this);
         this.state = {
-            checked:this.props.value
+            checked:this.props.value!==undefined? this.props.value: false
         }
     }
     componentDidMount() {
@@ -18,7 +19,10 @@ class CheckBox extends Component {
     }
     componentDidUpdate(props, state){
         if(props!==this.props){
-            this.setState({checked:this.props.value})
+            if(!this.props.outsideFunc){
+                this.setState({checked:this.props.value})
+
+            }
         }
 
     }
@@ -38,9 +42,9 @@ class CheckBox extends Component {
      * check the box send to backend.
      */
     async markcheckbox() {
+        
         await this.setState({checked:!this.state.checked})
         this.props.handleChange(this.state.checked);
-        
     }
 
     render() {

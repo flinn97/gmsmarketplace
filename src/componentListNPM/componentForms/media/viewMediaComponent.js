@@ -32,15 +32,15 @@ export default class ViewMedia extends Component {
             { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
           } onClick={() => { this.props.removeMedia({ content: media[0], index: 0 }) }}> X </div>}
           <div style={{ width: "100%", height: "100%" }}>
-            {(media[0]?.video||media[0]?.includes(".mov")||media[0]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
+            {media[0]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
               autoplay: false,
               bigPlayButton:this.props.disablePlayButton?false:true,
               controls: true,
-              width: "150px",
+              width: "35vw",
                 height: "fit-content",
                 marginBottom:"1vmin",
               sources: [{
-                src: media[0].file? media[0].file:media[0],
+                src: media[0].file,
                 type: "video/mp4"
               }]
             }
@@ -65,19 +65,17 @@ export default class ViewMedia extends Component {
             { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
           } onClick={() => { this.props.removeMedia({ content: media[0], index: 0 }) }}> X </div>}
           <div style={{ width: "100%", height: "100%" }}>
-          {(media[0]?.video||media[0]?.includes(".mov")||media[0]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
+            {media[0]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
               autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
               controls: true,
-              width: "150px",
+              width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
               sources: [{
-                src: media[0].file? media[0].file:media[0],
+                src: media[0].file,
                 type: "video/mp4"
               }]
             }
-            } />): (
+            } />) : (
               <img style={{
                 width: (20 * s).toString() + "vw",
                 height: "fit-content",
@@ -90,22 +88,19 @@ export default class ViewMedia extends Component {
         <div style={{ position: "relative", borderRadius: "1vmin", }}>
           {this.props.editable && <div style={ ///EXIT BUTTON
             { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
-          } onClick={() => { this.props.removeMedia({ content: media[1], index: 1 }) }}> X </div>}
+          } onClick={() => { this.props.removeMedia({ content: media[2], index: 1 }) }}> X </div>}
           <div style={{ width: "100%", height: "100%" }}>
-          {(media[1]?.video||media[1]?.includes(".mov")||media[1]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
+            {media[1]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
               autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
               controls: true,
-              width: "150px",
+              width: "40vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
               sources: [{
-                src: media[1].file? media[1].file:media[1],
+                src: media[1].file,
                 type: "video/mp4"
               }]
             }
-            } />)
-          : (
+            } />) : (
               <img style={{
                 width: (20 * s).toString() + "vw",
                 height: "fit-content",
@@ -125,15 +120,13 @@ export default class ViewMedia extends Component {
             { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
           } onClick={() => { this.props.removeMedia({ content: media[0], index: 0 }) }}> X </div>}
           <div style={{ width: "100%", height: "100%", }}>
-          {(media[0]?.video||media[0]?.includes(".mov")||media[0]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
+            {media[0]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
               autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
               controls: true,
-              width: "150px",
+              width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
               sources: [{
-                src: media[0].file? media[0].file:media[0],
+                src: media[0].file,
                 type: "video/mp4"
               }]
             }
@@ -152,19 +145,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[1], index: 1 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%", marginBottom:"-2vmin"   }}>
-            {(media[1]?.video||media[1]?.includes(".mov")||media[1]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[1]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[1].file? media[1].file:media[1],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[1].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (12 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -178,20 +169,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.5vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[2], index: 2 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[2]?.video||media[2]?.includes(".mov")||media[2]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[2]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[2].file? media[2].file:media[2],
-                type: "video/mp4"
-              }]
-            }
-            } />)
-              : (<img style={{
+                sources: [{
+                  src: media[2].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (12 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -212,15 +200,13 @@ export default class ViewMedia extends Component {
             { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
           } onClick={() => { this.props.removeMedia({ content: media[0], index: 0 }) }}> X </div>}
           <div style={{ width: "100%", height: "100%", marginBottom:"-2.1vmin", }}>
-          {(media[0]?.video||media[0]?.includes(".mov")||media[0]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
+            {media[0]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
               autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
               controls: true,
-              width: "150px",
+              width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
               sources: [{
-                src: media[0].file? media[0].file:media[0],
+                src: media[0].file,
                 type: "video/mp4"
               }]
             }
@@ -237,19 +223,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[1], index: 1 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[1]?.video||media[1]?.includes(".mov")||media[1]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[1]?.video ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton}  options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[1].file? media[1].file:media[1],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[1].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -263,19 +247,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[2], index: 2 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%", marginBottom:"-2.1vmin",  }}>
-            {(media[2]?.video||media[2]?.includes(".mov")||media[2]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[2]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[2].file? media[2].file:media[2],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[2].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -288,20 +270,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[3], index: 3 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%", }}>
-            {(media[3]?.video||media[3]?.includes(".mov")||media[3]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[3]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[3].file? media[3].file:media[3],
-                type: "video/mp4"
-              }]
-            }
-            } />)
-              : (<img style={{
+                sources: [{
+                  src: media[3].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -320,19 +299,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[0], index: 0 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%", marginRight:"1vmin", }}>
-            {(media[0]?.video||media[0]?.includes(".mov")||media[0]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[0]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[0].file? media[0].file:media[0],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[0].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (20 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -345,19 +322,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[1], index: 1 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[1]?.video||media[1]?.includes(".mov")||media[1]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[1]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[1].file? media[1].file:media[1],
-                type: "video/mp4"
-              }]
-            }
-            } />) : (<img style={{
+                sources: [{
+                  src: media[1].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (20 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -371,19 +346,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[2], index: 2 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[2]?.video||media[2]?.includes(".mov")||media[2]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[2]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[2].file? media[2].file:media[2],
-                type: "video/mp4"
-              }]
-            }
-            } />) : (<img style={{
+                sources: [{
+                  src: media[2].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10.6 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -396,19 +369,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[3], index: 3 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[3]?.video||media[3]?.includes(".mov")||media[3]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[3]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[3].file? media[3].file:media[3],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[3].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10.6 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",
@@ -421,19 +392,17 @@ export default class ViewMedia extends Component {
               { color: "#A80303", fontWeight: "600", fontSize: "2.3vmin", textShadow: "0px 0px 2px white", width: "fit-content", height: "fit-content", position: "absolute", cursor: "pointer", right: ".4vmin", top: ".35vmin", background: "", padding: ".3vmin" }
             } onClick={() => { this.props.removeMedia({ content: media[4], index: 4 }) }}> X </div>}
             <div style={{ width: "100%", height: "100%" }}>
-            {(media[4]?.video||media[4]?.includes(".mov")||media[4]?.includes("mp4")) ? (<VideoPlayer disablePlayButton= {this.props.disablePlayButton} options={{
-              autoplay: false,
-              bigPlayButton:this.props.disablePlayButton?false:true,
-              controls: true,
-              width: "150px",
+              {media[4]?.video ? (<VideoPlayer  disablePlayButton= {this.props.disablePlayButton} options={{
+                autoplay: false,
+                controls: true,
+                width: "45vw",
                 height: "fit-content",
-                marginBottom:"1vmin",
-              sources: [{
-                src: media[4].file? media[4].file:media[4],
-                type: "video/mp4"
-              }]
-            }
-            } />): (<img style={{
+                sources: [{
+                  src: media[4].file,
+                  type: "video/mp4"
+                }]
+              }
+              } />) : (<img style={{
                 width: (10.6 * s).toString() + "vw",
                 height: "fit-content",
                 maxHeight: "45vmax",

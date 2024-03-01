@@ -6,7 +6,7 @@ import ComponentListInterface from './componentListNPM/componentListInterface';
 import auth from './services/auth';
 import ThemeFactory from './componentListNPM/themes/themeFactory';
 import navThemeFactory from './componentListNPM/navThemes/navThemeFactory';
-import Home from './view/homePageStuff/home';
+import Home from './view/homePageStuff/home.js';
 import { mapInterface } from './mapTech/mapComponentInterface.js';
 import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
@@ -39,7 +39,7 @@ export default class App extends Component {
       themeFactory: new ThemeFactory(),
       // navFactory: new NavThemeFactory(),
       navType: "topBar",
-      linkStyleDefault: {textDecoration: "none", color: "black", cursor: "pointer"},
+      linkStyleDefault: {textDecoration: "none", color: "#0a0dff", cursor: "pointer"},
 
       switchcase: "Not Started",
       refs:[],
@@ -62,11 +62,12 @@ export default class App extends Component {
       globalTheme: "",
       currentStudent: undefined,
       currentRoutine: undefined,
-      searchState: "Campaign",
+      searchState: "Campaigns",
+      searchTags:[],
       //allows to know which card is which
       switchCase:[
-        {path:"/", comp:Home, name: "home" }, 
-      {path:"/admin", comp:Admin, name: "admin" },
+        {path:"/", comp:Home, name: "Home" }, 
+      {path:"/admin", comp:Admin, name: "Admin" },
       ],
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
@@ -229,7 +230,7 @@ handleChange = (event) => {
       width:"100vw", 
       height:"100vh", 
       display:"flex", 
-      background:"black",
+      background:"#111319",
       zIndex:"100",
       flexDirection:"column"}}>
       
