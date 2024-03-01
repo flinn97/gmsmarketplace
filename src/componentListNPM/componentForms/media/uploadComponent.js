@@ -121,7 +121,7 @@ class UploadComponent extends Component {
                  }}/>
                  
 
-<div className='scroller' style={{marginTop:"30px", height:"200px", width:"80%"}}>
+<div className='scroller2' style={{marginTop:"30px", height:"200px", width:"80%"}}>
                     {this.state.list.map((item, index)=>
                     <div style={{  width:"100%", height:"40px", backgroundColor:"#57BA8E", marginTop:"7px", borderRadius:"7px", padding:"10px", cursor:"pointer", position:"relative"}} key ={index}><a style={{marginLeft:"10px", color:"white", textDecoration:"none"}} href={item[Object.keys(item)[0]]} target="_blank">{Object.keys(item)[0]}</a>
                     <div onClick={()=>{

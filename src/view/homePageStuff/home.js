@@ -38,12 +38,12 @@ export default class Home extends Component {
 
 
     return (
-      <div style={{...center, width:"100%", height:"100vh", minHeight:"100vh", display:"flex", 
-      flexDirection:"column", alignItems: "center", fontFamily:"inria" , overflowY:"auto", marginTop:"52px",
-      paddingBottom:"101px",
+      <div className='scroller2' style={{...center, width:"100%", height:"100vh", display:"flex", 
+      flexDirection:"column", alignItems: "center", fontFamily:"inria" , marginTop:"52px", marginBottom:"100px",
       }} >
         <SearchCard app={app} type="card" options={{cardType:"bigcard"}}/>
-      <div className='scroller2' style={{width:"100%", paddingLeft:"100px", height:"fit-content", paddingRight:"100px", alignItems: "center", display:"flex",  flexDirection:"column",  marginTop:"2px",}}>
+      <div style={{width:"100%", paddingLeft:"100px",
+      height:"fit-content", paddingRight:"100px", alignItems: "center", display:"flex",  flexDirection:"column", marginBottom:"100px",  marginTop:"2px",}}>
         
         
         <FilterCard app={app} type="card" options={{cardType:"bigcard"}}/> 
