@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-import "../../App.css"
+import "../../App.css";
 
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
-
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 
 /**
@@ -110,14 +102,14 @@ class MainContent extends Component {
     return (
       <div style={{display:"flex", flexDirection:"column",}}>
         
-        <MapComponent name="mpCampaign" cells={["img", "name", "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Midsize" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMonster" cells={["name","descsription"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent name="mpMonster" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
 
-        <div style={{color:"yellow"}} onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>buy</div>
+        <div style={{color:"yellow"}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
       </div>
 
     )
