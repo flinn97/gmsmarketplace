@@ -66,7 +66,7 @@ export default class ViewCards extends Component {
         <Link to={"/cards/"+this.props.obj.getJson()?._id} style={{textDecoration:"none", display: "flex", alignItems: "center", flexDirection: "column", color:"black"}}>
         <div style={{position:"absolute", top:"10px"}}>{this.props.obj.getJson()?.name}</div>
           {this.props.obj.getJson()?.picURLs===undefined|| this.props.obj.getJson()?.picURLs===""||Object.keys(this.props.obj.getJson()?.picURLs).length===0?(
-            <div dangerouslySetInnerHTML={{ __html:this.props.obj.getJson()?.description }} id ={this.props.obj.getJson()?._id} style={{height:window.innerWidth<state.phoneUIChange?"150px":"200px", width:window.innerWidth<state.phoneUIChange?"150px":"200px",}} className='scroller'></div>
+            <div dangerouslySetInnerHTML={{ __html:this.props.obj.getJson()?.description }} id ={this.props.obj.getJson()?._id} style={{height:window.innerWidth<state.phoneUIChange?"150px":"200px", width:window.innerWidth<state.phoneUIChange?"150px":"200px",}} className='scroller2'></div>
           ):(
         <ViewMedia  disablePlayButton= {true}  scale={window.innerWidth<state.phoneUIChange?.7:.2} media={[this.getMappedPic(this.props.obj)[0]]}  />
         )}

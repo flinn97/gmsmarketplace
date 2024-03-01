@@ -154,7 +154,7 @@ handleClickOutside(event) {
                       styles.buttons.closeicon
                   } onClick={this.props.handleClose}>x</div>
           
-          <div className='scroller' style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}}>
+          <div className='scroller2' style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}}>
         <MainContent app={app} />
         </div>
           
@@ -199,7 +199,7 @@ handleClickOutside(event) {
       <div style={{...styles[this.props.options?.tabType?this.props.options?.tabType: "colorTab1"]}}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
                       styles.buttons.closeicon
                   } onClick={this.props.handleClose}>x</div></div>   
-      <div className='scroller' style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}}>
+      <div className='scroller2' style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}}>
         <MainContent app={app} />
         </div>
         </div>
@@ -229,7 +229,7 @@ class Card extends Component{
     let styles =state.styles;
 
     return(
-      <div className='scroller'  style={{ ...styles[this.props.options?.cardType?this.props.options?.cardType:"biggestCard"] }}>   
+      <div className='scroller2'  style={{ ...styles[this.props.options?.cardType?this.props.options?.cardType:"biggestCard"] }}>   
             <div style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}}>
               <MainContent app={app} />
             </div>
@@ -252,7 +252,7 @@ class CardWithTab extends Component{
     return(
       <div  style={{...styles[this.props.type?this.props.type:"biggestCard"] }}>   
       <div style={{...styles[this.props.options?.tabType?this.props.options?.tabType: "colorTab1"]}}> <TabContent app={app} /></div>   
-      <div style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}} className='scroller'>
+      <div style={{...styles[this.props.options?.cardContent? this.props.options.cardContent: "cardContent"]}} className='scroller2'>
         <MainContent app={app} />
         </div>
         </div>

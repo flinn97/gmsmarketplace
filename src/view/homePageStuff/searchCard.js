@@ -170,7 +170,7 @@ class Popup extends Component {
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -215,7 +215,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -245,7 +245,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div  style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -268,7 +268,7 @@ class CardWithTab extends Component {
     return (
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller'>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
         

@@ -77,7 +77,8 @@ class Tag extends componentBase{
         type: "tag",
         name: "",
         tagType: "",
-        _id: ""
+        _id: "",
+        publisher: "",
         
        
 
@@ -93,7 +94,10 @@ class MPCampaign extends componentBase{
         type:"mpCampaign",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
+        realizedPrice: "",
+        price: "",
     }
 }
 class MPMap extends componentBase{
@@ -102,7 +106,10 @@ class MPMap extends componentBase{
         type:"mpMap",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
+        realizedPrice: "",
+        price: "",
     }
 }
 class MPLore extends componentBase{
@@ -111,7 +118,10 @@ class MPLore extends componentBase{
         type:"mpLore",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
+        realizedPrice: "",
+        price: "",
     }
 }
 class MPEncounter extends componentBase{
@@ -120,7 +130,10 @@ class MPEncounter extends componentBase{
         type:"mpEncounter",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
+        realizedPrice: "",
+        price: "",
     }
 }
 class MPmonster extends componentBase{
@@ -129,7 +142,8 @@ class MPmonster extends componentBase{
         type:"mpMonster",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
     }
 }
 class MPImage extends componentBase{
@@ -138,7 +152,10 @@ class MPImage extends componentBase{
         type:"mpImage",
         name: "",
         description: "",
-        _id: ""
+        _id: "",
+        publisher: "",
+        realizedPrice: "",
+        price: "",
     }
 }
 class Promotional extends componentBase{
@@ -147,8 +164,8 @@ class Promotional extends componentBase{
         type: "promotional",
         name: "",
         tagType: "",
-        _id: ""
-        
+        _id: "",
+        publisher: "",
        
 
     }
@@ -160,6 +177,7 @@ class Buy extends componentBase{
         email:"",
         boughtItem:"",
         _id: "",
+        publisher: "",
     }
 }
 function forFactory(){
