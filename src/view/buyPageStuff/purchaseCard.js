@@ -109,7 +109,7 @@ class MainContent extends Component {
         <MapComponent name="mpMonster" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
 
-        <div style={{color:"yellow"}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
+        <div style={{color:styles.colors.color3}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
       </div>
 
     )
