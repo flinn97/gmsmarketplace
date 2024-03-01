@@ -102,7 +102,7 @@ class MainContent extends Component {
     return (
       <div style={{display:"flex", flexDirection:"column",}}>
         
-        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Midsize" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Large" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
         <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
