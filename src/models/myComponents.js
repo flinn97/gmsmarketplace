@@ -180,8 +180,16 @@ class Buy extends componentBase{
         publisher: "",
     }
 }
+
+class Publisher extends componentBase{
+    json = {
+        type:"publisher",
+        name:""
+      }
+}
+
 function forFactory(){
-    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
+    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, publisher:Publisher, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
 }
 
 

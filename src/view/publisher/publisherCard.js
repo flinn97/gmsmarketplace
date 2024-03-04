@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import "../../App.css"
-
+import "../../App.css";
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
-import FilterCard from './filterCard';
 
 /**
  * condensed version of the cards.
@@ -15,7 +13,7 @@ import FilterCard from './filterCard';
  * options
  * options can include cardType, cardContent, tabType, 
  */
-export default class MPMapCard extends Component {
+export default class PublisherCard extends Component {
   constructor(props) {
     super(props);
 
@@ -26,6 +24,7 @@ export default class MPMapCard extends Component {
    * 
    * OPTIONS
    */
+
 
   render() {
     let app = { ...this.props.app };
@@ -88,21 +87,21 @@ class MainContent extends Component {
 
 
 
+
   render() {
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-
+    let idList = window.location.href.split("/");
+    let id = idList[idList.length-1];
+    
 
     return (
-      <div style={{ color: styles.colors.colorWhite + "99", display: "flex", height: "fit-content", flexDirection: "column" }}>
-
-        <MapComponent app={app} name={state.filter}
-          filters={[
-            { type: "textAndTag", attribute: "name", tagList: state.searchTags, attributeTag: "compID", attribute2: "promotional", search: state.search },
-          ]}
+      <div style={{display:"flex", flexDirection:"column",}}>
+        <MapComponent app={app} name={"mpCampaign"}
+          filter={{attribute:"publisherID", search: id}}
           theme="defaultRow" cells={[
 
             { type: "img", class: "Img-Midsize" },
@@ -110,11 +109,11 @@ class MainContent extends Component {
             { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
             { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
             { type: "attribute", name: "price", class: "DR-Attribute-Item", },
-            {type:"attribute", name:"publisherName", class: "DR-Attribute-Item", hasLink: true, to: "/publisher/", useId:"publisherID"}
 
           ]}
 
         />
+       
       </div>
 
     )
@@ -137,7 +136,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-
+       
       </div>
     )
   }
@@ -177,7 +176,7 @@ class Popup extends Component {
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div>
 
-          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -222,7 +221,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.closeicon
           } onClick={this.props.handleClose}>x</div></div>
-          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -252,7 +251,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -273,12 +272,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
-
+        
       </div>
     )
   }

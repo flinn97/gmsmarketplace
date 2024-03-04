@@ -11,6 +11,7 @@ import { mapInterface } from './mapTech/mapComponentInterface.js';
 import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
 import Admin from './view/buyPageStuff/admin';
+import PublisherPage from './view/publisher/publisherPage.js';
 // import NavThemeFactory from './componentListNPM/navThemes/navThemeFactory';
 
 //fonts
@@ -71,7 +72,7 @@ export default class App extends Component {
       ],
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
-
+        {path:"/publisher", comp:PublisherPage, name: "publisher" }, 
       ]
 
     }
