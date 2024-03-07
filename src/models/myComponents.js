@@ -180,6 +180,17 @@ class Buy extends componentBase{
         publisher: "",
     }
 }
+class MarketplaceItem extends componentBase {
+    constructor(opps) {
+        super(opps);
+
+    }
+    json = {
+        type: "mpItem",
+        id: "",
+    }
+
+}
 
 class Publisher extends componentBase{
     json = {
@@ -189,7 +200,7 @@ class Publisher extends componentBase{
 }
 
 function forFactory(){
-    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, publisher:Publisher, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
+    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, mpItem:MarketplaceItem, publisher:Publisher, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
 }
 
 

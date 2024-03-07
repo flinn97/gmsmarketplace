@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "../../App.css";
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
-
+import { doc, setDoc, serverTimestamp} from "firebase/firestore";
+import { db, storage, auth } from '../../firbase.config.js';
 /**
  * condensed version of the cards.
  * Works with themes.
@@ -110,6 +111,13 @@ class MainContent extends Component {
         <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
 
         <div style={{color:styles.colors.color3}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
+
+        <div style={{color:"white"}} onClick={async ()=>{
+          debugger
+          let json = {...component.getJson(), type:"mpItem", owner:state.user.getJson()._id}
+          json.date = await serverTimestamp();
+          await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
+        }}>Test</div>
       </div>
 
     )

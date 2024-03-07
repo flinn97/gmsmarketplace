@@ -131,7 +131,7 @@ class MapComponent extends Component {
                 filter = {...filterOb}
             }
         }
-        debugger
+        
         
         let list = this.props.list ? this.props.list : filter ? componentList?.getList(name, filter?.search, filter?.attribute) : componentList?.getList(name);
         if (list) {
