@@ -65,6 +65,9 @@ class Auth {
             for (const key in comps.docs) {
                 let data = comps.docs[key].data()
                 if (!IDlist.includes(data._id)) {
+                    if(data.type==='campaign'){
+                        data.type="mpCampaign"
+                    }
                     rawData.push(data);
                 }
             }

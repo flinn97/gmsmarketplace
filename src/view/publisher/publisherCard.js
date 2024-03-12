@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import "../../App.css";
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
-import { doc, setDoc, serverTimestamp} from "firebase/firestore";
-import { db, storage, auth } from '../../firbase.config.js';
+
 /**
  * condensed version of the cards.
  * Works with themes.
@@ -14,7 +13,7 @@ import { db, storage, auth } from '../../firbase.config.js';
  * options
  * options can include cardType, cardContent, tabType, 
  */
-export default class PurchaseCard extends Component {
+export default class PublisherCard extends Component {
   constructor(props) {
     super(props);
 
@@ -97,27 +96,24 @@ class MainContent extends Component {
     let styles = state.styles;
     let idList = window.location.href.split("/");
     let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-
+    
 
     return (
       <div style={{display:"flex", flexDirection:"column",}}>
-        
-        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Large" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMonster" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
+        <MapComponent app={app} name={"mpCampaign"}
+          filter={{attribute:"publisherID", search: id}}
+          theme="defaultRow" cells={[
 
-        <div style={{color:styles.colors.color3}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
+            { type: "img", class: "Img-Midsize" },
+            { type: "attribute", name: "name", class: "Bold-Title DR-Attribute-Item" },
+            { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
+            { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
+            { type: "attribute", name: "price", class: "DR-Attribute-Item", },
 
-        <div style={{color:"white"}} onClick={async ()=>{
-          debugger
-          let json = {...component.getJson(), type:"mpItem", owner:state.user.getJson()._id}
-          json.date = await serverTimestamp();
-          await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-        }}>Test</div>
+          ]}
+
+        />
+       
       </div>
 
     )

@@ -16,7 +16,9 @@ import UseTheirImgItem from "./useTheirImgItem";
 import InteractiveMap from "./interactiveMap/interactiveMapComponent";
 import AddComponentButton from "./interactiveMap/addButtonComponent";
 import PlainDisplay from "./plainDisplay";
-import QuillItem from "./attributeItem";
+import QuillItem from "./quillItem";
+import RichTextComponentItem from "./richTextComponentItem";
+
 /**
  * factory for getting different items for the map component
  */
@@ -39,8 +41,9 @@ export default class MapFactory {
         interactiveMap: InteractiveMap,
         addComponentButton: AddComponentButton,
         plain: PlainDisplay,
-        quill: QuillItem,
-
+        // quill: QuillItem, THIS IS NOT COMPLETE, errors
+        
+        richReader: RichTextComponentItem,
 
 
     }
