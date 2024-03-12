@@ -12,7 +12,9 @@ let json=[
     picURL:"https://assets-prd.ignimgs.com/2023/06/21/screenshot-2023-06-21-at-3-21-19-pm-1687386088079.png?width=1920",
     topDisplay:true,
     _id: "1",
-    owner:"taylormdavidson@gmail.com"
+    owner:"taylormdavidson@gmail.com",
+    publisherID: "31",
+    publisherName: "Wizards"
 },
 
 {
@@ -23,7 +25,9 @@ let json=[
   topDisplay:true, publisher:"Wiz of da Coast",
   _id: "2",
   picURL:"https://firebasestorage.googleapis.com/v0/b/flinnapps.appspot.com/o/media%2F16758691346190c167c_fe2ab2d3f6404c3685f39b8eaa5b5d86_mv2.webp?alt=media&token=9cbe3a11-3062-42a8-a081-a3fdf11dc608",
-  owner:"taylormdavidson@gmail.com"
+  owner:"taylormdavidson@gmail.com",
+  publisherID: "31",
+  publisherName: "Wizards"
 },
 
 {
@@ -34,7 +38,9 @@ let json=[
   topDisplay:true, publisher:"Wizards of the Coast",
   _id: "3",
   picURL:"https://images.ctfassets.net/swt2dsco9mfe/5ufckdRJoL1Nh1XJv6clTt/1e8faa90bb0cfef53e3e5dbefc54b661/cos-rp.jpg",
-  isPromo: "priority1"
+  isPromo: "priority1",
+  publisherID: "31",
+  publisherName: "Wizards"
 },
 {
   type:"mpItem",
@@ -208,8 +214,53 @@ picURL:"https://media.dndbeyond.com/compendium-images/gotg/YGa7uVZhrRWLTUnV/map-
 
           _id: "25"
           },
+          {
+            type:"user",
+            email:"taylormdavidson@gmail.com",
+            owner:"taylormdavidson@gmail.com",
+            _id:"taylormdavidson@gmail.com",
 
+          },
     
-
+  {
+    type:"buy",
+    email:"jaredmichaeldavidson@gmail.com",
+    owner: "taylormdavidson@gmail.com",
+    boughtItem: "1",
+    _id: "26"
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "27",
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "28",
+  },
+  {
+    type: "buy",
+    email:"jmd@gmail.com",
+    boughtItem: "2",
+    owner: "taylormdavidson@gmail.com",
+    _id: "29",
+  },
+  {
+    type: "buy",
+    email:"taylormdavidson@gmail.com",
+    boughtItem: "3",
+    owner: "jmd@gmail.com",
+    _id: "30",
+  },
+  {
+    type:"publisher",
+    _id: "31",
+    name:"Wizards"
+  }
 ]
 export {json}

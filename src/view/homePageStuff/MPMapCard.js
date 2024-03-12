@@ -109,7 +109,8 @@ class MainContent extends Component {
             { type: "attribute", name: "name", class: "Bold-Title DR-Attribute-Item" },
             { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
             { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
-            { type: "attribute", name: "price", class: "DR-Attribute-Item", }
+            { type: "attribute", name: "price", class: "DR-Attribute-Item", },
+            {type:"attribute", name:"publisherName", class: "DR-Attribute-Item", hasLink: true, to: "/publisher/", useId:"publisherID"}
 
           ]}
 
