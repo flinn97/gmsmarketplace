@@ -201,6 +201,46 @@
   }
 }
 
+.Shimmer {
+  top: 6px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #1E90FF00;
+  background-color: rgba(52, 55, 73, 1);
+  right: 0px;
+  font-size: 1.2rem;
+  color:  #e8d259;
+  opacity: 92%;
+  padding: 4px 10px;
+  overflow: hidden;
+  width: fit-content; /* Full width of the parent */
+  height: fit-content; /* Full height of the parent */
+}
+
+.Shimmer:hover {
+  position: absolute;
+  opacity: 88%;
+  box-shadow: 1px 1px 1px #000000;
+  color:  #ffdead;
+  transition: all;
+}
+
+.Shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  background: linear-gradient(90deg, transparent, rgba(52, 55, 73, 0.4), transparent);
+  animation: none; /* No animation by default */
+  opacity: 0; /* Make it invisible by default */
+  transition: opacity 0.5s ease; /* Smooth transition for the shimmer effect */
+  mix-blend-mode: lighten;
+  animation: shimmer 8s infinite; /* Adjust time as needed */
+  opacity: 1; /* Make the shimmer visible on hover */
+}
+  
+
 .DR-Custom-Edit-Item,
 .DR-Edit-imgItem,
 .DR-Edit-Item {
