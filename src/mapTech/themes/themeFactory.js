@@ -5,7 +5,8 @@ import { interactiveMapTheme } from "./interactiveMapTheme";
 import "./css/defaultColumn.css";
 import "./css/defaultRow.css";
 import "./css/defaultRowWrap.css";
-import "./css/interactiveMapTheme.css"
+import "./css/interactiveMapTheme.css";
+import "./css/defaultPage.css";
 
 /**
  * factory for getting different themes for the map component
@@ -14,6 +15,7 @@ export default class ThemeFactory {
     factory = {
         defaultRow: rowMapping,
         defaultColumn: mapping,
+        defaultPage: mapping,
         defaultRowWrap:rowWrapMapping,
         defaultColumnWrap:"",
         profile: "",

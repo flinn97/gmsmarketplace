@@ -103,17 +103,24 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-    let loreList = componentList.getList("mpLore",id, "topDisplayID")
-    let encounterList = componentList.getList("mpEncounter",id,"topDisplayID")
-    let imageList = componentList.getList("mpImage",id,"topDisplayID")
+    let id = idList[idList.length - 1];
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    let loreList = componentList.getList("mpLore", id, "topDisplayID")
+    let encounterList = componentList.getList("mpEncounter", id, "topDisplayID")
+    let imageList = componentList.getList("mpImage", id, "topDisplayID")
 
     return (
-      <div>
-        encounter: {encounterList.length}
-        images: {imageList.length}
-        lore: {loreList.length}
+      <div style={{ color: "#ffdead", display:"flex", flexDirection:"row", justifyContent:"space-between", width:"41%" }}>
+        <div>
+          encounters: {" " + encounterList.length}
+
+        </div>
+        <div>
+          images: {" " + imageList.length}
+        </div>
+        <div>
+          lore: {" " + loreList.length}
+        </div>
       </div>
 
     )
@@ -136,7 +143,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -173,10 +180,10 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -219,9 +226,9 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -251,7 +258,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -272,12 +279,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }
