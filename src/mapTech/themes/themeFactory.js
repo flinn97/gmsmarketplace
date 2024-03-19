@@ -2,6 +2,7 @@ import { mapping } from "./defaultColumn";
 import { rowMapping } from "./defaultRow";
 import { rowWrapMapping } from "./defaultRowWrap";
 import { interactiveMapTheme } from "./interactiveMapTheme";
+import { pageMapping } from "./defaultPage";
 import "./css/defaultColumn.css";
 import "./css/defaultRow.css";
 import "./css/defaultRowWrap.css";
@@ -15,7 +16,7 @@ export default class ThemeFactory {
     factory = {
         defaultRow: rowMapping,
         defaultColumn: mapping,
-        defaultPage: mapping,
+        defaultPage: pageMapping,
         defaultRowWrap:rowWrapMapping,
         defaultColumnWrap:"",
         profile: "",

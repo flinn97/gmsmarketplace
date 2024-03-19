@@ -105,22 +105,33 @@ class MainContent extends Component {
     let idList = window.location.href.split("/");
     let id = idList[idList.length - 1];
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
-    let loreList = componentList.getList("mpLore", id, "topDisplayID")
-    let encounterList = componentList.getList("mpEncounter", id, "topDisplayID")
-    let imageList = componentList.getList("mpImage", id, "topDisplayID")
-
+    let loreList = componentList.getList("mpLore", id, "topDisplayID");
+    let encounterList = componentList.getList("mpEncounter", id, "topDisplayID");
+    let imageList = componentList.getList("mpImage", id, "topDisplayID");
+    let mapList = componentList.getList("mpMap", id, "topDisplayID");
+    
     return (
-      <div style={{ color: "#ffdead", display:"flex", flexDirection:"row", justifyContent:"space-between", width:"41%" }}>
+      <div style={{ color: styles.colors.color8, display:"flex", flexDirection:"row", justifyContent:"space-between", width:"41%",  margin: "10px", padding: "11px", }}>
+        
+        {(encounterList.length > 0) &&
         <div>
           encounters: {" " + encounterList.length}
 
-        </div>
+        </div>}
+        {(imageList.length > 0) &&
         <div>
           images: {" " + imageList.length}
         </div>
+  }
+  {(loreList.length > 0) &&
         <div>
           lore: {" " + loreList.length}
-        </div>
+        </div>}
+
+        {(mapList.length > 0) &&
+        <div>
+          map: {" " + mapList.length}
+        </div>}
       </div>
 
     )
@@ -142,7 +153,7 @@ class TabContent extends Component {
 
 
     return (
-      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
+      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", }}>
 
       </div>
     )

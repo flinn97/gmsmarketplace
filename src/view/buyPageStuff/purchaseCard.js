@@ -4,27 +4,15 @@ import "../../App.css";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage, auth } from '../../firbase.config.js';
 import { MapComponent } from '../../mapTech/mapComponentInterface.js';
-/**
- * condensed version of the cards.
- * Works with themes.
- * props
- * theme
- * type
- * app
- * options
- * options can include cardType, cardContent, tabType, 
- */
+import PurchaseItemCard from './purchaseItemCard.js';
+import toolService from '../../services/toolService.js';
+
 export default class PurchaseCard extends Component {
   constructor(props) {
     super(props);
 
 
   }
-
-  /**
-   * 
-   * OPTIONS
-   */
 
 
   render() {
@@ -45,12 +33,6 @@ export default class PurchaseCard extends Component {
     }
     app.state.styles = styles
 
-
-
-
-
-    //********CARD ASSIGN********/
-
     let cards = {
 
       card: <Card app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
@@ -60,11 +42,6 @@ export default class PurchaseCard extends Component {
       //popupType={this.props.popupType} popupTab={this.props.popupTab}
 
     }
-
-    //*********CARD ASSIGN********/
-
-
-
 
 
     return (
@@ -87,48 +64,47 @@ class MainContent extends Component {
   }
 
 
-
-
   render() {
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-    let idList = window.location.href.split("/");
-    let id = idList[idList.length - 1];
+    let id = toolService.getIdFromURL(true,0);
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
-
+    let imgs = component.getJson().picURLs;
+    let iList = imgs?Object.values(imgs):"";
+    
 
     return (
       <div style={{
         display: "flex", flexDirection: "row", color: styles.colors.colorWhite, justifyItems: "center",
         background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")", borderRadius: "11px",
-        margin: "10px", padding:"41px",
+        margin: "10px", padding: "41px",
       }}>
 
-        <MapComponent name="mpCampaign" 
-        theme="defaultColumn"
-          cells={[{
-            type: "img", class: "Img-Large",
-            style: { border: "1px solid white", margin: "20px" }
-          },
-          { type: "attribute", name: "name", class: "Bold-Title" },
-          { type: "richReader", name: "promotional", class: "DR-Full-Item" },
-          { type: "richReader", name: "description", class: "DR-Full-Item DR-Full-Description" }]}
-          filter={{ search: id, attribute: "_id" }} />
+        <PurchaseItemCard
+          ///images and descriptions and etc etc are its own components
+            // USE mapComponent to pull in cells
+          type="card" options={{cardType:"bigcard"}}
+          imageList={iList}
+          app={app}
+          obj={component}
+        //list={component}
 
-        <MapComponent name="mpMap" cells={["name", "description"]} filter={{ search: id, attribute: "_id" }} />
+          theme="defaultPage"
+        //   cells={[{
+        //     type: "img", class: "Img-Large",
+        //     style: { border: "1px solid white", margin: "20px" }
+        //   },
+        //   { type: "attribute", name: "name", class: "Bold-Title" },
+        //   { type: "richReader", name: "promotional", class: "DR-Full-Item" },
+        //   { type: "richReader", name: "description", class: "DR-Full-Item DR-Full-Description" }]}
+        //   filter={{ search: id, attribute: "_id" }} 
+        />
 
-        <MapComponent name="mpLore" cells={["name", "description"]} filter={{ search: id, attribute: "_id" }} />
 
-        <MapComponent name="mpEncounter" cells={["name", "description"]} filter={{ search: id, attribute: "_id" }} />
-
-        <MapComponent name="mpMonster" cells={["name", "description"]} filter={{ search: id, attribute: "_id" }} />
-
-        <MapComponent name="mpImage" cells={["name", "description"]} filter={{ search: id, attribute: "_id" }} />
-
-        <div style={{ display: "flex", flexDirection: "column", padding: "14px", }}>
+        {/* <div style={{ display: "flex", flexDirection: "column", padding: "14px", }}>
           <div style={{ ...styles.buttons.buttonAdd, color: styles.colors.color3 }} title='Add to your GMS library.' onClick={() => { dispatch({ popupSwitch: "buyPopup", currentComponent: component }) }}>Buy Now</div>
 
           <div style={{
@@ -140,7 +116,7 @@ class MainContent extends Component {
             json.date = await serverTimestamp();
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
           }}>Test</div>
-        </div>
+        </div> */}
       </div>
     )
   }

@@ -1,4 +1,4 @@
-.DR-Map-Container {
+.DP-Map-Container {
   display: flex;
   font-family: "inria";
   flex-direction: row;
@@ -11,12 +11,11 @@
   align-content: center;
 }
 
-
-.DR-Map-Section {
+.DP-Map-Section {
   display: flex;
   font-family: "inria";
   flex-direction: column;
-  min-width: 80vw;
+  min-width: 24vw;
   align-items: center;
   margin: 12px;
   justify-content: space-evenly;
@@ -26,18 +25,18 @@
 
 
 /* General styling for all items */
-.DR-Link,
-.DR-Cell,
-.DR-Custom-Del-Item,
-.DR-Del-Item,
-.DR-Del-imgItem,
-.DR-Custom-Edit-Item,
-.DR-Edit-imgItem,
-.DR-Edit-Item,
-.DR-Attribute-Item,
-.DR-imgItem,
-.DR-Full-Item,
-.DR-Text-Item {
+.DP-Link,
+.DP-Cell,
+.DP-Custom-Del-Item,
+.DP-Del-Item,
+.DP-Del-imgItem,
+.DP-Custom-Edit-Item,
+.DP-Edit-imgItem,
+.DP-Edit-Item,
+.DP-Attribute-Item,
+.DP-imgItem,
+.DP-Full-Item,
+.DP-Text-Item {
   width: 100%;
   border-radius: 11px;
   margin: 5px;
@@ -47,54 +46,17 @@
   font-size: 1.1rem;
 }
 
-.DR-Cell {
+.DP-Cell {
   display: flex;
 }
 
-.DR-Full-Description {
+.DP-Full-Description {
   display: flex;
   width: 100%;
 }
 
-.DR-Link,
-.Button-Type1 {
-  background: #e8d259;
-  color: "#111319";
-  font-size: 1.1rem;
-  padding: 6px 18px;
-  margin-bottom: 11px;
-  margin-top: 18px;
-  width: fit-content;
-  cursor: pointer;
-}
 
-.Button-Type2 {
-  background: #0f141cf5;
-  color: #ffffdf;
-  padding: 6px 10px;
-  margin: 5px;
-  margin-bottom: 11px;
-  cursor: pointer;
-  display: flex;
-  align-self: end;
-  height: fit-content;
-  width: fit-content;
-  border-radius: 9px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-align: center;
-  justify-items: center;
-  font-family: 'inria';
-  justify-self: flex-end;
-}
-
-/* .DR-Link:hover {
-  box-shadow: inset 2px 2px black;
-  transform: scale(0.98);
-  color: "#111319";
-} */
-
-.DR-Link:hover {
+.DP-Link:hover {
   transform: scale(0.98);
   box-shadow: inset 2px 2px #00000055, inset -2px -2px #ffffff55;
   color: "#111319";
@@ -112,7 +74,7 @@
   cursor: pointer;
 }
 
-.Publisher {
+.Publisher-Main {
   width: 102.5%;
   padding-right: 3px;
   margin-right: -10px;
@@ -128,15 +90,15 @@
 }
 
 /* Add specific styles for each item type if needed */
-.DR-Link {
+.DP-Link {
   text-decoration: none;
   cursor: pointer;
   color: rgb(190, 221, 226);
 }
 
-.DR-Custom-Del-Item,
-.DR-Del-Item,
-.DR-Del-imgItem {
+.DP-Custom-Del-Item,
+.DP-Del-Item,
+.DP-Del-imgItem {
   color: #dc3545;
   cursor: pointer;
   position: absolute;
@@ -145,13 +107,13 @@
   top: 3px;
 }
 
-.DR-imgItem {
+.DP-imgItem {
   width: 100px;
   border-radius: 15px;
   min-width: 100px;
 }
 
-.DR-hover-shimmer {
+.DP-hover-shimmer {
   top: 15px;
   position: absolute;
   border: 1px solid #1E90FF00;
@@ -160,14 +122,14 @@
   overflow: hidden;
 }
 
-.DR-hover-shimmer:hover {
+.DP-hover-shimmer:hover {
   position: absolute;
   opacity: 98%;
   border: 1px solid #1E90FF;
   box-shadow: inset 2px 2px 4px #000000, inset -2px -2px 4px #ffffff55;
 }
 
-.DR-hover-shimmer::before {
+.DP-hover-shimmer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -189,7 +151,7 @@
 
 
 
-.DR-hover-shimmer:hover::before {
+.DP-hover-shimmer:hover::before {
   animation: shimmer 8s infinite;
   /* Adjust time as needed */
   opacity: 1;
@@ -213,56 +175,9 @@
   }
 }
 
-.Shimmer {
-  top: 6px;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  border: 1px solid #1E90FF00;
-  background-color: rgba(52, 55, 73, 1);
-  right: 0px;
-  font-size: 1.2rem;
-  color: #e8d259;
-  opacity: 92%;
-  padding: 4px 10px;
-  overflow: hidden;
-  width: fit-content;
-  /* Full width of the parent */
-  height: fit-content;
-  /* Full height of the parent */
-}
-
-.Shimmer:hover {
-  position: absolute;
-  opacity: 88%;
-  box-shadow: 1px 1px 1px #000000;
-  color: #ffdead;
-  transition: all;
-}
-
-.Shimmer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  background: linear-gradient(90deg, transparent, rgba(52, 55, 73, 0.4), transparent);
-  animation: none;
-  /* No animation by default */
-  opacity: 0;
-  /* Make it invisible by default */
-  transition: opacity 0.5s ease;
-  /* Smooth transition for the shimmer effect */
-  mix-blend-mode: lighten;
-  animation: shimmer 8s infinite;
-  /* Adjust time as needed */
-  opacity: 1;
-  /* Make the shimmer visible on hover */
-}
-
-
-.DR-Custom-Edit-Item,
-.DR-Edit-imgItem,
-.DR-Edit-Item {
+.DP-Custom-Edit-Item,
+.DP-Edit-imgItem,
+.DP-Edit-Item {
   color: #ffc107;
   background-color: none;
   cursor: pointer;
@@ -272,27 +187,42 @@
   top: 3px;
 }
 
-.Bold-Title {
+.Main-Title {
   font-weight: 600;
-  font-size: 1.3rem;
-  text-align: left;
+  font-size: 2.4rem;
+  font-family: 'inria';
   width: 100%;
+  padding: 2px 11px;
   color: aliceblue;
   text-overflow: ellipsis;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  text-align: left;
+  margin-bottom: 12px;
 }
 
-.Ellipsis-Text {
-  display: block;
-  overflow: hidden;
+.Main-Price {
+  font-weight: 600;
+  font-size: 2.0rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  color:#ecd23a;
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+
+.Ellipsis {
   text-overflow: ellipsis;
+  font-family: 'Inria';
+  text-align: left;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  min-height: 10.4rem;
   color: rgb(190, 221, 226);
   hyphens: auto;
-  max-width: 330px;
-  min-height: 5.5rem;
-  max-height: 5.5rem;
-  padding: 8px;
-  font-size: 1.1rem;
-  text-align: justify;
+  width: 100%;
+  max-height: 8.5rem;
+  margin-bottom: 8px;
 }
 
 
@@ -304,10 +234,10 @@
   object-fit: cover;
 }
 
-.Img-Large {
+.Img-Banner {
   width: 40vw;
-  max-height: 400px;
-  min-height: 400px;
+  max-height: 440px;
+  min-height: 440px;
   border-radius: 11px;
   object-fit: cover;
 }

@@ -9,47 +9,48 @@ import StatCard from './statCard';
 export default class BuyPage extends Component {
   constructor(props) {
     super(props);
-      this.state={
-        obj: undefined
-      }
+    this.state = {
+      obj: undefined
+    }
 
   }
-  async componentDidMount(){
+  async componentDidMount() {
 
 
-    
+
   }
 
-  
-  
 
   render() {
-    let app = {...this.props.app};
+    let app = { ...this.props.app };
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
-    let styles =state.styles;
-    let opps = state.opps
-    let center = window.innerWidth<1200? {
+    let styles = state.styles;
+    let opps = state.opps;
+    let center = window.innerWidth < 1200 ? {
       display: "flex",
-      flexDirection:"column",
-      justifyContent:"center",
-      alignItems:"center"
-    }: undefined
+      flexDirection: "column",
+      alignItems: "center",
+      overflowY: "auto"
+    } : {};
 
 
     return (
-      <div className='scroller2' style={{...center, width:"100vw", height:"100vh", display:"flex", flexDirection:"column", marginTop:"150px"  }} >
-        
-        
-        <div style={{height:"fit-content"}}>
-         <PurchaseCard app={app} type="card" options={{cardType:"bigcard"}}/>
-         </div>
-         <div>
-        <StatCard app={app} type="card" options={{cardType:"bigcard"}}/>
+      <div className='scroller2' style={{...center, width: "100vw", height: "100vh", display: "flex",flexDirection: "column",
+       marginTop: "50px", justifyContent:"flex-start", overflowY: "auto"}} >
+
+
+        <div style={{ width: "100%", height: "100%" }}>
+          <PurchaseCard app={app} type="card" options={{ cardType: "bigcard" }} />
         </div>
-         
-        
+
+        <div style={{ width: "100%", height: "100%",display:"flex", flexDirection:"column", minHeight:"200px"}}>
+          <div style={{color:styles.colors.colorWhite, fontSize:"1.1rem", fontFamily:"inria", marginLeft:"44px"}}>Includes:</div>
+          <StatCard app={app} type="card" options={{ cardType: "bigcard" }} />
+        </div>
+
+
       </div>
     )
 
