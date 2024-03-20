@@ -7,6 +7,7 @@ import { MapComponent } from '../../mapTech/mapComponentInterface.js';
 import toolService from '../../services/toolService.js';
 import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent.js';
 import ViewMedia2 from '../../componentListNPM/componentForms/media/viewMediaComponent2.js';
+import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS.js';
 
 
 export default class PurchaseItemCard extends Component {
@@ -36,7 +37,7 @@ export default class PurchaseItemCard extends Component {
   }
 
   getMimeType(url) {
-    const extension = url.split('?')[0].split('.').pop().toLowerCase();
+    const extension = url?.split('?')[0].split('.').pop().toLowerCase();
     switch (extension) {
       case 'mp4':
         return 'video/mp4';
@@ -56,7 +57,7 @@ export default class PurchaseItemCard extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let obj = this.props.obj;
-
+    
     const { imageList } = this.state;
 
     let id = toolService.getIdFromURL(true, 0);
@@ -64,7 +65,7 @@ export default class PurchaseItemCard extends Component {
 
     //FIX THIS ISAAC / TAYLOR
     let mimeType = this.getMimeType(app.state.currentMedia);
-    let isVideo = mimeType.includes('video');
+    let isVideo = mimeType?mimeType.includes('video'):false;
 
     return (
       <div style={{
@@ -79,19 +80,21 @@ export default class PurchaseItemCard extends Component {
           <div style={{display:"flex", flexDirection:"column", color:"white", width: "40vw",margin:"12px" }}>
 
           {isVideo ? (
-          <div className="hover-img" 
-          style={{ ...style, display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', }}>
+          <div 
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', width:"40vw", maxHeight: "440px",
+          minHeight: "440px", }}>
             {/* Placeholder for video thumbnail */}
-            <VideoPlayer draggable={false} disablePlayButton={this.props.disablePlayButton} options={{
-              autoplay: false,
+            <VideoPlayer draggable={false} 
+            
+            disablePlayButton={this.props.disablePlayButton} options={{
+              autoplay: 'muted', objectFit:"contain",
               bigPlayButton: true,
               controls: true,
               width: "35vw",
-              height: "fit-content",
-              marginBottom: "1vmin",
+              height: "440px",
               sources: [{
-                src: mediaItem, // Assuming mediaItem is the URL
-                type: this.getMimeType(mediaItem) // Dynamically determine the MIME type
+                src: app.state.currentMedia, // Assuming mediaItem is the URL
+                type: this.getMimeType(app.state.currentMedia) // Dynamically determine the MIME type
               }]
             }} />
           </div>

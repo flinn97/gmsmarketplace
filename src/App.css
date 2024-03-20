@@ -417,6 +417,11 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   }
 }
 
+.video-js {
+  width: 100% !important;
+
+}
+
 .carousel-items {
   display: flex;
   /* Apply a transition effect for smooth sliding and fading */
