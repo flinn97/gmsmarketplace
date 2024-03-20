@@ -14,6 +14,7 @@ export default class ViewMedia2 extends Component {
       currentIndex: 0,
     }
     this.renderMediaItem = this.renderMediaItem.bind(this);
+    this.getMimeType = this.getMimeType.bind(this);
   }
 
   getMimeType(url) {
@@ -159,7 +160,10 @@ export default class ViewMedia2 extends Component {
               if (this.props.onClick) {
                 this.props.onClick(e, this.props);
               }else{
-                this.props.app.dispatch({currentMedia:mediaItem})
+                const mimeType = this.getMimeType(mediaItem);
+                const isVideo = mimeType.includes('video');
+                this.props.app.dispatch({currentMedia:mediaItem, isVideo:isVideo})
+                
               }
             }}
             key={index} className="carousel-items">

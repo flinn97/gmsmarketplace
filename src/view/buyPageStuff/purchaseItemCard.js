@@ -35,6 +35,19 @@ export default class PurchaseItemCard extends Component {
     })
   }
 
+  getMimeType(url) {
+    const extension = url.split('?')[0].split('.').pop().toLowerCase();
+    switch (extension) {
+      case 'mp4':
+        return 'video/mp4';
+      case 'mov':
+        return 'video/quicktime'; // Correct MIME type for .mov files
+      default:
+        return 'application/octet-stream'; // Use a generic byte stream type for unknown extensions
+    }
+  }
+
+
 
   render() {
     let app = this.props.app;
@@ -49,6 +62,10 @@ export default class PurchaseItemCard extends Component {
     let id = toolService.getIdFromURL(true, 0);
     let filter = { search: id, attribute: "_id" }
 
+    //FIX THIS ISAAC / TAYLOR
+    let mimeType = this.getMimeType(app.state.currentMedia);
+    let isVideo = mimeType.includes('video');
+
     return (
       <div style={{
         display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom:"40px",
@@ -60,6 +77,25 @@ export default class PurchaseItemCard extends Component {
           justifyContent: "center", justifyItems: "center", alignContent: "center", alignItems: "center"
         }}>
           <div style={{display:"flex", flexDirection:"column", color:"white", width: "40vw",margin:"12px" }}>
+
+          {isVideo ? (
+          <div className="hover-img" 
+          style={{ ...style, display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', }}>
+            {/* Placeholder for video thumbnail */}
+            <VideoPlayer draggable={false} disablePlayButton={this.props.disablePlayButton} options={{
+              autoplay: false,
+              bigPlayButton: true,
+              controls: true,
+              width: "35vw",
+              height: "fit-content",
+              marginBottom: "1vmin",
+              sources: [{
+                src: mediaItem, // Assuming mediaItem is the URL
+                type: this.getMimeType(mediaItem) // Dynamically determine the MIME type
+              }]
+            }} />
+          </div>
+        ) : (
             <img filter={filter}
             alt="Loading..."
               src={app.state.currentMedia}
@@ -69,6 +105,7 @@ export default class PurchaseItemCard extends Component {
                 borderRadius: "11px",
                 objectFit: "cover",}}
                />
+        )}
 
 {window.innerWidth > 800 &&
             <div style={{ width: "100%", background: styles.colors.color1+"82", marginTop:"-.4vh" }}>
