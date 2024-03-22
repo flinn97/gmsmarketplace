@@ -158,7 +158,14 @@ export default class PurchaseItemCard extends Component {
           </div>
 
         </div>
-
+        <MapComponent filter={filter}
+              name={obj.getJson().mptype}
+              theme={this.props.theme}
+              cells={[
+                { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },
+              ]
+              }
+            />
       </div>
     )
   }
