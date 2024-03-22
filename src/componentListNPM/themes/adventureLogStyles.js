@@ -583,7 +583,7 @@ class AdventureLogStyles {
                 buttonClose:
                 {   alignItems:"center", justifyContent:"center",
                     justifyItems:"center", justifySelf:"center",
-                
+                    position:"absolute", right:32,
                     display:"flex", 
                     fontFamily: appFonts.appFont,
                     width: "fit-content",

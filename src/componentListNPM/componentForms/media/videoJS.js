@@ -4,20 +4,40 @@ import 'video.js/dist/video-js.css';
 
 export default class VideoPlayer extends React.Component {
 
-  // Instantiate a Video.js player when the component mounts
   componentDidMount() {
-    
-    let el = document.getElementById("videoJSComponent");
-    if(el){
-      let id = this.createUUID(5)
-      el.id = id
-      this.player = videojs(el.id, this.props.options, () => {
+    // Ensure the element ID is unique to avoid conflicts with multiple players
+    const videoElementId = this.createUUID(5);
+    this.videoElement = document.getElementById("videoJSComponent");
+    if (this.videoElement) {
+      this.videoElement.id = videoElementId;
+      
+      // Adjust options to include dynamic MIME type based on file extension
+      const adjustedOptions = {
+        ...this.props.options,
+        sources: this.props.options.sources.map(source => ({
+          ...source,
+          type: this.getMimeType(source.src)
+        }))
+      };
+
+      this.player = videojs(this.videoElement.id, adjustedOptions, function onPlayerReady() {
         videojs.log('onPlayerReady', this);
       });
     }
-    //console.log(this.player)
-   
   }
+
+  getMimeType(url) {
+    const extension = url.split('.').pop();
+    switch (extension) {
+      case 'mp4':
+        return 'video/mp4';
+      case 'mov':
+        return 'video/quicktime'; // MIME type for .mov files
+      default:
+        return 'video/mp4'; // Default to mp4 if unsure
+    }
+  }
+
 
   createUUID(length){
     var result = 'id';
@@ -44,7 +64,7 @@ export default class VideoPlayer extends React.Component {
     return (
       <div data-vjs-player>
         {/* {this.props.disablePlayButton?(<div><video style={{marginLeft:-2000, position:"absolute", pointerEvents:"none"}} id="videoJSComponent" className="video-js"></video><img src = {this.player?.poster}/></div>):(<video id="videoJSComponent" className="video-js"></video>)} */}
-       <video style={{pointerEvents:this.props.disablePlayButton?"none":"auto"}} id="videoJSComponent" className="video-js"></video>
+       <video style={{pointerEvents:this.props.disablePlayButton?"none":"auto"}} id="videoJSComponent" className="video-js" alt="vid"></video>
 
       </div>
     );
