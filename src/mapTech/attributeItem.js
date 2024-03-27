@@ -1,7 +1,5 @@
 import BaseClass from './baseClass';
 
-
-//model
 export default class AttributeItem extends BaseClass {
   constructor(props){
     super(props);
@@ -16,9 +14,6 @@ export default class AttributeItem extends BaseClass {
       name = cell
     }
     let html = <span style={this.state.cell.style} className={this.state.cell.class?this.state.cell.class:this.state.theme.MCAttributeItem}>
-      <div style={this.state.cell.preStyle} className={this.state.cell.preClass?this.state.cell.preClass:""}>
-        {this.state.cell.preText}
-      </div>
       {this.state.obj.getJson()[name]}
       </span>
 
@@ -27,4 +22,3 @@ export default class AttributeItem extends BaseClass {
   )}
   
 }
-

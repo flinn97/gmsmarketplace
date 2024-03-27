@@ -110,7 +110,7 @@ class MainContent extends Component {
             { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item" },
             { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
             { name: "See More", class: "DR-Attribute-Item Button-Type1 a", hasLink: true, to: "/purchase/" },
-            { type: "attribute", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
+            { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
             
             // {type:"attribute", name:"publisher", class: "Button-Type1 Ellipsis-Text a", hasLink: true, to: "/publisher/", useId:"publisherID"}
 

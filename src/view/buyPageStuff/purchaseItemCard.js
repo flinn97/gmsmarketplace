@@ -129,7 +129,7 @@ export default class PurchaseItemCard extends Component {
               theme={this.props.theme}
               cells={[
                 { type: "attribute", name: "title", class: "Main-Title", },
-                { type: "attribute", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: "1.4rem", fontFamily: "inria", fontWeight: "200" }, },
+                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: "1.4rem", fontFamily: "inria", fontWeight: "200" }, },
                 { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", },
               ]
               }
