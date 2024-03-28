@@ -18,6 +18,7 @@ import AddComponentButton from "./interactiveMap/addButtonComponent";
 import PlainDisplay from "./plainDisplay";
 import QuillItem from "./quillItem";
 import RichTextComponentItem from "./richTextComponentItem";
+import AttributePrePostItem from "./attributePrePostItem";
 
 /**
  * factory for getting different items for the map component
@@ -26,6 +27,7 @@ export default class MapFactory {
     factory = {
         text: TextItem,
         attribute: AttributeItem,
+        prepost: AttributePrePostItem,
         custom: CustomComponentItem,
         img: ImgItem,
         exactImg: UseTheirImgItem,

@@ -1,7 +1,5 @@
 import BaseClass from './baseClass';
 
-
-//model
 export default class AttributeItem extends BaseClass {
   constructor(props){
     super(props);
@@ -15,11 +13,12 @@ export default class AttributeItem extends BaseClass {
     if(!name){
       name = cell
     }
-    let html = <span style={this.state.cell.style} className={this.state.cell.class?this.state.cell.class:this.state.theme.MCAttributeItem}>{this.state.obj.getJson()[name]}</span>
+    let html = <span style={this.state.cell.style} className={this.state.cell.class?this.state.cell.class:this.state.theme.MCAttributeItem}>
+      {this.state.obj.getJson()[name]}
+      </span>
 
   return (
     <>{this.getHtml(html)}</>
   )}
   
 }
-

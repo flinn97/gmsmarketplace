@@ -170,7 +170,7 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
           <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
@@ -216,7 +216,7 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
           <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />

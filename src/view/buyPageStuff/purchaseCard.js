@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
 import "../../App.css";
 
-import { MapComponent } from '../../mapTech/mapComponentInterface';
-import { doc, setDoc, serverTimestamp} from "firebase/firestore";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, storage, auth } from '../../firbase.config.js';
-/**
- * condensed version of the cards.
- * Works with themes.
- * props
- * theme
- * type
- * app
- * options
- * options can include cardType, cardContent, tabType, 
- */
+import { MapComponent } from '../../mapTech/mapComponentInterface.js';
+import PurchaseItemCard from './purchaseItemCard.js';
+import toolService from '../../services/toolService.js';
+
 export default class PurchaseCard extends Component {
   constructor(props) {
     super(props);
 
 
   }
-
-  /**
-   * 
-   * OPTIONS
-   */
 
 
   render() {
@@ -45,12 +33,6 @@ export default class PurchaseCard extends Component {
     }
     app.state.styles = styles
 
-
-
-
-
-    //********CARD ASSIGN********/
-
     let cards = {
 
       card: <Card app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
@@ -60,11 +42,6 @@ export default class PurchaseCard extends Component {
       //popupType={this.props.popupType} popupTab={this.props.popupTab}
 
     }
-
-    //*********CARD ASSIGN********/
-
-
-
 
 
     return (
@@ -87,39 +64,60 @@ class MainContent extends Component {
   }
 
 
-
-
   render() {
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-    let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-
+    let id = toolService.getIdFromURL(true,0);
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    let imgs = component.getJson().picURLs;
+    let iList = imgs?Object.values(imgs):"";
+    
 
     return (
-      <div style={{display:"flex", flexDirection:"column",}}>
-        
-        <MapComponent name="mpCampaign" cells={[{ type: "img", class: "Img-Large" }, { type: "attribute", name: "name", class: "Bold-Title" }, "promotional", "description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMap" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpLore" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpEncounter" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpMonster" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
-        <MapComponent name="mpImage" cells={["name","description"]} filter={{search:id, attribute:"_id"}} />
+      <div style={{
+        display: "flex", flexDirection: "row", color: styles.colors.colorWhite, justifyItems: "center",
+        background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")", borderRadius: "11px",
+        margin: "10px", padding: "41px",
+      }}>
 
-        <div style={{color:styles.colors.color3}} title='Add to your GMS library.' onClick={()=>{dispatch({popupSwitch:"buyPopup", currentComponent:component})}}>Purchase</div>
+        <PurchaseItemCard
+          ///images and descriptions and etc etc are its own components
+            // USE mapComponent to pull in cells
+          type="card" options={{cardType:"bigcard"}}
+          imageList={iList}
+          app={app}
+          obj={component}
+        //list={component}
 
-        <div style={{color:"white"}} onClick={async ()=>{
-          debugger
-          let json = {...component.getJson(), type:"mpItem", owner:state.user.getJson()._id}
-          json.date = await serverTimestamp();
-          await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-        }}>Test</div>
+          theme="defaultPage"
+        //   cells={[{
+        //     type: "img", class: "Img-Large",
+        //     style: { border: "1px solid white", margin: "20px" }
+        //   },
+        //   { type: "attribute", name: "name", class: "Bold-Title" },
+        //   { type: "richReader", name: "promotional", class: "DR-Full-Item" },
+        //   { type: "richReader", name: "description", class: "DR-Full-Item DR-Full-Description" }]}
+        //   filter={{ search: id, attribute: "_id" }} 
+        />
+
+
+        {/* <div style={{ display: "flex", flexDirection: "column", padding: "14px", }}>
+          <div style={{ ...styles.buttons.buttonAdd, color: styles.colors.color3 }} title='Add to your GMS library.' onClick={() => { dispatch({ popupSwitch: "buyPopup", currentComponent: component }) }}>Buy Now</div>
+
+          <div style={{
+            color: styles.colors.colorWhite, cursor: "pointer", fontSize: "1.1rem",
+            padding: "2px 4px", background: styles.colors.color8 + "22", width: "100px", justifyItems: "center", textAlign: "center", borderRadius: "6px", margin: "5px"
+          }} onClick={async () => {
+            debugger
+            let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id }
+            json.date = await serverTimestamp();
+            await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
+          }}>Test</div>
+        </div> */}
       </div>
-
     )
   }
 }
@@ -140,7 +138,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -177,10 +175,10 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -223,9 +221,9 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -255,7 +253,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -276,12 +274,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }

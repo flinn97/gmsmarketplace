@@ -97,7 +97,7 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{ color: styles.colors.colorWhite + "99", display: "flex", height: "fit-content", flexDirection: "column" }}>
+      <div style={{ color: styles.colors.colorWhite + "99", display: "flex", height: "fit-content", flexDirection: "column", }}>
 
         <MapComponent app={app} name={state.filter}
           filters={[
@@ -106,11 +106,13 @@ class MainContent extends Component {
           theme="defaultRow" cells={[
 
             { type: "img", class: "Img-Midsize" },
-            { type: "attribute", name: "name", class: "Bold-Title DR-Attribute-Item" },
-            { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
-            { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
-            { type: "attribute", name: "price", class: "DR-Attribute-Item", },
-            {type:"attribute", name:"publisherName", class: "DR-Attribute-Item", hasLink: true, to: "/publisher/", useId:"publisherID"}
+            { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
+            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item" },
+            { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
+            { name: "See More", class: "DR-Attribute-Item Button-Type1 a", hasLink: true, to: "/purchase/" },
+            { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
+            
+            // {type:"attribute", name:"publisher", class: "Button-Type1 Ellipsis-Text a", hasLink: true, to: "/publisher/", useId:"publisherID"}
 
           ]}
 
@@ -174,7 +176,7 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
           <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
@@ -220,7 +222,7 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
           <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
