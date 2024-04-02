@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { db, storage, auth } from '../../firbase.config.js';
+import toolService from "../../services/toolService.js";
 import {
   PaymentElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm(props) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -57,9 +60,12 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
+        // redirect_to_checkout: true,
+        
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: "http://localhost:3000/purchase/"+window.location.href.split("/")[window.location.href.split("/").length-1],
       },
+      redirect: 'if_required',
     });
 
     // This point will only be reached if there is an immediate error when
@@ -67,10 +73,34 @@ export default function CheckoutForm() {
     // your `return_url`. For some payment methods like iDEAL, your customer will
     // be redirected to an intermediate site first to authorize the payment, then
     // redirected to the `return_url`.
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
+    if (error) {
+      // Handle error
+      console.error(error);
     } else {
-      setMessage("An unexpected error occurred.");
+      
+      let app = props.app;
+    let dispatch = app.dispatch;
+    let state = app.state;
+    let componentList = state.componentList;
+    let id = toolService.getIdFromURL(true,0);
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+      let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id }
+            json.date = await serverTimestamp();
+            await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
+            await state.opps.cleanJsonPrepareRun({addbuy:
+              {email:state.user.getJson()._id, 
+                type:"buy",
+                boughtItem:component.getJson()._id,
+                publisher:component.getJson().owner,
+
+              }})
+
+      // Payment was successful
+      dispatch({payment:"success",});
+
+
+      console.log("Payment successful:");
+      // You can perform further actions here, such as updating UI or backend
     }
 
     setIsLoading(false);
@@ -81,6 +111,8 @@ export default function CheckoutForm() {
   }
 
   return (
+    <>
+    {props.app.state.payment==="success"?(<></>):(
     <form id="payment-form" onSubmit={handleSubmit}>
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
@@ -92,5 +124,7 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+    )}
+    </>
   );
 }
