@@ -30,7 +30,7 @@ class FormComponentInterface {
      * @returns the parent form for various forms. 
      */
     getParentFormComponent(type, props) {
-        debugger
+        
         let form = this.formFactory.getComponent(type, props);
         return form;
 

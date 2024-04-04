@@ -101,10 +101,8 @@ class MainContent extends Component {
       <div style={{width:"100%", height:"100%", }}>
         <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
         callBackFunc={(e, json) =>
-          { let {list,attribute,name} = json
-          debugger
-          list = list.filter(obj=> obj.getJson()[attribute].includes(e.target.value));
-          app.dispatch({searchTags:[...list], search: e.target.value})}
+          { 
+          app.dispatch({search: e.target.value})}
         }
         style={{borderRadius:"50px",  background:"#ffdead05", width:"60vw", color:"white", border:"none",
         height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem"}}/>

@@ -21,7 +21,7 @@ export default class PurchaseItemCard extends Component {
 
   componentDidMount() {
     let obj = this.props.obj;
-    let picURL = obj.getJson().picURL;
+    let picURL = obj?.getJson().picURL;
 
     // Create a new array with picURL at the start, followed by the original imageList
     let updatedImageList = [picURL, ...this.state.imageList];
@@ -125,7 +125,7 @@ export default class PurchaseItemCard extends Component {
           }}>
 
             <MapComponent filter={filter}
-              name={obj.getJson().mptype}
+              name={obj?.getJson().mptype}
               theme={this.props.theme}
               cells={[
                 { type: "attribute", name: "title", class: "Main-Title", },
@@ -150,7 +150,7 @@ export default class PurchaseItemCard extends Component {
                 background: "linear-gradient( " + styles.colors.color6 + "," + styles.colors.color3 + "88)",
                 fontWeight: "bold", fontSize: "1.2rem", border: "2px solid " + styles.colors.color5,
               }} onClick={async () => {
-                debugger
+                
                 let json = { ...obj.getJson(), type: "mpItem", owner: state.user.getJson()._id }
                 json.date = await serverTimestamp();
                 await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
@@ -159,7 +159,7 @@ export default class PurchaseItemCard extends Component {
 
         </div>
         <MapComponent filter={filter}
-              name={obj.getJson().mptype}
+              name={obj?.getJson().mptype}
               theme={this.props.theme}
               cells={[
                 { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },

@@ -12,12 +12,12 @@ export default function StripeEl(props) {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    debugger
+    
 
     let comp = props.app.state.currentComponent;
     let price= comp.getJson().stripePrice;
     // Create PaymentIntent as soon as the page loads/getProductAndPrice?price=${price}
-      fetch(`http://localhost:3002/getProductAndPrice?price=${price}`)
+      fetch(`https://getmpproduct-x5obmgu23q-uc.a.run.app?price=${price}`)
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -44,7 +44,7 @@ export default function StripeEl(props) {
     <div className="App">
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm app={props.app} />
         </Elements>
       )}
     </div>

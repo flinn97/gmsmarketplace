@@ -72,7 +72,7 @@ class MainContent extends Component {
     let styles = state.styles;
     let id = toolService.getIdFromURL(true,0);
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
-    let imgs = component.getJson().picURLs;
+    let imgs = component?.getJson().picURLs;
     let iList = imgs?Object.values(imgs):"";
     
 
@@ -111,7 +111,7 @@ class MainContent extends Component {
             color: styles.colors.colorWhite, cursor: "pointer", fontSize: "1.1rem",
             padding: "2px 4px", background: styles.colors.color8 + "22", width: "100px", justifyItems: "center", textAlign: "center", borderRadius: "6px", margin: "5px"
           }} onClick={async () => {
-            debugger
+            
             let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id }
             json.date = await serverTimestamp();
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);

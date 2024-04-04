@@ -65,6 +65,7 @@ export default class App extends Component {
       currentRoutine: undefined,
       searchState: "Campaigns",
       searchTags:[],
+      search:"",
       //allows to know which card is which
       switchCase:[
         {path:"/", comp:Home, name: "Home" }, 
