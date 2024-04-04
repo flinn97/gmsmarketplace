@@ -47,7 +47,7 @@ export default class Home extends Component {
         
         
         <FilterCard app={app} type="card" options={{cardType:"bigcard"}}/> 
-        <PromotionalCard app={app} type="card" options={{cardType:"bigcard"}}/>
+        {/* <PromotionalCard app={app} type="card" options={{cardType:"bigcard"}}/> */}
         <MPMapCard app={app} type="card" options={{cardType:"bigcard"}}/>   
       </div>
       </div>

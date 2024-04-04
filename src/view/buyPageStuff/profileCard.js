@@ -104,25 +104,53 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let user = state.componentList.getComponent("user");
-   
-    return (
-      <div style={{marginTop:"200px", color:"white"}}>
-        campaigns:
-        <MapComponent name="mpCampaign" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}}/>
-        maps:
-        <MapComponent name="mpMap" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
-        lore:
-        <MapComponent name="mpLore" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
-        encounters:
-        <MapComponent name="mpEncounter" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
-        monsters:
-        <MapComponent name="mpMonster" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
-        images:
-        <MapComponent name="mpImage" app={app} cells={["name", {custom:BuyNumber, type:"custom"}]} filter={{search:user.getJson()._id, attribute:"owner"}} />
-        My Purchases:
-        <MapComponent name="buy" app={app} cells={["boughtItem"]} filter={{search:user.getJson()._id, attribute:"email"}} />
-      </div>
 
+    const unit = { marginTop: "8px", color: "white", fontFamily: "inria",}
+    const owner = { search: user.getJson()._id, attribute: "owner" }
+
+    return (
+      <div style={{
+        display: "flex", flexDirection: "column", color: styles.colors.color8, marginTop: "50px", fontFamily: "inria", width: "100%", height: "100%",
+        fontSize: "1.42rem", background: " linear-gradient(90deg, transparent, rgba(52, 55, 73, 0.4), transparent)", padding: "20px", borderRadius: "11px", border: "1px solid " + styles.colors.color9 + 22
+      }}>
+        My Content:
+        <div style={{ marginTop: "20px", color: "white", fontFamily: "inria", fontSize: "1.28rem", marginLeft: "20px", }}>
+          <div style={unit}>
+            Campaigns:
+            <MapComponent name="mpCampaign" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            Maps:
+            <MapComponent name="mpMap" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            Lore:
+            <MapComponent name="mpLore" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            Encounters:
+            <MapComponent name="mpEncounter" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            Monsters:
+            <MapComponent name="mpMonster" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            Images:
+            <MapComponent name="mpImage" app={app} cells={["name", { custom: BuyNumber, type: "custom" }]} filter={owner} />
+          </div>
+
+          <div style={unit}>
+            My Purchases:
+            <MapComponent name="buy" app={app} cells={["boughtItem",]} filter={{ search: user.getJson()._id, attribute: "email" }} />
+          </div>
+        </div>
+      </div>
     )
   }
 }
@@ -143,7 +171,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -279,12 +307,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }
