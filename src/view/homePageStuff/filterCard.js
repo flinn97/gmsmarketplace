@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.css"
+import FilterByTypeComponent from './filterByTypeComponent';
 
 
 
@@ -101,36 +102,18 @@ class MainContent extends Component {
     let styles = state.styles;
     let list = [componentList.getComponents()[0]];
 
-    const styling = {width:"fit-content", padding:"8px 2px", margin:"13px", fontSize:"1rem", cursor:"pointer", }
+    
 
 
     return (
-      <div style={{ width: "100%", color: styles.colors.colorWhite+"99",  userSelect:"none" }}>
-
-        <div style={{display:"flex", width:"100%", color: styles.colors.colorWhite,
+      <div style={{ width: "100%", color: styles.colors.colorWhite+"99",  userSelect:"none", display:"flex", flexDirection:"column" }}>
+         <div style={{display:"flex", width:"100%", color: styles.colors.colorWhite,
         justifyContent:"space-evenly", fontSize:"2rem", fontFamily:'Luminari', marginBottom:"12px" }}>
         {state.searchState}
         </div>
-
-        <div style={{ display: "flex", flexDirection: "row", justifyContent:"space-evenly", width: "100%", }}>
-          <div style={styling}
-          onClick={() => { dispatch({ searchState: "Campaigns", filter: "mpCampaign" }) }}>
-            Campaigns</div>
-          <div style={styling}
-          onClick={() => { dispatch({ searchState: "Maps", filter: "mpMap" }) }} >
-            Maps</div>
-          <div style={styling}
-          onClick={() => { dispatch({ searchState: "Lore", filter: "mpLore" }) }}>
-            Lore</div>
-          <div style={styling}
-          onClick={() => { dispatch({ searchState: "Encounters", filter: "mpEncounter" }) }}>
-            Encounters</div>
-          {/* <div onClick={()=>{dispatch({searchState:"Monsters", filter:"mpMonster"})}}>Monsters</div> */}
-          <div style={styling}
-          onClick={() => { dispatch({ searchState: "Images", filter: "mpImage" }) }}>Images
-          </div>
-          <div></div>
-        </div>
+<div style={{ width: "100%", display:"flex", flexDirection:"row"}} >
+       <FilterByTypeComponent app={app} list={list} />
+       </div>
       </div>
 
     )

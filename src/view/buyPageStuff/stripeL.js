@@ -41,7 +41,7 @@ export default function StripeEl(props) {
   };
 
   return (
-    <div className="App">
+    <div className="App" >
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm app={props.app} />
