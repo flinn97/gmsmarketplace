@@ -91,6 +91,7 @@ export default function CheckoutForm(props) {
               {email:state.user.getJson()._id, 
                 type:"buy",
                 boughtItem:component.getJson()._id,
+                price: component.getJson().stripePrice,
                 publisher:component.getJson().owner,
 
               }})
