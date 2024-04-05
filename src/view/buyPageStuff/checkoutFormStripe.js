@@ -8,6 +8,8 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
+import stripeLogo from "../../pics/stripe-logo-white.png"
+
 export default function CheckoutForm(props) {
   const stripe = useStripe();
   const elements = useElements();
@@ -114,16 +116,25 @@ export default function CheckoutForm(props) {
     <>
     {props.app.state.payment==="success"?(<></>):(
     <form id="payment-form" onSubmit={handleSubmit}>
+<div style={{marginTop:"19px",  }}>
+
+  <div style={{display:"flex", flexDirection:"row", marginBottom:"39px" }}>
+  <div style={{color:props.app.state.styles.colors.colorWhite, fontFamily:"inria", fontSize:"1.5rem",}}>Secure Payment through</div> 
+  <img src={stripeLogo} style={{height:"1.5rem", marginLeft:"20px", marginTop:"3px"}}/></div>
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+      <button style={{...props.app.state.styles.buttons.buttonAdd, display:"", borderRadius:"12px", 
+      marginTop:"28px", width:"230px", height:"fit-content", fontFamily:"inria", fontSize:"1.2rem", padding:"18px",  }} disabled={isLoading || !stripe || !elements} id="submit">
+        <span id="button-text" >
+          {isLoading ? <div className="spinner" id="spinner"></div> : "Purchase Now"}
         </span>
+        
       </button>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
-    </form>
+      <div style={{color:props.app.state.styles.colors.color8, marginTop:"11px"}}>All purchases are final. The purchased content will be added to your AVA library</div>
+      </div></form>
+    
     )}
     </>
   );

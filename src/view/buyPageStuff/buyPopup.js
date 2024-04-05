@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
+import "../../App.css";
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import StripeEl from './stripeL';
+
+
 
 
 /**
@@ -111,7 +105,8 @@ class MainContent extends Component {
     let imageList = componentList.getList("mpImage",id,"topDisplayID")
 
     return (
-      <div>
+      <div style={{padding:"22px", marginTop:"22px",
+        background:"linear-gradient(190deg, transparent, rgba(52, 55, 73, 0.4), transparent)", mixBlendMode:"screen", borderRadius:"22px", height:"100%"}}>
        <StripeEl app={app}/>
       </div>
 
