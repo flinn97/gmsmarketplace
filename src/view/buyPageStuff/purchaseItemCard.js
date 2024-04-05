@@ -8,6 +8,8 @@ import toolService from '../../services/toolService.js';
 import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent.js';
 import ViewMedia2 from '../../componentListNPM/componentForms/media/viewMediaComponent2.js';
 import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS.js';
+import PayWithStripeButton from './payWithStripeButton.js';
+
 
 
 export default class PurchaseItemCard extends Component {
@@ -57,7 +59,7 @@ export default class PurchaseItemCard extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let obj = this.props.obj;
-    
+
     const { imageList } = this.state;
 
     let id = toolService.getIdFromURL(true, 0);
@@ -65,11 +67,11 @@ export default class PurchaseItemCard extends Component {
 
     //FIX THIS ISAAC / TAYLOR
     let mimeType = this.getMimeType(app.state.currentMedia);
-    let isVideo = mimeType?mimeType.includes('video'):false;
+    let isVideo = mimeType ? mimeType.includes('video') : false;
 
     return (
       <div style={{
-        display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom:"40px",
+        display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px",
       }}>
 
         {/* top row */}
@@ -77,46 +79,50 @@ export default class PurchaseItemCard extends Component {
           display: "flex", flexDirection: "row", width: "100%", height: "100%", textAlign: "center",
           justifyContent: "center", justifyItems: "center", alignContent: "center", alignItems: "center"
         }}>
-          <div style={{display:"flex", flexDirection:"column", color:"white", width: "40vw",margin:"12px" }}>
+          <div style={{ display: "flex", flexDirection: "column", color: "white", width: "40vw", margin: "12px" }}>
 
-          {isVideo ? (
-          <div 
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', width:"40vw", maxHeight: "440px",
-          minHeight: "440px", }}>
-            {/* Placeholder for video thumbnail */}
-            <VideoPlayer draggable={false} 
-            
-            disablePlayButton={this.props.disablePlayButton} options={{
-              autoplay: 'muted', objectFit:"contain",
-              bigPlayButton: true,
-              controls: true,
-              width: "35vw",
-              height: "440px",
-              sources: [{
-                src: app.state.currentMedia, // Assuming mediaItem is the URL
-                type: this.getMimeType(app.state.currentMedia) // Dynamically determine the MIME type
-              }]
-            }} />
-          </div>
-        ) : (
-            <img filter={filter}
-            alt="Loading..."
-              src={app.state.currentMedia}
-              style={{width: "40vw",
-                maxHeight: "440px",
-                minHeight: "440px",
-                borderRadius: "11px",
-                objectFit: "cover",}}
-               />
-        )}
+            {isVideo ? (
+              <div
+                style={{
+                  display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', width: "40vw", maxHeight: "440px",
+                  minHeight: "440px",
+                }}>
+                {/* Placeholder for video thumbnail */}
+                <VideoPlayer draggable={false}
 
-{window.innerWidth > 800 &&
-            <div style={{ width: "100%", background: styles.colors.color1+"82", marginTop:"-.4vh" }}>
-              <ViewMedia2 app={app} media={imageList} inputStyle={{ objectFit: "scale-down" }}
-                wrapperStyle={{ objectFit: "scale-down" }} disablePlayButton={true}
-                scale={.7} nToShow={5}
-                labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
-            </div>}
+                  disablePlayButton={this.props.disablePlayButton} options={{
+                    autoplay: 'muted', objectFit: "contain",
+                    bigPlayButton: true,
+                    controls: true,
+                    width: "35vw",
+                    height: "440px",
+                    sources: [{
+                      src: app.state.currentMedia, // Assuming mediaItem is the URL
+                      type: this.getMimeType(app.state.currentMedia) // Dynamically determine the MIME type
+                    }]
+                  }} />
+              </div>
+            ) : (
+              <img filter={filter}
+                alt="Loading..."
+                src={app.state.currentMedia}
+                style={{
+                  width: "40vw",
+                  maxHeight: "440px",
+                  minHeight: "440px",
+                  borderRadius: "11px",
+                  objectFit: "cover",
+                }}
+              />
+            )}
+
+            {window.innerWidth > 800 &&
+              <div style={{ width: "100%", background: styles.colors.color1 + "82", marginTop: "-.4vh" }}>
+                <ViewMedia2 app={app} media={imageList} inputStyle={{ objectFit: "scale-down" }}
+                  wrapperStyle={{ objectFit: "scale-down" }} disablePlayButton={true}
+                  scale={.7} nToShow={5}
+                  labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
+              </div>}
           </div>
 
           <div style={{
@@ -137,35 +143,35 @@ export default class PurchaseItemCard extends Component {
 
 
             <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", paddingBottom: "24px", userSelect: "none" }}>
-              <div style={{
-                ...styles.buttons.buttonAdd, color: styles.colors.colorBlack, width: "13vw", boxShadow: "0px 4px 6px -6px" + styles.colors.color1,
-                justifyItems: "center", textAlign: "center", margin: "5px", borderRadius: "25px",
-                background: styles.colors.color3, fontWeight: "bold", fontSize: "1.2rem"
-              }} title='Add to your GMS library.'
-                onClick={() => { dispatch({ popupSwitch: "buyPopup", currentComponent: obj }) }}>Purchase</div>
 
-              <div style={{
+              <PayWithStripeButton app={app} obj={obj} />
+
+              <div 
+              ///remove this
+              style={{
                 ...styles.buttons.buttonAdd, color: styles.colors.colorWhite, width: "13vw", boxShadow: "0px 4px 6px -6px" + styles.colors.color1,
                 justifyItems: "center", textAlign: "center", margin: "5px", borderRadius: "25px",
                 background: "linear-gradient( " + styles.colors.color6 + "," + styles.colors.color3 + "88)",
                 fontWeight: "bold", fontSize: "1.2rem", border: "2px solid " + styles.colors.color5,
               }} onClick={async () => {
-                
+
                 let json = { ...obj.getJson(), type: "mpItem", owner: state.user.getJson()._id }
                 json.date = await serverTimestamp();
                 await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-              }}>Admin Test</div></div>
+              }}>Admin Test</div>
+
+            </div>
           </div>
 
         </div>
         <MapComponent filter={filter}
-              name={obj?.getJson().mptype}
-              theme={this.props.theme}
-              cells={[
-                { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },
-              ]
-              }
-            />
+          name={obj?.getJson().mptype}
+          theme={this.props.theme}
+          cells={[
+            { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },
+          ]
+          }
+        />
       </div>
     )
   }
