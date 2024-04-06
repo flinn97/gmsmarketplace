@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "../../App.css"
 import FilterByTypeComponent from './filterByTypeComponent';
+import FilterByTimePopularity from './filterByTimePopularity';
+import FilterByPublisher from './filterByPublisher';
 
 
 
@@ -89,9 +91,9 @@ class MainContent extends Component {
 
 
 
- componentDidMount(){
-  this.props.app.dispatch({ searchState: "Campaigns", filter: "mpCampaign" })
- }
+  componentDidMount() {
+    this.props.app.dispatch({ searchState: "Campaigns", filter: "mpCampaign" })
+  }
 
 
   render() {
@@ -102,18 +104,22 @@ class MainContent extends Component {
     let styles = state.styles;
     let list = [componentList.getComponents()[0]];
 
-    
+
 
 
     return (
-      <div style={{ width: "100%", color: styles.colors.colorWhite+"99",  userSelect:"none", display:"flex", flexDirection:"column" }}>
-         <div style={{display:"flex", width:"100%", color: styles.colors.colorWhite,
-        justifyContent:"space-evenly", fontSize:"2rem", fontFamily:'Luminari', marginBottom:"12px" }}>
-        {state.searchState}
+      <div style={{ width: "100%", color: styles.colors.colorWhite + "99", userSelect: "none", display: "flex", flexDirection: "column" }}>
+        <div style={{
+          display: "flex", width: "100%", color: styles.colors.colorWhite,
+          justifyContent: "space-evenly", fontSize: "2rem", fontFamily: 'Luminari', marginBottom: "12px"
+        }}>
+          {state.searchState}
         </div>
-<div style={{ width: "100%", display:"flex", flexDirection:"row"}} >
-       <FilterByTypeComponent app={app} list={list} />
-       </div>
+        <div style={{ width: "74vw", display: "flex", flexDirection: "row", justifyContent:"space-evenly" }} >
+          <FilterByTimePopularity app={app} list={list} />
+          <FilterByTypeComponent app={app} list={list} />
+          <FilterByPublisher app={app} list={list} />
+        </div>
       </div>
 
     )
@@ -221,7 +227,7 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -275,7 +281,7 @@ class CardWithTab extends Component {
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
-          <MainContent app={app}/>
+          <MainContent app={app} />
         </div>
 
       </div>
