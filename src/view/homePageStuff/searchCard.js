@@ -3,6 +3,7 @@ import "../../App.css"
 
 import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
 import searchimg from '../../pics/search.png'
+import FilterByPublisher from './filterByPublisher';
 
 /**
  * condensed version of the cards.
@@ -95,17 +96,18 @@ class MainContent extends Component {
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-
+    let list = [componentList.getComponents()[0]];
 
     return (
-      <div style={{width:"100%", height:"100%", }}>
+      <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"row" }}>
         <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
         callBackFunc={(e, json) =>
           { 
           app.dispatch({search: e.target.value})}
         }
-        style={{borderRadius:"50px",  background:"#ffdead05", width:"60vw", color:"white", border:"none",
-        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem"}}/>
+        style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"none",
+        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
+        <FilterByPublisher app={app} list={list} />
       </div>
 
     )

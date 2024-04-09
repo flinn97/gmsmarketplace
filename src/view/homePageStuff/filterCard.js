@@ -116,9 +116,9 @@ class MainContent extends Component {
           {state.searchState}
         </div>
         <div style={{ width: "74vw", display: "flex", flexDirection: "row", justifyContent:"space-evenly" }} >
-          <FilterByTimePopularity app={app} list={list} />
+          {/* <FilterByTimePopularity app={app} list={list} /> */}
           <FilterByTypeComponent app={app} list={list} />
-          <FilterByPublisher app={app} list={list} />
+          
         </div>
       </div>
 
