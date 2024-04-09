@@ -24,7 +24,7 @@ export default class FilterByTimePopularity extends Component {
     return (
       <div className='hover-container' style={{
         width: "fit-content", color: styles.colors.colorWhite + "99", userSelect: "none", textUnderlineOffset: "3px",
-        textDecoration: "underline", cursor: "pointer", fontSize:"1rem",
+        textDecoration: "underline", cursor: "pointer", fontSize:"1rem",marginBottom:"-13px", marginLeft:"29px",
         alignContent: "center", justifySelf: "center", alignSelf: "center"
       }}>
         Display Order

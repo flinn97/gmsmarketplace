@@ -4,6 +4,7 @@ import "../../App.css"
 import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
 import searchimg from '../../pics/search.png'
 import FilterByPublisher from './filterByPublisher';
+import FilterByTimePopularity from './filterByTimePopularity';
 
 /**
  * condensed version of the cards.
@@ -107,7 +108,10 @@ class MainContent extends Component {
         }
         style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"none",
         height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
+        <div style={{flexDirection:"row", display:"flex", justifyContent:"space-between"}}>
         <FilterByPublisher app={app} list={list} />
+        {/* <FilterByTimePopularity app={app} list={list} /> */}
+        </div>
       </div>
 
     )
