@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.css"
-
+import DisplayPublisher from './displayPublisher';
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 import FilterCard from './filterCard';
@@ -101,7 +101,9 @@ class MainContent extends Component {
 
       
 <MapComponent app={app} name={state.filter}
+filterFunc={state.pubilsherFilter}
            filters={[
+            
             { type: "textAndTag2", attributes: "title,promotional,description", search: state.search },
           ]}
           theme="defaultRow" cells={[
@@ -109,6 +111,7 @@ class MainContent extends Component {
             { type: "img", class: "Img-Midsize" },
             { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
             { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item" },
+            {type:'custom', custom: DisplayPublisher}, 
             { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
             { name: "See More", class: "DR-Attribute-Item Button-Type1 a", hasLink: true, to: "/purchase/" },
             { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },

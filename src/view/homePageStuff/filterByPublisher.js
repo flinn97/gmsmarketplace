@@ -2,6 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import placeholder from "../../pics/loreFeather.png";
 import { displayName } from "react-quill";
 import userIco from "../../pics/doubleUserIcon.png";
+import { MapComponent } from "../../mapTech/mapComponentInterface";
 
 
 export default class FilterByPublisher extends Component {
@@ -32,7 +33,12 @@ export default class FilterByPublisher extends Component {
     
     
     <div className="menu-bubble" style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
-      listlist
+      <MapComponent app={app} name="publisher" cells={[{type:"attribute", name: "publisherName", func:(comp)=>{
+          let publisherFunc = (obj)=>{
+            return obj.getJson().owner===comp.getJson()._id
+          }
+          dispatch({pubilsherFilter:publisherFunc});
+      }}]} />
       {/* List of Partners */}
       {/* TAYLOR LIST OF PUBLISHER CHECKBOXES, add to a string, you can have multiple checked and see all checked */}
       <div className="tail" style={{left:11}}></div>
