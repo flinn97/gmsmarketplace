@@ -52,7 +52,7 @@ export default class FilterByTypeComponent extends Component {
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly", width: "100%", }}>
 
           {searchTypes.map((type, index) => <div
-            index={index} key={index}
+            index={index} key={index} className="hover-img"
             onClick={() => {
               this.setState({ currentSel: type + "s" })
               dispatch({ searchState: type !== "Lore" ? type + "s" : "Lore", filter: "mp" + type })
