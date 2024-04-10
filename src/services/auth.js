@@ -58,7 +58,7 @@ class Auth {
     async getuser(email, componentList, dispatch) {
 
         try {
-
+            debugger
             let list = componentList.getComponents();
             let IDlist = [];
             for (const key in list) {
@@ -88,6 +88,7 @@ class Auth {
                     rawData.push(data);
                 }
             }
+            await this.getAllMPItems(componentList);
 
 
             await componentList.addComponents(rawData, false);
@@ -190,7 +191,7 @@ class Auth {
 
             if (componentList !== undefined && dispatch !== undefined) {
                 await localStorage.setItem("user", JSON.stringify(saveUser));
-                await this.getAllMPItems(componentList);
+                
 
                 await this.getuser(email, componentList, dispatch);
 
