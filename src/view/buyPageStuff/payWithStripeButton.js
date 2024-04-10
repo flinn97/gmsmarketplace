@@ -26,8 +26,8 @@ export default class PayWithStripeButton extends Component {
         background: styles.colors.color3, fontWeight: "bold", fontSize: "1.2rem", padding: "11px 8px"
       }} title='Add to your GMS library.'
         onClick={() => { dispatch({ popupSwitch: "buyPopup", currentComponent: obj }) }}>Checkout
-        <div style={{ fontSize: "1.0rem", marginLeft: "8px", color: "#8888888" }}>with</div>
-        <img src={this.props.logo ? this.props.logo : stripeLogo} style={{ width: "80px", height: "1.5rem", objectFit: "cover", borderRadius: "11px", marginLeft: "6px" }} />
+        {/* <div style={{ fontSize: "1.0rem", marginLeft: "8px", color: "#8888888" }}>with</div>
+        <img src={this.props.logo ? this.props.logo : stripeLogo} style={{ width: "80px", height: "1.5rem", objectFit: "cover", borderRadius: "11px", marginLeft: "6px" }} /> */}
       </div>
     );
   }

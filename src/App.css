@@ -447,3 +447,84 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   /* Ensure the container itself has a transition for smoothness if needed */
   transition: transform 0.8s ease-out;
 }
+
+.menu-bubble {
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  position: relative;
+  margin: 22px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.menu-bubble .tail {
+  position: absolute;
+  top: -8px; /* Adjust as needed */
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(45deg);
+  clip-path: polygon(0 0, 0% 100%, 100% 0); /* Creates the triangle shape */
+}
+
+.hover {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease; 
+}
+
+hovering:hover .hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Style for the container */
+.hover-container {
+  position: relative;
+  overflow: visible;
+  display: inline-block; /* Keeps the container size to the content */
+}
+
+.div{
+  color: white; background:none; font-family: "Inria" ; text-align:left; mix-blend-mode: luminosity;font-size: calc(0.75rem + 0.35vw);
+}
+
+/* Initially hide the div */
+.hover-div {
+  display: none !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition:all 0.5 ease-in-out; 
+  /* Add other styling as needed */
+}
+
+/* Show the div on hover */
+.hover-container:hover .hover-div {
+  display: block !important;
+}
+
+/* Style for the container */
+.hover-containerInt {
+  position: relative;
+  display: inline-block; /* Keeps the container size to the content */
+}
+
+/* Initially hide the div */
+.hover-divInt {
+  display: none;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  transition:all 0.3s ease; 
+  /* Add other styling as needed */
+}
+
+/* Show the div on hover */
+.hover-containerInt:hover .hover-divInt {
+  display: block;
+}
