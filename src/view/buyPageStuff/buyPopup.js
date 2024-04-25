@@ -106,7 +106,7 @@ class MainContent extends Component {
 
     return (
       <div style={{padding:"22px", marginTop:"22px",
-        background:"linear-gradient(190deg, transparent, rgba(52, 55, 73, 0.4), transparent)", mixBlendMode:"screen", borderRadius:"22px", height:"100%"}}>
+        background:"linear-gradient(180deg, "+styles.colors.colorWhite+", "+styles.colors.color8+" )", mixBlendMode:"screen", borderRadius:"22px", height:"100%"}}>
        <StripeEl app={app}/>
       </div>
 
