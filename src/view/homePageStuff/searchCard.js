@@ -100,7 +100,7 @@ class MainContent extends Component {
     let list = [componentList.getComponents()[0]];
 
     return (
-      <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"row" }}>
+      <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"row", marginTop:"33px" }}>
         <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
         callBackFunc={(e, json) =>
           { 
