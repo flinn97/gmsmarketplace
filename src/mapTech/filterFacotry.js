@@ -69,7 +69,8 @@ function filterByTagText(json) {
             const objTags = obj.getJson()[json.attribute || "tags"];
             if (objTags) { // Check if the attribute exists
                 debugger
-                const splitTags = objTags.split(json.splitStr || ',');
+                let splitTags = objTags.split(json.splitStr || ',');
+                splitTags = splitTags.map(tag=>tag.toLowerCase())
                 for(let tag of tags){
                     if(splitTags.includes(tag)){
                         return true
