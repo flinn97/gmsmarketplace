@@ -110,8 +110,9 @@ filterFunc={state.pubilsherFilter}
 
             { type: "img", class: "Img-Midsize" },
             { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
-            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item" },
-            {type:'custom', custom: DisplayPublisher}, 
+            {type:'custom', custom: DisplayPublisher,}, 
+            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item", style:{marginTop:"-11px",}, },
+            
             { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
             { name: "See More", class: "DR-Attribute-Item Button-Type1 a", hasLink: true, to: "/purchase/" },
             { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
