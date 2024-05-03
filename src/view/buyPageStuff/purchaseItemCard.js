@@ -9,7 +9,8 @@ import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComp
 import ViewMedia2 from '../../componentListNPM/componentForms/media/viewMediaComponent2.js';
 import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS.js';
 import PayWithStripeButton from './payWithStripeButton.js';
-
+import backarrow from '../../pics/backArrow.webp';
+import { Link } from 'react-router-dom';
 
 
 export default class PurchaseItemCard extends Component {
@@ -73,6 +74,20 @@ export default class PurchaseItemCard extends Component {
       <div style={{
         display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px",
       }}>
+
+        <Link className="hover-btn-highlight"
+          to={"/"} 
+          style={{
+            ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
+            fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px"
+          }}
+
+        >
+          <img style={{ width: ".9rem", opacity: "98%", marginRight: ".75rem" }}
+            src={backarrow}
+          />
+          Back
+        </Link>
 
         {/* top row */}
         <div style={{
@@ -146,7 +161,7 @@ export default class PurchaseItemCard extends Component {
 
               <PayWithStripeButton app={app} obj={obj} />
 
-              <div 
+              {/* <div 
               ///remove this
               style={{
                 ...styles.buttons.buttonAdd, color: styles.colors.colorWhite, width: "13vw", boxShadow: "0px 4px 6px -6px" + styles.colors.color1,
@@ -158,7 +173,7 @@ export default class PurchaseItemCard extends Component {
                 let json = { ...obj.getJson(), type: "mpItem", owner: state.user.getJson()._id }
                 json.date = await serverTimestamp();
                 await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-              }}>Admin Test</div>
+              }}>Admin Test</div> */}
 
             </div>
           </div>

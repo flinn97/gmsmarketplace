@@ -13,6 +13,7 @@ export default class DisplayPublisher extends Component{
     return(
         <div>
             {publisher.getJson().publisherName}
+            <div>Profile Coming Soon</div>
         </div>
     )
     }

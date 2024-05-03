@@ -12,7 +12,6 @@ import BuyPopup from './view/buyPageStuff/buyPopup';
 // import DeletePopup from './view/deletePopup';
 // import KeepDel from './view/keepDelete';
 
-
 //model
 /**
  * props
@@ -117,13 +116,13 @@ export default class Dispatch extends Component {
         {state.user?(
         <>
      
-     <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
+     {/* <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
      options={{
       
      }}
   
      
-     />
+     /> */}
      {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
     <div style={{}}>
     {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined }) }}/>}
