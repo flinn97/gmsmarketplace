@@ -146,7 +146,7 @@ export default class PurchaseItemCard extends Component {
 
               <PayWithStripeButton app={app} obj={obj} />
 
-              <div 
+              {/* <div 
               ///remove this
               style={{
                 ...styles.buttons.buttonAdd, color: styles.colors.colorWhite, width: "13vw", boxShadow: "0px 4px 6px -6px" + styles.colors.color1,
@@ -155,10 +155,8 @@ export default class PurchaseItemCard extends Component {
                 fontWeight: "bold", fontSize: "1.2rem", border: "2px solid " + styles.colors.color5,
               }} onClick={async () => {
 
-                let json = { ...obj.getJson(), type: "mpItem", owner: state.user.getJson()._id }
-                json.date = await serverTimestamp();
-                await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-              }}>Admin Test</div>
+               
+              }}>Admin Test</div> */}
 
             </div>
           </div>
