@@ -40,7 +40,7 @@ export default class FilterByTypeComponent extends Component {
       Map: mapPin,
       Lore: loreFeather,
       Encounter: encSwords,
-      Image: imgSquareIco,
+      Artwork: imgSquareIco,
       
     };
 

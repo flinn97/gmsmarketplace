@@ -22,9 +22,9 @@ export default class DisplayPublisher extends Component {
             <Link 
             to={"/publisher/"+publisher.getJson().publisherName} 
             style={{ background:styles.colors.color1+"d5", width:"100%", cursor:"pointer", textUnderlineOffset:"2px",
-            color:styles.colors.color3+"e9", fontFamily:"inria", position:"absolute", top:190,
+            color:styles.colors.color3+"e9", fontFamily:"inria", position:"absolute", top:190, justifyContent:"flex-end",
             height:"24px", fontSize:"1.2rem", zIndex:"150"}}>
-                <div className='hover-btn-highlight' style={{fontFamily:"inria", paddingLeft:"4px", }}>
+                <div className='hover-btn-highlight' style={{fontFamily:"inria", paddingLeft:"4px",  }}>
                 {publisher.getJson().publisherName}
                 </div>
                 {/* <div>Profile Coming Soon</div> */}
