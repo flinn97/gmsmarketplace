@@ -31,7 +31,7 @@ export default class FilterByTypeComponent extends Component {
 
     const styling = {
       width: "100px", padding: "11px 4px", margin: "1px", fontSize: "1rem", alignContent: "center", justifyItems: "center",
-      cursor: "pointer", borderRadius: "11px",
+      cursor: "pointer", borderRadius: "11px", minHeight:"101px",
       justifyContent: "center", display: "flex", flexDirection: "column",
     }
 
@@ -40,12 +40,12 @@ export default class FilterByTypeComponent extends Component {
       Map: mapPin,
       Lore: loreFeather,
       Encounter: encSwords,
-      Image: imgSquareIco,
+      Artwork: imgSquareIco,
       
     };
 
     return (
-      <div style={{ width: "fit-content", color: styles.colors.colorWhite + "99", userSelect: "none" }}>
+      <div style={{ width: "fit-content", color: styles.colors.colorWhite + "99", userSelect: "none", }}>
 
 
 

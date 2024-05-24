@@ -120,8 +120,8 @@ export default function CheckoutForm(props) {
 <div style={{marginTop:"19px",  }}>
 
   <div style={{display:"flex", flexDirection:"row", marginBottom:"39px" }}>
-  <div style={{color:props.app.state.styles.colors.colorWhite, fontFamily:"inria", fontSize:"1.5rem",}}>Secure Payment through</div> 
-  <img src={stripeLogo} style={{height:"1.5rem", marginLeft:"20px", marginTop:"3px"}}/></div>
+  <div style={{color:props.app.state.styles.colors.color1, fontFamily:"inria", fontSize:"1.5rem",}}>Secure Payment through</div> 
+  <img src={stripeLogo} style={{height:"1.5rem", marginLeft:"20px", marginTop:"3px", mixBlendMode:"difference"}}/></div>
 
       <PaymentElement id="payment-element" options={paymentElementOptions} />
       <button style={{...props.app.state.styles.buttons.buttonAdd, display:"", borderRadius:"12px", 
@@ -133,7 +133,7 @@ export default function CheckoutForm(props) {
       </button>
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
-      <div style={{color:props.app.state.styles.colors.color8, marginTop:"11px"}}>All purchases are final. The purchased content will be added to your AVA library</div>
+      <div style={{color:props.app.state.styles.colors.color1, marginTop:"11px", fontWeight:"500"}}>All purchases are final. The purchased content will be added to your AVA library</div>
       </div></form>
     
     )}

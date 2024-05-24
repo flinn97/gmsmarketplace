@@ -103,7 +103,7 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let list = [componentList.getComponents()[0]];
-
+    let pub = state.pubilsherFilter;
 
 
 
@@ -113,7 +113,7 @@ class MainContent extends Component {
           display: "flex", width: "100%", color: styles.colors.colorWhite,
           justifyContent: "space-evenly", fontSize: "2rem", fontFamily: 'Luminari', marginBottom: "12px"
         }}>
-          {state.searchState}
+          {state.searchState?state.searchState:""}
         </div>
         <div style={{ width: "74vw", display: "flex", flexDirection: "row", justifyContent:"space-evenly" }} >
           
