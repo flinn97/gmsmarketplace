@@ -7,7 +7,7 @@ export default class DisplayPublisher extends Component {
     }
 
     render() {
-        debugger
+        
         let obj = this.props.obj;
         let componentList = this.props.app.state.componentList;
         let publisher = componentList.getComponent("publisher", obj.getJson().owner, "_id");

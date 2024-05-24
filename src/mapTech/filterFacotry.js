@@ -68,7 +68,7 @@ function filterByTagText(json) {
         list = json.list.filter(obj => {
             const objTags = obj.getJson()[json.attribute || "tags"];
             if (objTags) { // Check if the attribute exists
-                debugger
+                
                 let splitTags = objTags.split(json.splitStr || ',');
                 splitTags = splitTags.map(tag=>tag.toLowerCase())
                 for(let tag of tags){
@@ -93,7 +93,7 @@ function filterByTagText(json) {
  * @returns filtered list of things by title and then by tags.
  */
 function filterByTitleThenTagText(json) {
-    debugger
+    
     
     let { list, attributes, search } = json;
     let newList = [];

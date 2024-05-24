@@ -35,13 +35,19 @@ export default class PayWithStripeButton extends Component {
         pointerEvents:this.state.downloaded?"none":"all", userSelect:"none",
         background: styles.colors.color3, fontWeight: "bold", fontSize: "1.2rem", padding: "11px 8px"
       }} title='Add to your GMS library.'
-        onClick={() => {
+        onClick={async () => {
           if (obj.getJson().stripePrice === "" || obj.getJson().stripePrice === "000" || obj.getJson().stripePrice === "0") {
+            let json = { ...currentComponent.getJson(), type: "mpItem", owner: state.user.getJson()._id }
+            json.date = await serverTimestamp();
+            await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
             this.setState({
               downloaded: true,
             })
           }
-          dispatch({ popupSwitch: "buyPopup", currentComponent: obj })
+          else{
+            dispatch({ popupSwitch: "buyPopup", currentComponent: obj })
+
+          }
         }}>
           {!this.state.downloaded &&
         (<div>

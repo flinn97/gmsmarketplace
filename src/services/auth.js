@@ -58,7 +58,7 @@ class Auth {
     async getuser(email, componentList, dispatch) {
 
         try {
-            debugger
+            
             let list = componentList.getComponents();
             let IDlist = [];
             for (const key in list) {

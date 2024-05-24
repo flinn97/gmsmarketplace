@@ -196,7 +196,7 @@ handleChange = (event) => {
           
           this.setState({splash:true});
           user = JSON.parse(user);
-          debugger
+          
           await auth.getuser(user.email, list, this.dispatch);
           await auth.getAllMPItems(list);
          
