@@ -23,7 +23,7 @@ export default class FilterByPublisher extends Component {
     let styles = state.styles;
     let obj = this.props.obj;
     let list = this.props.list;
-  
+
 
     return (
       <div className='hover-container' style={{ width: "fit-content", fontSize:"1rem", color: styles.colors.colorWhite + "99", 

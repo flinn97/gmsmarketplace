@@ -1,4 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { doc, getDocs, collection, getDoc, updateDoc, addDoc, where, query, setDoc, deleteDoc, onSnapshot, querySnapshot, Timestamp, serverTimestamp, orderBy, limit } from "firebase/firestore";
+import { db, storage, auth } from '../../firbase.config.js';
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser } from "firebase/auth";
 
 import stripeLogo from "../../pics/stripe-logo-purple.png"
 
@@ -17,6 +21,10 @@ export default class PayWithStripeButton extends Component {
     let state = app.state;
     let styles = state.styles;
     let obj = this.props.obj;
+    let componentList = state.componentList;
+    let idList = window.location.href.split("/");
+    let id = idList[idList.length - 1];
+    let currentComponent = componentList.getComponents().find(obj => obj.getJson()._id === id);
 
     console.log(obj.getJson().stripePrice)
     return (

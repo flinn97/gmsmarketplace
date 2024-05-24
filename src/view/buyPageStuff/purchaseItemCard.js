@@ -162,6 +162,7 @@ export default class PurchaseItemCard extends Component {
               <PayWithStripeButton app={app} obj={obj} />
 
               {/* <div 
+              {/* <div 
               ///remove this
               style={{
                 ...styles.buttons.buttonAdd, color: styles.colors.colorWhite, width: "13vw", boxShadow: "0px 4px 6px -6px" + styles.colors.color1,
