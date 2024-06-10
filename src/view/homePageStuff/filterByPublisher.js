@@ -33,7 +33,7 @@ export default class FilterByPublisher extends Component {
 
 <div style={{color:styles.colors.colorWhite, textDecorationColor:"#ffddead11", fontSize:".85rem", marginLeft:"-.9rem" }}>Publishers</div>
 
-    <div className="hover-div" style={{marginTop:"18px"}}>
+    <div className="hover-div" style={{marginTop:"21px"}}>
 
     
     
@@ -47,6 +47,8 @@ export default class FilterByPublisher extends Component {
       }}
        >All</div>
       <MapComponent theme=""
+      //Taylor     This is why we need checkboxes and ability to select, deselect, and select multiple.
+      //6 8 2024 don't have time to create a custom component that changes it's appearance  based on if you have it chosen or not
       app={app} name="publisher" cells={[
         {type:"attribute", style:{color:"white",},
         name: "publisherName", func:(comp)=>{

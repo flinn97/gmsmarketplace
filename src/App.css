@@ -454,7 +454,7 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   padding: 12px;
   border-radius: 8px;
   position: relative;
-  margin: 22px;
+  margin: 2px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 

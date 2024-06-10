@@ -20,7 +20,8 @@ export default class DisplayPublisher extends Component {
 
         return (
             <Link 
-            to={"/publisher/"+publisher.getJson().publisherName} 
+            // to={"/publisher/"+publisher.getJson().publisherName} 
+            title="Publisher Page Coming Soon"
             style={{ background:styles.colors.color1+"d5", width:"100%", cursor:"pointer", textUnderlineOffset:"2px",
             color:styles.colors.color3+"e9", fontFamily:"inria", position:"absolute", top:190, justifyContent:"flex-end",
             height:"24px", fontSize:"1.2rem", zIndex:"150"}}>
