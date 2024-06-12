@@ -301,3 +301,7 @@
   border-radius: 11px;
   object-fit: cover;
 }
+
+.DR-Active-Item{
+  background-color: aliceblue;
+}

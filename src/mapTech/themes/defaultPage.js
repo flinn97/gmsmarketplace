@@ -12,7 +12,8 @@ let pageMapping={
   MCAttributeItem: "DP-Attribute-Item",
   MCImgItem: "DP-imgItem",
   MCTextItem: "DP-Text-Item",
-  
+  MCActiveItem: "DP-Active-Item"
+
 
 }
 export {pageMapping}

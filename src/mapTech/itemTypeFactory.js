@@ -19,6 +19,7 @@ import PlainDisplay from "./plainDisplay";
 import QuillItem from "./quillItem";
 import RichTextComponentItem from "./richTextComponentItem";
 import AttributePrePostItem from "./attributePrePostItem";
+import SelectorAttributeItem from "./selectorAttributeItem";
 
 /**
  * factory for getting different items for the map component
@@ -46,6 +47,7 @@ export default class MapFactory {
         // quill: QuillItem, THIS IS NOT COMPLETE, errors
         
         richReader: RichTextComponentItem,
+        select:SelectorAttributeItem
 
 
     }

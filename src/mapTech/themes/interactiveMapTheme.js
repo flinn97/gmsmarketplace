@@ -14,7 +14,8 @@ let interactiveMapTheme={
   MCAttributeItem: "DR-Attribute-Item",
   MCImgItem: "DR-imgItem",
   MCTextItem: "DR-Text-Item",
-MCAddButton: "IM-addButton"
+MCAddButton: "IM-addButton",
+MCActiveItem: "IM-Active-Item"
 
 
 }

@@ -50,12 +50,12 @@ export default class FilterByPublisher extends Component {
       //Taylor     This is why we need checkboxes and ability to select, deselect, and select multiple.
       //6 8 2024 don't have time to create a custom component that changes it's appearance  based on if you have it chosen or not
       app={app} name="publisher" cells={[
-        {type:"attribute", style:{color:"white",},
+        {type:"select", style:{color:"white",},activeItem:state.activeItem,
         name: "publisherName", func:(comp)=>{
           let publisherFunc = (obj)=>{
             return obj.getJson().owner===comp.getJson()._id
           }
-          dispatch({pubilsherFilter:publisherFunc});
+          dispatch({pubilsherFilter:publisherFunc, activeItem:comp});
       }}
       ]} />
       <div className="tail" style={{left:11}}></div>

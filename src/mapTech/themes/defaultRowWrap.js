@@ -13,6 +13,7 @@ let rowWrapMapping={
   MCAttributeItem: "DR-Attribute-Item",
   MCImgItem: "DR-imgItem",
   MCTextItem: "DR-Text-Item",
+  MCActiveItem: "DRW-Active-Item"
 
 
 }
