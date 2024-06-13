@@ -39,18 +39,17 @@ export default class FilterByPublisher extends Component {
     
     <div className="menu-bubble" style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
       <div className="DR-Map-Section"
-    style={{color:"white", marginTop:"1px", 
-    padding:"2px 8px", fontSize:"1.1rem", flexDirection:"row",}}
+    style={{color: state.activeItem!==undefined?"white":"#ffd34e", marginTop:"1px", 
+    padding:"2px 8px", fontSize:"1.1rem", flexDirection:"row", }}
       onClick={() => {
         this.setState({currentPub:"All"})
-        dispatch({pubilsherFilter:undefined});
+        dispatch({pubilsherFilter:undefined, activeItem:undefined});
       }}
        >All</div>
-      <MapComponent theme=""
-      //Taylor     This is why we need checkboxes and ability to select, deselect, and select multiple.
-      //6 8 2024 don't have time to create a custom component that changes it's appearance  based on if you have it chosen or not
+      <MapComponent theme="defaultRow"
+    
       app={app} name="publisher" cells={[
-        {type:"select", style:{color:"white",},activeItem:state.activeItem,
+        {type:"select", style:{activeClass: "DR-Active-Item"},activeItem:state.activeItem,
         name: "publisherName", func:(comp)=>{
           let publisherFunc = (obj)=>{
             return obj.getJson().owner===comp.getJson()._id
