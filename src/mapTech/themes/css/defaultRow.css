@@ -303,5 +303,8 @@
 }
 
 .DR-Active-Item{
-  background-color: aliceblue;
+  height: 100%;
+  color: #ffd34e;
+  text-decoration: underline rgba(255, 255, 255, 0.123);
+  text-underline-offset: 2px;
 }
