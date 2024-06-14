@@ -27,7 +27,7 @@ export default class FilterByTypeComponent extends Component {
     let obj = this.props.obj;
     let list = this.props.list;
 
-    let searchTypes = ["Campaign", "Map", "Lore", "Encounter", "Image",]
+    let searchTypes = ["Campaign", "Map", "Lore", "Encounter", "Artwork",]
 
     const styling = {
       width: "100px", padding: "11px 4px", margin: "1px", fontSize: "1rem", alignContent: "center", justifyItems: "center",

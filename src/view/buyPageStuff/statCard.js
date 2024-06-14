@@ -112,22 +112,22 @@ class MainContent extends Component {
         
         
         <div>
-          encounters: {" " + component.getJson().encCount}
+          Encounters: {" " + component.getJson().encCount}
 
         </div>
         
         <div>
-          images: {" " +component.getJson().imageCount}
+          Artwork: {" " +component.getJson().imageCount}
         </div>
   
   
         <div>
-          lore: {" " + component.getJson().loreCount}
+          Lore: {" " + component.getJson().loreCount}
         </div>
 
         
         <div>
-          map: {" " + component.getJson().mapCount}
+          Maps: {" " + component.getJson().mapCount}
         </div>
       </div>
 
