@@ -125,7 +125,7 @@ export default class Dispatch extends Component {
      /> */}
      {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
     <div style={{}}>
-    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined }) }}/>}
+    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment:"" }) }}/>}
      <Routes>
       {state.switchCase?.map((obj, index)=>
         <Route path={obj.path} element={<obj.comp app={app}/>} />
