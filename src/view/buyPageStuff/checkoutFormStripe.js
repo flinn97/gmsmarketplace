@@ -86,7 +86,7 @@ export default function CheckoutForm(props) {
     let componentList = state.componentList;
     let id = toolService.getIdFromURL(true,0);
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
-      let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id }
+      let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id, ogId:component.getJson()._id, _id:Math.floor(Math.random()*1000000).toString() }
             json.date = await serverTimestamp();
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
             await state.opps.cleanJsonPrepareRun({addbuy:
