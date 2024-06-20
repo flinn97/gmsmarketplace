@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Component } from "react";
 import placeholder from "../../pics/loreFeather.png";
 import encSwords from "../../pics/encounterSwords.png";
-import imgSquareIco from "../../pics/imgSquareIco.png";
+import imgSquareIco from "../../pics/imgSquareIco2.png";
 import campaignBook from "../../pics/campaignBook.png";
 import mapPin from "../../pics/mapPin.png";
-import loreFeather from "../../pics/imgSquareIco2.png";
+import loreFeather from "../../pics/loreFeather.png";
 
 export default class FilterByTypeComponent extends Component {
   constructor(props) {
@@ -31,7 +31,7 @@ export default class FilterByTypeComponent extends Component {
 
     const styling = {
       width: "100px", padding: "11px 4px", margin: "1px", fontSize: "1rem", alignContent: "center", justifyItems: "center",
-      cursor: "pointer", borderRadius: "11px", minHeight:"101px",
+      cursor: "pointer", borderRadius: "11px", minHeight: "101px",
       justifyContent: "center", display: "flex", flexDirection: "column",
     }
 
@@ -41,7 +41,7 @@ export default class FilterByTypeComponent extends Component {
       Lore: loreFeather,
       Encounter: encSwords,
       Artwork: imgSquareIco,
-      
+
     };
 
     return (
@@ -62,7 +62,7 @@ export default class FilterByTypeComponent extends Component {
               border: (type + "s") === this.state.currentSel ? "2px solid " + styles.colors.color3 + "44" : ""
             }}>
 
-            <img src={typeIcons[type] || placeholder} alt={"ico"} style={{ width: "fit-content", alignSelf: "center", justifySelf: "center", width: "35px", marginBottom:"6px" }} />
+            <img src={typeIcons[type] || placeholder} alt={"ico"} style={{ width: "fit-content", alignSelf: "center", justifySelf: "center", width: "35px", marginBottom: "6px" }} />
             <div style={{ fontFamily: "inria", fontSize: "1.12rem", color: styles.colors.colorWhite + "e8", width: "fit-content", alignSelf: "center", justifySelf: "center", }}>{type !== "Lore" ? type + "s" : type}
             </div>
           </div>
