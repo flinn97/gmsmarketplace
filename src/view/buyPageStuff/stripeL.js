@@ -42,6 +42,7 @@ export default function StripeEl(props) {
 
   return (
     <div className="App" >
+      <div onClick={()=>{props.app.dispatch({payment:"success"})}}>clickme</div>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm app={props.app} />

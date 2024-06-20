@@ -9,6 +9,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 import stripeLogo from "../../pics/stripe-logo-white.png"
+import Success from "./success.js";
 
 export default function CheckoutForm(props) {
   const stripe = useStripe();
@@ -115,7 +116,7 @@ export default function CheckoutForm(props) {
 
   return (
     <>
-    {props.app.state.payment==="success"?(<></>):(
+    {props.app.state.payment==="success"?(<Success app={props.app}/>):(
     <form id="payment-form" onSubmit={handleSubmit}>
 <div style={{marginTop:"19px",  }}>
 
