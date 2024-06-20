@@ -105,29 +105,35 @@ class MainContent extends Component {
     let idList = window.location.href.split("/");
     let id = idList[idList.length - 1];
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    console.log(component.getJson().imageCount)
 
-    
+
     return (
-      <div style={{ color: styles.colors.color8, display:"flex", flexDirection:"row", justifyContent:"space-between", width:"41%",  margin: "10px", padding: "11px", }}>
-        
-        
-        <div>
-          Encounters: {" " + component.getJson().encCount}
+      <div style={{
+        color: styles.colors.color8, display: "flex", flexDirection: "row", justifyContent: "space-between", 
+        background:styles.colors.color1+"f1",borderRadius:"12px", 
+        width: "100%", margin: "10px", padding: "11px", paddingRight:"110px", 
+      }}>
+ <div style={{color:styles.colors.colorWhite, fontSize:"1.1rem", fontFamily:"inria", marginLeft:"44px"}}>Includes:</div>
 
-        </div>
-        
-        <div>
-          Artwork: {" " +component.getJson().imageCount}
-        </div>
-  
-  
-        <div>
-          Lore: {" " + component.getJson().loreCount}
+        <div style={{fontFamily:"inria", fontSize:"1.21rem"}}>
+          Encounters: {Math.floor(component.getJson().encCount / 5) * 5}{" "}
+          {component.getJson().encCount >= 6 && "+"}
         </div>
 
-        
-        <div>
-          Maps: {" " + component.getJson().mapCount}
+        <div style={{fontFamily:"inria", fontSize:"1.21rem"}}>
+          Artwork: {Math.floor(component.getJson().imageCount / 5) * 5}{" "}
+          {component.getJson().imageCount >= 6 && "+"}
+        </div>
+
+        <div style={{fontFamily:"inria", fontSize:"1.21rem"}}>
+          Lore: {Math.floor(component.getJson().loreCount / 5) * 5}{" "}
+          {component.getJson().loreCount >= 6 && "+"}
+        </div>
+
+        <div style={{fontFamily:"inria", fontSize:"1.21rem"}}>
+          Maps: {component.getJson().mapCount < 6 ? component.getJson().mapCount : Math.floor(component.getJson().mapCount / 5) * 5}{" "}
+          {component.getJson().mapCount >= 6 && "+"}
         </div>
       </div>
 

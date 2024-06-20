@@ -16,8 +16,6 @@ export default class DisplayPublisher extends Component {
         let state = app.state;
         let styles = state.styles;
 
-        console.log(publisher)
-
         return (
             <Link 
             // to={"/publisher/"+publisher.getJson().publisherName} 

@@ -4,7 +4,7 @@ import encSwords from "../../pics/encounterSwords.png";
 import imgSquareIco from "../../pics/imgSquareIco.png";
 import campaignBook from "../../pics/campaignBook.png";
 import mapPin from "../../pics/mapPin.png";
-import loreFeather from "../../pics/loreFeather.png";
+import loreFeather from "../../pics/imgSquareIco2.png";
 
 export default class FilterByTypeComponent extends Component {
   constructor(props) {

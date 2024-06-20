@@ -6,6 +6,7 @@ import { db, storage, auth } from '../../firbase.config.js';
 import { MapComponent } from '../../mapTech/mapComponentInterface.js';
 import PurchaseItemCard from './purchaseItemCard.js';
 import toolService from '../../services/toolService.js';
+import StatCard from './statCard.js';
 
 export default class PurchaseCard extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class MainContent extends Component {
 
     return (
       <div style={{
-        display: "flex", flexDirection: "row", color: styles.colors.colorWhite, justifyItems: "center",
+        display: "flex", flexDirection: "column", color: styles.colors.colorWhite, justifyItems: "center",
         background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")", borderRadius: "11px",
         margin: "10px", padding: "41px",
       }}>
@@ -117,6 +118,12 @@ class MainContent extends Component {
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
           }}>Test</div>
         </div> */}
+
+
+<div style={{ width: "68%", height: "100%",display:"flex", flexDirection:"column", minHeight:"200px",}}>
+         
+         <StatCard app={app} type="card" options={{ cardType: "bigcard" }} />
+       </div>
       </div>
     )
   }
