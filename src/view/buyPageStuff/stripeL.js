@@ -42,12 +42,16 @@ export default function StripeEl(props) {
 
   return (
     <div className="App" >
-      <div onClick={()=>{props.app.dispatch({payment:"success"})}}>clickme</div>
+      {/* {props.app.state.payment!=="success"?
+      (<div style={{cursor:"pointer", fontSize:"1.1rem", padding:"2px", border:"1px solid red", borderRadius:"8px", 
+        background:"#ffdea3333"}}onClick={()=>{props.app.dispatch({payment:"success"})}}>click me</div>):(
+          <div> */}
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm app={props.app} />
         </Elements>
       )}
+      {/* </div> )} */}
     </div>
   );
 }

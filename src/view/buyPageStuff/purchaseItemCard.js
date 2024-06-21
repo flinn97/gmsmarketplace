@@ -11,6 +11,7 @@ import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS.js'
 import PayWithStripeButton from './payWithStripeButton.js';
 import backarrow from '../../pics/backArrow.webp';
 import { Link } from 'react-router-dom';
+import StatCard from './statCard.js';
 
 
 export default class PurchaseItemCard extends Component {
@@ -138,19 +139,21 @@ export default class PurchaseItemCard extends Component {
                   scale={.7} nToShow={5}
                   labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
               </div>}
+         
           </div>
 
           <div style={{
             display: "flex", flexDirection: "column",
             padding: "14px", justifyContent: "center", alignContent: "center", width: "100%"
           }}>
+            
 
             <MapComponent filter={filter}
               name={obj?.getJson().mptype}
               theme={this.props.theme}
               cells={[
                 { type: "attribute", name: "title", class: "Main-Title", },
-                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: "1.4rem", fontFamily: "inria", fontWeight: "200" }, },
+                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: "1.38rem", fontFamily: "inria", fontWeight: "200" }, },
                 { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", },
               ]
               }
