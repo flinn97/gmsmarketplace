@@ -1,37 +1,16 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
+import encSwords from "../../pics/encounterSwords.png";
+import imgSquareIco from "../../pics/imgSquareIco2.png";
+import mapPin from "../../pics/mapPin.png";
+import loreFeather from "../../pics/loreFeather.png";
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
-
-
-/**
- * condensed version of the cards.
- * Works with themes.
- * props
- * theme
- * type
- * app
- * options
- * options can include cardType, cardContent, tabType, 
- */
 export default class StatCard extends Component {
   constructor(props) {
     super(props);
 
 
   }
-
-  /**
-   * 
-   * OPTIONS
-   */
 
 
   render() {
@@ -84,17 +63,12 @@ export default class StatCard extends Component {
   }
 }
 
-
-
-//********CONTENTS********/
 class MainContent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {}
   }
-
-
-
 
   render() {
     let app = this.props.app;
@@ -106,28 +80,39 @@ class MainContent extends Component {
     let id = idList[idList.length - 1];
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
 
-    
+    let styleOne = { fontFamily: "inria", fontSize: "1.21rem", lineHeight: "5rem" };
+    let styleIco = { width: "1.21rem", marginBottom: "-.22rem", marginRight: "11px" };
+
     return (
-      <div style={{ color: styles.colors.color8, display:"flex", flexDirection:"row", justifyContent:"space-between", width:"41%",  margin: "10px", padding: "11px", }}>
-        
-        
-        <div>
-          Encounters: {" " + component.getJson().encCount}
+      <div style={{
+        color: styles.colors.color8, display: "flex", flexDirection: "row", justifyContent: "space-between",
+        background: styles.colors.color1 + "f1", borderRadius: "12px",
+        width: "100%", padding: "11px", paddingRight: "110px",
+      }}>
+        <div style={{ color: styles.colors.colorWhite, fontSize: "1.1rem", fontFamily: "inria", marginLeft: "44px" }}>Includes:</div>
 
-        </div>
-        
-        <div>
-          Artwork: {" " +component.getJson().imageCount}
-        </div>
-  
-  
-        <div>
-          Lore: {" " + component.getJson().loreCount}
+        <div style={styleOne}>
+          <img src={encSwords} style={styleIco} />
+          Encounters: {Math.floor(component.getJson().encCount / 5) * 5}{" "}
+          {component.getJson().encCount >= 6 && "+"}
         </div>
 
-        
-        <div>
-          Maps: {" " + component.getJson().mapCount}
+        <div style={styleOne}>
+          <img src={imgSquareIco} style={styleIco} />
+          Artwork: {Math.floor(component.getJson().imageCount / 5) * 5}{" "}
+          {component.getJson().imageCount >= 6 && "+"}
+        </div>
+
+        <div style={styleOne}>
+          <img src={loreFeather} style={styleIco} />
+          Lore: {Math.floor(component.getJson().loreCount / 5) * 5}{" "}
+          {component.getJson().loreCount >= 6 && "+"}
+        </div>
+
+        <div style={styleOne}>
+          <img src={mapPin} style={styleIco} />
+          Maps: {component.getJson().mapCount < 6 ? component.getJson().mapCount : Math.floor(component.getJson().mapCount / 5) * 5}{" "}
+          {component.getJson().mapCount >= 6 && "+"}
         </div>
       </div>
 
@@ -157,7 +142,7 @@ class TabContent extends Component {
   }
 }
 
-/**Popups */
+
 class Popup extends Component {
   constructor(props) {
     super(props);
@@ -250,10 +235,6 @@ class PopupWithTab extends Component {
 }
 
 
-
-
-
-//********CARDs********/
 class Card extends Component {
   constructor(props) {
     super(props);

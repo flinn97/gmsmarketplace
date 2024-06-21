@@ -26,7 +26,7 @@ export default class PayWithStripeButton extends Component {
     let id = idList[idList.length - 1];
     let currentComponent = componentList.getComponents().find(obj => obj.getJson()._id === id);
 
-    console.log(obj.getJson().stripePrice)
+    // console.log(obj.getJson().stripePrice)
     return (
       <div style={{
         ...styles.buttons.buttonAdd, color: styles.colors.colorBlack, width: "280px", boxShadow: "1px 4px 6px -6px" + styles.colors.color1,
@@ -52,7 +52,7 @@ export default class PayWithStripeButton extends Component {
           {!this.state.downloaded &&
         (<div>
           {obj.getJson().price === "" || obj.getJson().price === "0.00" || obj.getJson().price === "0" ?
-            "Free Download" : "Checkout"}
+            "Free Download" : "Buy Now"}
         </div>)||(<div>
             "Downloaded" 
         </div>)

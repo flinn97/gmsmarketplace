@@ -29,7 +29,7 @@ export default class FilterByPublisher extends Component {
       <div className='hover-container' style={{ width: "fit-content", fontSize:"1rem", color: styles.colors.colorWhite + "99", 
       cursor:"pointer", userSelect: "none", marginBottom:"-13px",
       alignContent:"center", justifySelf:"center", alignSelf:"center" }}>
-<img src={state.pubilsherFilter && state.pubilsherFilter!= undefined?userIcoSelected:userIco} alt={"ava"} className="hover-img" style={{width:"34px",}}/>
+<img src={(state.pubilsherFilter && state.pubilsherFilter!== undefined)?userIcoSelected:userIco} alt={"ava"} className="hover-img" style={{width:"34px",}}/>
 
 <div style={{color:styles.colors.colorWhite, textDecorationColor:"#ffddead11", fontSize:".85rem", marginLeft:"-.9rem" }}>Publishers</div>
 

@@ -33,7 +33,7 @@ export default class Login extends Component {
 
         let user = await authService.login(this.state.email, this.state.password, this.props.app.state.componentList, this.props.app.dispatch);
         if (user.error) {
-            console.log(user);
+            // console.log(user);
             this.setState({ errorMessage: user.error });
         }
     };

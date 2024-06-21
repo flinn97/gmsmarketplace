@@ -38,16 +38,11 @@ export default class BuyPage extends Component {
 
     return (
       <div className='scroller2' style={{...center, width: "100vw", height: "100vh", display: "flex",flexDirection: "column",
-       marginTop: "50px", justifyContent:"flex-start", overflowY: "auto"}} >
+       marginTop: "50px", justifyContent:"space-between", overflowY: "auto"}} >
 
 
         <div style={{ width: "100%", height: "100%" }}>
           <PurchaseCard app={app} type="card" options={{ cardType: "bigcard" }} />
-        </div>
-
-        <div style={{ width: "100%", height: "100%",display:"flex", flexDirection:"column", minHeight:"200px"}}>
-          <div style={{color:styles.colors.colorWhite, fontSize:"1.1rem", fontFamily:"inria", marginLeft:"44px"}}>Includes:</div>
-          <StatCard app={app} type="card" options={{ cardType: "bigcard" }} />
         </div>
 
 
