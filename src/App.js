@@ -75,7 +75,8 @@ export default class App extends Component {
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
         {path:"/publisher", comp:PublisherPage, name: "publisher" }, 
-      ]
+      ],
+      
 
     }
   }
