@@ -106,7 +106,7 @@ class MainContent extends Component {
           { 
           app.dispatch({search: e.target.value})}
         }
-        style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"none",
+        style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"1px solid gray",
         height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
         <div style={{flexDirection:"row", display:"flex", justifyContent:"space-between"}}>
         <FilterByPublisher app={app} list={list} />
