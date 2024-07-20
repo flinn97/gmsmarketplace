@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../App.css"
-
+import DisplayPublisher from './displayPublisher';
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 import FilterCard from './filterCard';
@@ -99,18 +99,25 @@ class MainContent extends Component {
     return (
       <div style={{ color: styles.colors.colorWhite + "99", display: "flex", height: "fit-content", flexDirection: "column" }}>
 
-        <MapComponent app={app} name={state.filter}
-          filters={[
-            { type: "textAndTag", attribute: "name", tagList: state.searchTags, attributeTag: "compID", attribute2: "promotional", search: state.search },
+      
+<MapComponent app={app} name={state.filter}
+filterFunc={state.pubilsherFilter}
+           filters={[
+            
+            { type: "textAndTag2", attributes: "title,promotional,description", search: state.search },
           ]}
           theme="defaultRow" cells={[
 
             { type: "img", class: "Img-Midsize" },
-            { type: "attribute", name: "name", class: "Bold-Title DR-Attribute-Item" },
-            { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
-            { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
-            { type: "attribute", name: "price", class: "DR-Attribute-Item", },
-            {type:"attribute", name:"publisherName", class: "DR-Attribute-Item", hasLink: true, to: "/publisher/", useId:"publisherID"}
+            { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
+            {type:'custom', custom: DisplayPublisher,}, 
+            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item", style:{marginTop:"-11px",}, },
+            
+            { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text"},
+            { name: "See More", class: "DR-Attribute-Item Button-Type1 a", hasLink: true, to: "/purchase/" },
+            { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
+            
+            // {type:"attribute", name:"publisherName", class: "Button-Type1 Ellipsis-Text a", hasLink: true, to: "/publisher/", useId:"publisherID"}
 
           ]}
 

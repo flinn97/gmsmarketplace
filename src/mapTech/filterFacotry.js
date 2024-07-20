@@ -8,6 +8,7 @@ export default class FilterFactory {
         tag: filterByTag,
         plain: textFilter,
         textAndTag: filterByTextThenTitle,
+        textAndTag2: filterByTitleThenTagText
 
 
 
@@ -60,6 +61,57 @@ function filterByTag(json) {
 
 }
 
+function filterByTagText(json) {
+    let list = [];
+    if (json.search && json.list) { // Check if search and list are provided
+        const tags = json.search.toLowerCase().split(' ').map(tag => tag.trim());
+        list = json.list.filter(obj => {
+            const objTags = obj.getJson()[json.attribute || "tags"];
+            if (objTags) { // Check if the attribute exists
+                
+                let splitTags = objTags.split(json.splitStr || ',');
+                splitTags = splitTags.map(tag=>tag.toLowerCase())
+                for(let tag of tags){
+                    if(splitTags.includes(tag)){
+                        return true
+                    }
+                }
+            } else {
+                return false; // Object doesn't have the specified attribute
+            }
+        });
+    }
+    return list;
+
+}
+
+
+
+/**
+ * 
+ * @param {*} json 
+ * @returns filtered list of things by title and then by tags.
+ */
+function filterByTitleThenTagText(json) {
+    
+    
+    let { list, attributes, search } = json;
+    let newList = [];
+    let nameList = [];
+    let aList = attributes.split(",");
+    for (let str of aList) {
+        nameList.push(textAttributeFilter({ ...json, attribute: str }))
+    }
+    //filter by tags text
+    let newTagList = filterByTagText({ ...json });
+        newList = [...nameList[0], ...newTagList, ...nameList[1], ...nameList[2]]
+    
+    
+    newList = filterRemoveDupes(newList);
+    return newList
+}
+
+
 function filterByTextThenTitle(json) {
     let { list, attribute, tagList, attribute2, attributeTag, search } = json;
     let nameList = textAttributeFilter({ ...json, attribute: attribute });
@@ -70,17 +122,17 @@ function filterByTextThenTitle(json) {
     return newList
 }
 
-function filterRemoveDupes(list){
+function filterRemoveDupes(list) {
     const uniqueItems = new Map();
 
     list.forEach(item => {
-      const itemJson = item.getJson();
-      const itemId = itemJson._id;
-      if (!uniqueItems.has(itemId)) {
-        uniqueItems.set(itemId, item);
-      }
+        const itemJson = item.getJson();
+        const itemId = itemJson._id;
+        if (!uniqueItems.has(itemId)) {
+            uniqueItems.set(itemId, item);
+        }
     });
-  
+
     return Array.from(uniqueItems.values());
 }
 

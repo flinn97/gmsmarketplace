@@ -210,6 +210,89 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   box-shadow: 0 0 0px 1000px white inset;
 }
 
+
+.hover-img:hover {
+  opacity: .99;
+  transform: scale(1.02);
+  filter: contrast(1);
+  border-radius: 11px;
+  
+  transition: all 0.3s ease-out;
+}
+.hover-img:active {
+  opacity: .92;
+  transform: scale(1.02);
+  filter: blur(1px);
+  filter: contrast(.89);
+  border-radius: 11px;
+  transition: all 0.3s ease-out;
+}
+.hover-img {
+  opacity: 1;
+  transition: all 0.3s ease-out;
+  filter: contrast(.89);
+}
+
+.hover-btn:hover {
+  opacity: .99;
+ 
+  filter: contrast(1.2);
+  border-radius: 11px;
+  
+  transition: all 0.5s ease-in-out;
+}
+.hover-btn:active {
+  opacity: .82;
+  
+  filter: contrast(1);
+  border-radius: 11px;
+  transition: all 0.5s ease-in-out;
+}
+.hover-btn {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  /* filter: contrast(.89); */
+}
+
+.hover-btn-highlight:hover {
+  opacity: 1;
+  scale: 1.04;
+  
+  background-color: rgba(245, 245, 245, 0.068);
+  filter: contrast(1.2) hue-rotate(-49deg);
+  border-radius: 11px;
+  
+  transition: all 0.5s ease-in-out;
+}
+.hover-btn-highlight:active {
+  opacity: .82;
+  
+  filter: contrast(1);
+  border-radius: 11px;
+  transition: all 0.5s ease-in-out;
+}
+.hover-btn-highlight {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  /* filter: contrast(.89); */
+}
+
+.hover-arr:hover {
+  opacity: .29;
+  transform: scale(1.12);
+  transition: all 0.3s ease-out;
+}
+.hover-arr:active {
+  opacity: .92;
+  transform: scale(1.02);
+  transition: all 0.3s ease-out;
+}
+.hover-arr {
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+
 .picturegallery {
   display: "flex";
   flex-direction: "row";
@@ -266,7 +349,7 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
 .scroller, .scroller2 {
   scrollbar-width: thin; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer 10+ */
-  overflow-y: scroll; /* Add the ability to scroll */
+  overflow-y: auto; /* Add the ability to scroll */
   
 }
 
@@ -310,4 +393,138 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
 
 .titleMP{
   color:"red"
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.video-js {
+  width: 100% !important;
+
+}
+
+.carousel-items {
+  display: flex;
+  /* Apply a transition effect for smooth sliding and fading */
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Styling for when carousel is animating to the left */
+.carousel-container.animating-left .carousel-items {
+  /* Use slideInFromLeft for the specific animation when moving left */
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+/* Styling for when carousel is animating to the right */
+.carousel-container.animating-right .carousel-items {
+  /* Use slideInFromRight for the specific animation when moving right */
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.carousel-container {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wraparound */
+  overflow: hidden; /* Hide the overflow */
+  /* Ensure the container itself has a transition for smoothness if needed */
+  transition: transform 0.8s ease-out;
+}
+
+.menu-bubble {
+  background-color: #333; /* Dark background */
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  position: relative;
+  margin: 2px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.menu-bubble .tail {
+  position: absolute;
+  top: -8px; /* Adjust as needed */
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(45deg);
+  clip-path: polygon(0 0, 0% 100%, 100% 0); /* Creates the triangle shape */
+}
+
+.hover {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease; 
+}
+
+hovering:hover .hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Style for the container */
+.hover-container {
+  position: relative;
+  overflow: visible;
+  display: inline-block; /* Keeps the container size to the content */
+}
+
+.div{
+  color: white; background:none; font-family: "Inria" ; text-align:left; mix-blend-mode: luminosity;font-size: calc(0.75rem + 0.35vw);
+}
+
+/* Initially hide the div */
+.hover-div {
+  display: none !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  transition:all 0.5 ease-in-out; 
+  /* Add other styling as needed */
+}
+
+/* Show the div on hover */
+.hover-container:hover .hover-div {
+  display: block !important;
+}
+
+/* Style for the container */
+.hover-containerInt {
+  position: relative;
+  display: inline-block; /* Keeps the container size to the content */
+}
+
+/* Initially hide the div */
+.hover-divInt {
+  display: none;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  transition:all 0.3s ease; 
+  /* Add other styling as needed */
+}
+
+/* Show the div on hover */
+.hover-containerInt:hover .hover-divInt {
+  display: block;
 }

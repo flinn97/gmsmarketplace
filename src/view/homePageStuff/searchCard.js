@@ -3,6 +3,8 @@ import "../../App.css"
 
 import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
 import searchimg from '../../pics/search.png'
+import FilterByPublisher from './filterByPublisher';
+import FilterByTimePopularity from './filterByTimePopularity';
 
 /**
  * condensed version of the cards.
@@ -95,19 +97,21 @@ class MainContent extends Component {
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-
+    let list = [componentList.getComponents()[0]];
 
     return (
-      <div style={{width:"100%", height:"100%", }}>
+      <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"row", marginTop:"33px" }}>
         <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
         callBackFunc={(e, json) =>
-          { let {list,attribute,name} = json
-          debugger
-          list = list.filter(obj=> obj.getJson()[attribute].includes(e.target.value));
-          app.dispatch({searchTags:[...list], search: e.target.value})}
+          { 
+          app.dispatch({search: e.target.value})}
         }
-        style={{borderRadius:"50px",  background:"#ffdead05", width:"60vw", color:"white", border:"none",
-        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem"}}/>
+        style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"1px solid gray",
+        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
+        <div style={{flexDirection:"row", display:"flex", justifyContent:"space-between"}}>
+        <FilterByPublisher app={app} list={list} />
+        {/* <FilterByTimePopularity app={app} list={list} /> */}
+        </div>
       </div>
 
     )
@@ -167,7 +171,7 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
           <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
@@ -213,7 +217,7 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
           <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />

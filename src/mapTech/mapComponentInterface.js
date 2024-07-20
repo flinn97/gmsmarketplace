@@ -115,7 +115,7 @@ class MapComponent extends Component {
         let componentList = mapComponentInterface?.getComponentList();
         let cells = this.props.cells;
         let name = this.props.name;
-        debugger
+        
         let filters = this.props.filters;
         let filterFunc = this.props.filterFunc;
         if(!filterFunc && filters!==undefined){
@@ -234,5 +234,6 @@ export { MapComponent, SearchMapComponent, mapInterface }
  * make it so that you can do dropdown search
  * make it so interactive map does not need pin type if they provide an object
  * The props do not update in the map component. Either we need to add an observer it can't be done that way. * This actually can't be done on the react side. So temporarily we will add the ability to pass in app as a prop.
- * 
+ * selector item
+ * html should be returned by a function.
  */

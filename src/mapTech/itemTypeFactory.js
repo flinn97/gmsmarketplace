@@ -16,7 +16,11 @@ import UseTheirImgItem from "./useTheirImgItem";
 import InteractiveMap from "./interactiveMap/interactiveMapComponent";
 import AddComponentButton from "./interactiveMap/addButtonComponent";
 import PlainDisplay from "./plainDisplay";
-import QuillItem from "./attributeItem";
+import QuillItem from "./quillItem";
+import RichTextComponentItem from "./richTextComponentItem";
+import AttributePrePostItem from "./attributePrePostItem";
+import SelectorAttributeItem from "./selectorAttributeItem";
+
 /**
  * factory for getting different items for the map component
  */
@@ -24,6 +28,7 @@ export default class MapFactory {
     factory = {
         text: TextItem,
         attribute: AttributeItem,
+        prepost: AttributePrePostItem,
         custom: CustomComponentItem,
         img: ImgItem,
         exactImg: UseTheirImgItem,
@@ -39,8 +44,10 @@ export default class MapFactory {
         interactiveMap: InteractiveMap,
         addComponentButton: AddComponentButton,
         plain: PlainDisplay,
-        quill: QuillItem,
-
+        // quill: QuillItem, THIS IS NOT COMPLETE, errors
+        
+        richReader: RichTextComponentItem,
+        select:SelectorAttributeItem
 
 
     }

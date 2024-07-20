@@ -12,6 +12,7 @@ let rowMapping={
   MCAttributeItem: "DR-Attribute-Item",
   MCImgItem: "DR-imgItem",
   MCTextItem: "DR-Text-Item",
+  MCActiveItem: "DR-Active-Item"
 
 
 }

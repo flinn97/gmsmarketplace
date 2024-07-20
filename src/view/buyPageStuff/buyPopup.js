@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
-import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
+import "../../App.css";
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import StripeEl from './stripeL';
-
 
 /**
  * condensed version of the cards.
@@ -104,15 +95,19 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-    let loreList = componentList.getList("mpLore",id, "topDisplayID")
-    let encounterList = componentList.getList("mpEncounter",id,"topDisplayID")
-    let imageList = componentList.getList("mpImage",id,"topDisplayID")
+    let id = idList[idList.length - 1];
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    let loreList = componentList.getList("mpLore", id, "topDisplayID")
+    let encounterList = componentList.getList("mpEncounter", id, "topDisplayID")
+    let imageList = componentList.getList("mpImage", id, "topDisplayID")
 
     return (
-      <div>
-       <StripeEl app={app}/>
+      <div style={{
+        padding: "22px", marginTop: "22px",
+        background: "linear-gradient(180deg, " + styles.colors.colorWhite + ", " + styles.colors.color8 + " )", mixBlendMode: "screen",
+        borderRadius: "22px", height: "100%"
+      }}>
+        <StripeEl app={app} />
       </div>
 
     )
@@ -135,7 +130,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -171,9 +166,9 @@ class Popup extends Component {
     return (
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
-          <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
-          } onClick={this.props.handleClose}>x</div>
+          <div style={{///EXIT BUTTON
+            ...styles.buttons.buttonClose, position: "absolute", right: 32,
+          }} onClick={this.props.handleClose}>x</div>
 
           <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
@@ -218,7 +213,7 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
           <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
@@ -271,12 +266,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }

@@ -1,0 +1,247 @@
+.DP-Map-Container {
+  display: flex;
+  font-family: "inria";
+  flex-direction: row;
+  /* Switched to row layout */
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.DP-Map-Section {
+  display: flex;
+  font-family: "inria";
+  flex-direction: column;
+  min-width: 24vw;
+  align-items: center;
+  margin: 12px;
+  justify-content: space-evenly;
+  position: relative;
+  max-height: fit-content;
+}
+
+
+/* General styling for all items */
+.DP-Link,
+.DP-Cell,
+.DP-Custom-Del-Item,
+.DP-Del-Item,
+.DP-Del-imgItem,
+.DP-Custom-Edit-Item,
+.DP-Edit-imgItem,
+.DP-Edit-Item,
+.DP-Attribute-Item,
+.DP-imgItem,
+.DP-Full-Item,
+.DP-Text-Item {
+  width: 100%;
+  border-radius: 11px;
+  margin: 5px;
+  /* background-color: #16161605; */
+  font-family: "inria";
+  user-select: none;
+  font-size: 1.1rem;
+}
+
+.DP-Cell {
+  display: flex;
+}
+
+.DP-Full-Description {
+  display: flex;
+  width: 100%;
+}
+
+
+.DP-Link:hover {
+  transform: scale(0.98);
+  box-shadow: inset 2px 2px #00000055, inset -2px -2px #ffffff55;
+  color: "#111319";
+}
+
+.Button-Type1:hover,
+.Button-Type2:hover {
+  transform: scale(0.98);
+  color: "#111319";
+}
+
+
+.a {
+  color: #000;
+  cursor: pointer;
+}
+
+.Publisher-Main {
+  width: 102.5%;
+  padding-right: 3px;
+  margin-right: -10px;
+  margin-left: -8px;
+  height: fit-content;
+  font-size: 1.1rem;
+  opacity: 90%;
+  text-align: right;
+  color: #e8d259;
+  margin-top: -10px;
+  border-radius: 0%;
+  background-color: #0f141cf5;
+}
+
+/* Add specific styles for each item type if needed */
+.DP-Link {
+  text-decoration: none;
+  cursor: pointer;
+  color: rgb(190, 221, 226);
+}
+
+.DP-Custom-Del-Item,
+.DP-Del-Item,
+.DP-Del-imgItem {
+  color: #dc3545;
+  cursor: pointer;
+  position: absolute;
+  padding: 0px;
+  right: 3px;
+  top: 3px;
+}
+
+.DP-imgItem {
+  width: 100px;
+  border-radius: 15px;
+  min-width: 100px;
+}
+
+.DP-hover-shimmer {
+  top: 15px;
+  position: absolute;
+  border: 1px solid #1E90FF00;
+  right: 0px;
+  opacity: 92%;
+  overflow: hidden;
+}
+
+.DP-hover-shimmer:hover {
+  position: absolute;
+  opacity: 98%;
+  border: 1px solid #1E90FF;
+  box-shadow: inset 2px 2px 4px #000000, inset -2px -2px 4px #ffffff55;
+}
+
+.DP-hover-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  /* Start from the left */
+  width: 100%;
+  /* Full width of the parent */
+  height: 100%;
+  /* Full height of the parent */
+  background: linear-gradient(90deg, transparent, rgba(52, 55, 73, 0.4), transparent);
+  animation: none;
+  /* No animation by default */
+  opacity: 0;
+  /* Make it invisible by default */
+  transition: opacity 0.5s ease;
+  /* Smooth transition for the shimmer effect */
+  mix-blend-mode: lighten;
+}
+
+
+
+.DP-hover-shimmer:hover::before {
+  animation: shimmer 8s infinite;
+  /* Adjust time as needed */
+  opacity: 1;
+  /* Make the shimmer visible on hover */
+}
+
+@keyframes shimmer {
+  0% {
+    left: -580%;
+    /* Start from the left */
+  }
+
+  50% {
+    left: 980%;
+    /* Move to the right */
+  }
+
+  100% {
+    left: -100%;
+    /* Return to start */
+  }
+}
+
+.DP-Custom-Edit-Item,
+.DP-Edit-imgItem,
+.DP-Edit-Item {
+  color: #ffc107;
+  background-color: none;
+  cursor: pointer;
+  position: absolute;
+  padding: 0px;
+  left: 3px;
+  top: 3px;
+}
+
+.Main-Title {
+  font-weight: 600;
+  font-size: 2.4rem;
+  font-family: 'inria';
+  width: 100%;
+  padding: 2px 11px;
+  color: aliceblue;
+  text-overflow: ellipsis;
+  flex-wrap: wrap;
+  text-wrap: wrap;
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.Main-Price {
+  font-weight: 600;
+  font-size: 2.0rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  color:#ecd23a;
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+
+.Ellipsis {
+  text-overflow: ellipsis;
+  font-family: 'Inria';
+  text-align: left;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  min-height: 10.4rem;
+  color: rgb(190, 221, 226);
+  hyphens: auto;
+  width: 100%;
+  max-height: 8.5rem;
+  margin-bottom: 8px;
+}
+
+
+.Img-Midsize {
+  width: 100%;
+  max-height: 200px;
+  min-height: 200px;
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.Img-Banner {
+  width: 40vw;
+  max-height: 440px;
+  min-height: 440px;
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.DP-Active-Item{
+  background-color: aliceblue;
+}

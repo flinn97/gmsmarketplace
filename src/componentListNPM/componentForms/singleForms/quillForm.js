@@ -108,7 +108,7 @@ export default class QuillForm extends Component {
   }
 
   // async newLoreLink(loreName) {
-  //   debugger
+  //   
     
   //   let loreId = await idService.createId();
 

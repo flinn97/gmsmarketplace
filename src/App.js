@@ -8,7 +8,7 @@ import ThemeFactory from './componentListNPM/themes/themeFactory';
 import navThemeFactory from './componentListNPM/navThemes/navThemeFactory';
 import Home from './view/homePageStuff/home.js';
 import { mapInterface } from './mapTech/mapComponentInterface.js';
-import {json} from './view/homePageStuff/fakeData';
+// import {json} from './view/homePageStuff/fakeData';
 import BuyPage from './view/buyPageStuff/buyPage';
 import Admin from './view/buyPageStuff/admin';
 import PublisherPage from './view/publisher/publisherPage.js';
@@ -64,7 +64,9 @@ export default class App extends Component {
       currentStudent: undefined,
       currentRoutine: undefined,
       searchState: "Campaigns",
+      pubilsherFilter: ()=>{return true},
       searchTags:[],
+      search:"",
       //allows to know which card is which
       switchCase:[
         {path:"/", comp:Home, name: "Home" }, 
@@ -73,7 +75,8 @@ export default class App extends Component {
       idSwitchCase:[
         {path:"/purchase", comp:BuyPage, name: "purchase" }, 
         {path:"/publisher", comp:PublisherPage, name: "publisher" }, 
-      ]
+      ],
+      
 
     }
   }
@@ -167,7 +170,7 @@ handleChange = (event) => {
     let list;
     if(this.state.componentListInterface && this.state.componentList===undefined){
         list= await this.state.componentListInterface.createComponentList();
-        let fakeData = json
+        // let fakeData = json
         
         
         await this.setState({
@@ -182,10 +185,10 @@ handleChange = (event) => {
          await this.state.componentListInterface.getFactory().registerComponents({name:key, component:obj[key]});
         }
 
-        for(let c of fakeData){
+        // for(let c of fakeData){
           
-          await list.getOperationsFactory().cleanJsonPrepareRun({["add"+c.type]:c})
-        }
+        //   await list.getOperationsFactory().cleanJsonPrepareRun({["add"+c.type]:c})
+        // }
         // await auth.createInitialStages(list);
           
         let user = await auth.getCurrentUser();
@@ -194,6 +197,7 @@ handleChange = (event) => {
           
           this.setState({splash:true});
           user = JSON.parse(user);
+          
           await auth.getuser(user.email, list, this.dispatch);
           await auth.getAllMPItems(list);
          

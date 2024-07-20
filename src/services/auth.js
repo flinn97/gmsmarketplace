@@ -4,7 +4,7 @@ import { db, storage, auth } from '../firbase.config.js';
 import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser } from "firebase/auth";
 
 class Auth {
-    urlEnpoint = "GMS"
+    urlEnpoint = "MP"
 
     async getCurrentUser() {
         return localStorage.getItem("user");
@@ -45,12 +45,20 @@ class Auth {
         let comps = await getDocs(components);
         let rawData = comps.docs.map(doc => doc.data());
         await componentList.addComponents(rawData, false);
+        const components1 =  query(collection(db,  "GMSusers","GMSAPP", "components"), where('type', '==', "user"), where('partner', '==', true));
+        let comps1 = await getDocs(components1);
+        let rawData1 = comps1.docs.map(doc => {
+            let d = doc.data();
+            d.type="publisher";
+            return d;
+        });
+        await componentList.addComponents(rawData1, false);
     }
 
     async getuser(email, componentList, dispatch) {
 
         try {
-
+            
             let list = componentList.getComponents();
             let IDlist = [];
             for (const key in list) {
@@ -60,10 +68,19 @@ class Auth {
 
    
 
-            const components =  query(collection(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components"), where('owner', '==', email), orderBy("date"));
+            const components =  query(collection(db, "GMSusers", "GMSAPP", "components"), where('_id', '==', email), orderBy("date"));
             let comps = await getDocs(components);
             for (const key in comps.docs) {
                 let data = comps.docs[key].data()
+                if (!IDlist.includes(data._id)) {
+                   
+                    rawData.push(data);
+                }
+            }
+            const components1 =  query(collection(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components"), where('_id', '==', email), orderBy("date"));
+            let comps1 = await getDocs(components1);
+            for (const key in comps1.docs) {
+                let data = comps1.docs[key].data()
                 if (!IDlist.includes(data._id)) {
                     if(data.type==='campaign'){
                         data.type="mpCampaign"
@@ -71,6 +88,7 @@ class Auth {
                     rawData.push(data);
                 }
             }
+            await this.getAllMPItems(componentList);
 
 
             await componentList.addComponents(rawData, false);
@@ -173,6 +191,8 @@ class Auth {
 
             if (componentList !== undefined && dispatch !== undefined) {
                 await localStorage.setItem("user", JSON.stringify(saveUser));
+                
+
                 await this.getuser(email, componentList, dispatch);
 
             }

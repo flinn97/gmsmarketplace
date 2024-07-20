@@ -249,7 +249,7 @@ class LegatoNav {
     }
     getNavTheme(){
         let style = this.getNavDesktop();
-        console.log(window.innerWidth)
+        
         if(window.innerWidth<1200){
             
             style= this.getNavPhoneUI();

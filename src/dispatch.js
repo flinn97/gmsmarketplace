@@ -1,6 +1,6 @@
 import './App.css';
 import { Component } from 'react';
-import logo from './pics/DreamMakers.png'
+import logo from "./pics/logoava2.png"
 
 import Nav from './componentListNPM/navTech/nav.js';
 // import Login from './view/login';
@@ -11,7 +11,6 @@ import Login from './view/login.js';
 import BuyPopup from './view/buyPageStuff/buyPopup';
 // import DeletePopup from './view/deletePopup';
 // import KeepDel from './view/keepDelete';
-
 
 //model
 /**
@@ -117,16 +116,17 @@ export default class Dispatch extends Component {
         {state.user?(
         <>
      
-     <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
+     {/* <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
      options={{
       
      }}
   
      
-     />
+     /> */}
      {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
-    <div style={{}}>
-    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined }) }}/>}
+  <div style={{position:"fixed", top:"0px", left:"0px", width:"100vw"}}><img style={{width:"100px"}} src={logo}/></div>
+    <div style={{width:"100%", marginTop:"100px"}}>
+    {state.popupSwitch === "buyPopup" &&state.currentComponent!==undefined  &&<BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment:"" }) }}/>}
      <Routes>
       {state.switchCase?.map((obj, index)=>
         <Route path={obj.path} element={<obj.comp app={app}/>} />

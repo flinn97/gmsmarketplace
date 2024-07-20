@@ -12,6 +12,7 @@ let mapping={
   MCAttributeItem: "DC-Attribute-Item",
   MCImgItem: "DC-imgItem",
   MCTextItem: "DC-Text-Item",
+  MCActiveItem: "DC-Active-Item"
 
 
 }

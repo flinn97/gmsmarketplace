@@ -1,37 +1,16 @@
 import React, { Component } from 'react';
 import "../../App.css"
-import MapComponent from '../../componentListNPM/mapTech/mapComponent';
-import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent';
-import FormWithUpdateAndRun from '../../componentListNPM/componentForms/buttons/formWithUpdateAndRun';
+import encSwords from "../../pics/encounterSwords.png";
+import imgSquareIco from "../../pics/imgSquareIco2.png";
+import mapPin from "../../pics/mapPin.png";
+import loreFeather from "../../pics/loreFeather.png";
 
-import ViewMedia from '../../componentListNPM/componentForms/media/viewMediaComponent';
-import { async } from 'videojs-record';
-import arr from '../../pics/dreamArrow.png'
-import formThemeFactory from '../../componentListNPM/componentForms/formThemes/formThemeFactory';
-import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
-
-
-/**
- * condensed version of the cards.
- * Works with themes.
- * props
- * theme
- * type
- * app
- * options
- * options can include cardType, cardContent, tabType, 
- */
 export default class StatCard extends Component {
   constructor(props) {
     super(props);
 
 
   }
-
-  /**
-   * 
-   * OPTIONS
-   */
 
 
   render() {
@@ -84,17 +63,12 @@ export default class StatCard extends Component {
   }
 }
 
-
-
-//********CONTENTS********/
 class MainContent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {}
   }
-
-
-
 
   render() {
     let app = this.props.app;
@@ -103,17 +77,43 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    let component = componentList.getComponents().find(obj=>obj.getJson()._id===id);
-    let loreList = componentList.getList("mpLore",id, "topDisplayID")
-    let encounterList = componentList.getList("mpEncounter",id,"topDisplayID")
-    let imageList = componentList.getList("mpImage",id,"topDisplayID")
+    let id = idList[idList.length - 1];
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+
+    let styleOne = { fontFamily: "inria", fontSize: "1.21rem", lineHeight: "5rem" };
+    let styleIco = { width: "1.21rem", marginBottom: "-.22rem", marginRight: "11px" };
 
     return (
-      <div>
-        encounter: {encounterList.length}
-        images: {imageList.length}
-        lore: {loreList.length}
+      <div style={{
+        color: styles.colors.color8, display: "flex", flexDirection: "row", justifyContent: "space-between",
+        background: styles.colors.color1 + "f1", borderRadius: "12px",
+        width: "100%", padding: "11px", paddingRight: "110px",
+      }}>
+        <div style={{ color: styles.colors.colorWhite, fontSize: "1.1rem", fontFamily: "inria", marginLeft: "44px" }}>Includes:</div>
+
+        <div style={styleOne}>
+          <img src={encSwords} style={styleIco} />
+          Encounters: {Math.floor(component.getJson().encCount / 5) * 5}{" "}
+          {component.getJson().encCount >= 6 && "+"}
+        </div>
+
+        <div style={styleOne}>
+          <img src={imgSquareIco} style={styleIco} />
+          Artwork: {Math.floor(component.getJson().imageCount / 5) * 5}{" "}
+          {component.getJson().imageCount >= 6 && "+"}
+        </div>
+
+        <div style={styleOne}>
+          <img src={loreFeather} style={styleIco} />
+          Lore: {Math.floor(component.getJson().loreCount / 5) * 5}{" "}
+          {component.getJson().loreCount >= 6 && "+"}
+        </div>
+
+        <div style={styleOne}>
+          <img src={mapPin} style={styleIco} />
+          Maps: {component.getJson().mapCount < 6 ? component.getJson().mapCount : Math.floor(component.getJson().mapCount / 5) * 5}{" "}
+          {component.getJson().mapCount >= 6 && "+"}
+        </div>
       </div>
 
     )
@@ -135,14 +135,14 @@ class TabContent extends Component {
 
 
     return (
-      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+      <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", }}>
+
       </div>
     )
   }
 }
 
-/**Popups */
+
 class Popup extends Component {
   constructor(props) {
     super(props);
@@ -173,10 +173,10 @@ class Popup extends Component {
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
           <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -219,9 +219,9 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -235,10 +235,6 @@ class PopupWithTab extends Component {
 }
 
 
-
-
-
-//********CARDs********/
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -251,7 +247,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -272,12 +268,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }
