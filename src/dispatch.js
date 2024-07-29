@@ -113,7 +113,7 @@ export default class Dispatch extends Component {
           width: "100%",
           height: "96vh",
         }}>
-          {state.user ? (
+          {/* {state.user ? ( */}
             <>
 
               {/* <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
@@ -143,11 +143,12 @@ export default class Dispatch extends Component {
                     <Route path={obj.path + "/:id"} element={<obj.idLinkComp app={app} />} />
 
                   )}
+                  {!state.user&&<Route path={"/login"} element ={<Login app={app}/>} />}
 
                 </Routes>
               </div>
             </>
-          ) : (<Login app={app} />)}
+          {/* ) : (<Login app={app} />)} */}
         </div>
         {/* )} */}
 

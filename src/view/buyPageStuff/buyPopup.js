@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "../../App.css";
 
 import StripeEl from './stripeL';
+import { Link } from 'react-router-dom';
+import auth from '../../services/auth';
 
 /**
  * condensed version of the cards.
@@ -107,7 +109,11 @@ class MainContent extends Component {
         background: "linear-gradient(180deg, " + styles.colors.colorWhite + ", " + styles.colors.color8 + " )", mixBlendMode: "screen",
         borderRadius: "22px", height: "100%"
       }}>
-        <StripeEl app={app} />
+        {!state.user?<div>please <Link onClick={()=>{
+          dispatch({popupSwitch:"", currentComponent:undefined})
+          auth.setLoginReturnURL(window.location.href);
+          }} to="/login">Login</Link> to Buy this product</div>:<StripeEl app={app} />}
+        
       </div>
 
     )

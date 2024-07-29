@@ -18,7 +18,7 @@
     "react-google-recaptcha": "^2.1.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.4.4",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-switch": "^7.0.0",
     "stripe": "^14.13.0",
     "validator": "^13.9.0",
