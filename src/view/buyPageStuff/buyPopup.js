@@ -106,13 +106,13 @@ class MainContent extends Component {
     return (
       <div style={{
         padding: "22px", marginTop: "22px",
-        background: "linear-gradient(180deg, " + styles.colors.colorWhite + ", " + styles.colors.color8 + " )", mixBlendMode: "screen",
+        background: state.user?"linear-gradient(180deg, " + styles.colors.colorWhite + ", " + styles.colors.color8 + " )":"", mixBlendMode: state.user?"screen":"normal",
         borderRadius: "22px", height: "100%"
       }}>
-        {!state.user?<div>please <Link onClick={()=>{
+        {!state.user?<div style={{color:styles.colors.colorWhite+"f2", fontWeight:"500", fontSize:"21px", width:"450px", alignSelf:"center"}}>Please first <Link onClick={()=>{
           dispatch({popupSwitch:"", currentComponent:undefined})
           auth.setLoginReturnURL(window.location.href);
-          }} to="/login">Login</Link> to Buy this product</div>:<StripeEl app={app} />}
+          }} to="/login">Login  to  GMS</Link> to buy this product</div>:<StripeEl app={app} />}
         
       </div>
 
