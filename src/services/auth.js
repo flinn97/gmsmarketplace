@@ -2,6 +2,7 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage
 import { doc, getDocs, collection, getDoc, updateDoc, addDoc, where, query, setDoc, deleteDoc, onSnapshot, querySnapshot, Timestamp, serverTimestamp, orderBy, limit } from "firebase/firestore";
 import { db, storage, auth } from '../firbase.config.js';
 import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser } from "firebase/auth";
+import hashService from "./hashService.js";
 
 class Auth {
     urlEnpoint = "MP"
@@ -11,6 +12,19 @@ class Auth {
     }
     async setCurrentUser(student) {
         await localStorage.setItem("user", JSON.stringify(student));
+    }
+
+    async getFeaturesByUser(componentList, userId){
+        let rawData = [];
+        const components = await query(collection(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components"), where("type", '==', "feature"), where("owner", "==", userId));
+        let comps = await getDocs(components);
+        for (const key in comps.docs) {
+            let data = comps.docs[key].data()
+                rawData.push(data);
+            
+        }
+        await componentList.addComponents(rawData, false);
+        return componentList.getList("feature")
     }
 
 
@@ -47,11 +61,14 @@ class Auth {
         await componentList.addComponents(rawData, false);
         const components1 =  query(collection(db,  "GMSusers","GMSAPP", "components"), where('type', '==', "user"), where('partner', '==', true));
         let comps1 = await getDocs(components1);
-        let rawData1 = comps1.docs.map(doc => {
-            let d = doc.data();
+        
+        let rawData1 = []
+        for(let doc of comps1.docs) {
+            let d = await doc.data();
             d.type="publisher";
-            return d;
-        });
+            d.hash =  await hashService.hashEmail(d._id);
+            rawData1.push(d);
+        }
         await componentList.addComponents(rawData1, false);
     }
 

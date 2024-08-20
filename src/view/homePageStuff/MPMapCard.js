@@ -101,7 +101,13 @@ class MainContent extends Component {
 
       
 <MapComponent app={app} name={state.filter}
-filterFunc={state.pubilsherFilter}
+filterFunc={
+  (comp)=>{
+
+    let returnVal = state.pubilsherFilter(comp)
+    return returnVal
+  }
+  }
            filters={[
             
             { type: "textAndTag2", attributes: "title,promotional,description", search: state.search },

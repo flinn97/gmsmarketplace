@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "../../App.css";
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
+import auth from '../../services/auth';
 
 /**
  * condensed version of the cards.
@@ -84,11 +85,23 @@ class MainContent extends Component {
     super(props);
     this.state = {}
   }
+  async componentDidMount(){
+    
+    let app = this.props.app;
+    let state = app.state;
+    let componentList = state.componentList;
+    let features = await auth.getFeaturesByUser(componentList, state.currentPublisher.getJson()._id);
+    features = features.sort((a, b) => {
+      return parseInt(a.getJson().featurePosition) - parseInt(b.getJson().featurePosition);
+  });
+    this.setState({features:features})
+  }
 
 
 
 
   render() {
+    
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
@@ -96,24 +109,20 @@ class MainContent extends Component {
     let styles = state.styles;
     let idList = window.location.href.split("/");
     let id = idList[idList.length-1];
+    let features = this.state.features;
     
 
     return (
-      <div style={{display:"flex", flexDirection:"column",}}>
-        <MapComponent app={app} name={"mpCampaign"}
-          filter={{attribute:"publisherID", search: id}}
-          theme="defaultRow" cells={[
-
-            { type: "img", class: "Img-Midsize" },
-            { type: "attribute", name: "name", class: "Bold-Title DR-Attribute-Item" },
-            { type: "attribute", name: "promotional", class: "DR-Attribute-Item Ellipsis-Text" },
-            { name: "See More", class: "DR-Attribute-Item .Button-Type1 a", hasLink: true, to: "/purchase/" },
-            { type: "attribute", name: "price", class: "DR-Attribute-Item", },
-
-          ]}
-
-        />
-       
+      <div style={{display:"flex", flexDirection:"column", color:"white", justifyContent:'center', alignItems:'center'}}>
+        {this.state.features&&<>
+        <img src = {features[0].getJson().picURL} style={{width:"80%", height:"200px", objectFit:"cover"}} />
+        <div style={{display:"flex", flexDirection:"row", width:"100%"}}>
+        <img src = {features[1].getJson().picURL} style={{width:"200px", height:"200px", objectFit:"cover"}} />
+        <img src = {features[2].getJson().picURL} style={{width:"200px", height:"200px", objectFit:"cover"}} />
+        <img src = {features[3].getJson().picURL} style={{width:"200px", height:"200px", objectFit:"cover"}} />
+        
+        </div>
+        </>}
       </div>
 
     )

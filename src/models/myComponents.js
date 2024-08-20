@@ -199,8 +199,18 @@ class Publisher extends componentBase{
       }
 }
 
+class Feature extends componentBase{
+    json = {
+        type:"feature",
+        name:"",
+        picURL:"",
+        featurePosition:"",
+        mpId:""
+      }
+}
+
 function forFactory(){
-    return { user: UserThings, tag:Tag, mpCampaign:MPCampaign, mpItem:MarketplaceItem, publisher:Publisher, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
+    return { user: UserThings, feature:Feature, tag:Tag, mpCampaign:MPCampaign, mpItem:MarketplaceItem, publisher:Publisher, mpEncounter:MPEncounter, mpMonster:MPmonster,mpMap:MPMap, mpLore:MPLore, promotional:Promotional, mpImage:MPImage ,buy:Buy }
 }
 
 
