@@ -273,14 +273,15 @@
 
 .Ellipsis-Text {
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
  color: rgb(190, 221, 226);
   hyphens: auto;
   max-width: 330px;
   min-height: 5.5rem;
   max-height: 5.5rem;
   padding: 8px;
+  margin-bottom: 21px;
   font-size: .89rem;
   text-align: justify;
 }

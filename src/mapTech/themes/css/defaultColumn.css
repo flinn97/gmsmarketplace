@@ -112,8 +112,8 @@
 
 .Ellipsis-Text {
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
 
   hyphens: auto;
   max-width: 330px;
