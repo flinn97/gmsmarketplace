@@ -87,7 +87,7 @@ export default class PublisherPage extends Component {
           <PublisherInfoCard app={app} type="card" options={{ cardType: "bigcard" }} />
 
           <div style={{width:"66%", justifyContent:"flex-start", display:"flex", fontSize:"18px", fontFamily:"inria",
-            flexDirection:"row", color:styles.colors.color8+"52"}}>Featured Images:</div>
+            flexDirection:"row", color:styles.colors.color8+"52"}}>Featured:</div>
           <PublisherCard app={app} type="card" options={{ cardType: "bigcard" }} />
 <div style={{width:"100%", marginTop:"22px", opacity:".8"}}><hr></hr></div>
           

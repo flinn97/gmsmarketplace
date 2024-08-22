@@ -5,6 +5,7 @@ import { MapComponent } from '../../mapTech/mapComponentInterface';
 import auth from '../../services/auth';
 import VideoPlayer from '../../componentListNPM/componentForms/media/videoJS';
 import ViewMedia2 from '../../componentListNPM/componentForms/media/viewMediaComponent2';
+import { Link } from 'react-router-dom';
 
 
 export default class PublisherCard extends Component {
@@ -76,9 +77,10 @@ class MainContent extends Component {
     this.state = {
       features: [],
       imageList: [],
-    }
+    };
 
     this.getMimeType = this.getMimeType.bind(this);
+    this.handleMediaClick = this.handleMediaClick.bind(this);
   }
 
   async componentDidMount() {
@@ -95,7 +97,8 @@ class MainContent extends Component {
     if (imageList.length > 0) {
       this.setState({ imageList }, () => {
         this.props.app.dispatch({
-          currentMedia: imageList[0]
+          currentMedia: imageList[0],
+          currentFeature: features[0],
         });
       });
     }
@@ -115,11 +118,17 @@ class MainContent extends Component {
     }
   }
 
-  handleMediaClick(e, props) {
-    const selectedMedia = e.currentTarget.src || (Array.isArray(props.media) ? props.media[0] : props.media);
-
+  handleMediaClick(mediaItem) {
+    const selectedMedia = mediaItem;
+  
     if (typeof selectedMedia === 'string') {
-      this.props.app.dispatch({ currentMedia: selectedMedia });
+      // Find the corresponding feature for the clicked media
+      const selectedFeature = this.state.features.find(feature => feature.getJson().picURL === selectedMedia);
+  
+      this.props.app.dispatch({ 
+        currentMedia: selectedMedia,
+        currentFeature: selectedFeature, // Set the currentFeature
+      });
     } else {
       console.error("Selected media is not a valid string:", selectedMedia);
     }
@@ -135,9 +144,10 @@ class MainContent extends Component {
     let isVideo = mimeType ? mimeType.includes('video') : false;
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", color: "white",  paddingTop:"22px", 
-      justifyContent: 'center', alignItems: 'center', background: styles.colors.color2, borderRadius: "22px" }}> 
-      
+      <div style={{
+        display: "flex", flexDirection: "column", color: "white", paddingTop: "22px",
+        justifyContent: 'center', alignItems: 'center', background: styles.colors.color2, borderRadius: "22px"
+      }}>
         {features.length > 0 && (
           <>
             <div style={{ marginBottom: '2px' }}>
@@ -160,31 +170,49 @@ class MainContent extends Component {
                     }} />
                 </div>
               ) : (
-                <img
-                  alt="Current Media"
-                  src={app.state.currentMedia}
-                  style={{
-                    width: "40vw",
-                    maxHeight: "400px",
-                    minHeight: "400px",
-                    borderRadius: "11px",
-                    objectFit: "contain",
-                  }}
-                />
+                <div style={{
+                  width: "40vw",
+                  maxHeight: "400px",
+                  minHeight: "400px",
+                  borderRadius: "11px",
+                  position: "relative",
+                }}>
+                  <Link className="hover-btn-highlight" to={`/purchase/${app.state.currentFeature?.getJson().mpId}`} style={{
+                    ...styles.buttons.buttonAdd, textDecoration: "none", background: styles.colors.color7,
+                    fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize: "30px", fontFamily: "inria", 
+                    position: "absolute", 
+                    bottom: "10px", 
+                    left: "50%", 
+                    transform: "translateX(-50%)",
+                    zIndex: 1, 
+                  }}>
+                    View Product
+                  </Link>
+                
+                  <img
+                    alt="Current Media"
+                    src={app.state.currentMedia}
+                    style={{
+                      borderRadius: "11px",
+                      objectFit: "contain",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  />
+                </div>
               )}
             </div>
-            <div style={{marginTop:"-22px"}}>
+            <div style={{ marginTop:"18px"}}>
               <ViewMedia2
                 media={features.map(feature => feature.getJson().picURL)}
                 scale={1.48}
                 arrowScale={"39%"}
                 nToShow={4}
                 onClick={(e, props) => {
-                  this.handleMediaClick(e, props);
+                  this.handleMediaClick(props.media);
                 }}
                 app={app}
               /></div>
-
           </>
         )}
       </div>
