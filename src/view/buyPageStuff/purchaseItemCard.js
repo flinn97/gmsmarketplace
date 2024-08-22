@@ -80,7 +80,7 @@ export default class PurchaseItemCard extends Component {
           to={"/"} 
           style={{
             ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
-            fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px"
+            fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", marginTop:"-22px", fontSize:"18px", fontFamily:"inria",
           }}
 
         >
@@ -127,7 +127,7 @@ export default class PurchaseItemCard extends Component {
                   maxHeight: "440px",
                   minHeight: "440px",
                   borderRadius: "11px",
-                  objectFit: "cover",
+                  objectFit: "contain",
                 }}
               />
             )}
