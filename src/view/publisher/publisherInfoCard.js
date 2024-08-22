@@ -111,15 +111,15 @@ class MainContent extends Component {
           <a className='hover-img' style={{ color: styles.colors.color9, textUnderlineOffset:"3px", marginBottom:"2px", fontSize:"19px", fontFamily:"inria" }} 
           href={state.currentPublisher.getJson().website}>Website</a>}
 
-          {!state.currentPublisher.getJson().insta &&
+          {state.currentPublisher.getJson().insta &&
             <a href={state.currentPublisher.getJson().insta}>
              <img className='hover-img-ico app-icon' src={FB} ></img>
               </a>}
-          {!state.currentPublisher.getJson().facebook &&
+          {state.currentPublisher.getJson().facebook &&
             <a href={state.currentPublisher.getJson().facebook}>
               <img className='hover-img-ico app-icon' src={Insta} ></img>
               </a>}
-          {!state.currentPublisher.getJson().twitter &&
+          {state.currentPublisher.getJson().twitter &&
             <a href={state.currentPublisher.getJson().twitter}> 
             <img className='hover-img-ico app-icon' src={Twitter} ></img>
             </a>}
