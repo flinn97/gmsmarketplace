@@ -59,7 +59,7 @@ export default function CheckoutForm(props) {
     }
 
     setIsLoading(true);
-    debugger
+    
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {

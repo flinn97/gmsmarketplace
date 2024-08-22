@@ -38,24 +38,19 @@ export default class FilterByPublisher extends Component {
     
     
     <div className="menu-bubble" style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
-      <div className="DR-Map-Section"
+      {/* <div className="DR-Map-Section"
     style={{color: state.activeItem!==undefined?"white":"#ffd34e", marginTop:"1px", 
     padding:"2px 8px", fontSize:"1.1rem", flexDirection:"row", }}
       onClick={() => {
         this.setState({currentPub:"All"})
         dispatch({pubilsherFilter:undefined, activeItem:undefined});
       }}
-       >All</div>
+       >All</div> */}
       <MapComponent theme="defaultRow"
     
       app={app} name="publisher" cells={[
-        {type:"select", style:{activeClass: "DR-Active-Item"},activeItem:state.activeItem,
-        name: "publisherName", func:(comp)=>{
-          let publisherFunc = (obj)=>{
-            return obj.getJson().owner===comp.getJson()._id
-          }
-          dispatch({pubilsherFilter:publisherFunc, activeItem:comp});
-      }}
+        {type:"attribute", style:{activeClass: "DR-Active-Item"},
+        name: "publisherName", hasLink:true, useId:"hash", to:"publisher/"}
       ]} />
       <div className="tail" style={{left:11}}></div>
     </div>

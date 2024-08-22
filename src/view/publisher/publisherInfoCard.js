@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import "../../App.css"
+import "../../App.css";
 
-import { SearchMapComponent } from '../../mapTech/mapComponentInterface';
-import searchimg from '../../pics/search.png'
-import FilterByPublisher from './filterByPublisher';
-import FilterByTimePopularity from './filterByTimePopularity';
+import { MapComponent } from '../../mapTech/mapComponentInterface';
 
 /**
  * condensed version of the cards.
@@ -16,7 +13,7 @@ import FilterByTimePopularity from './filterByTimePopularity';
  * options
  * options can include cardType, cardContent, tabType, 
  */
-export default class SearchCard extends Component {
+export default class PublisherInfoCard extends Component {
   constructor(props) {
     super(props);
 
@@ -55,10 +52,10 @@ export default class SearchCard extends Component {
 
     let cards = {
 
-      card: <Card displayPublisherUI={this.props.displayPublisherUI} app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
-      cardWithTab: <CardWithTab  displayPublisherUI={this.props.displayPublisherUI} app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
-      popup: <Popup displayPublisherUI={this.props.displayPublisherUI} app={{ ...app, state: { ...app.state, styles: styles } }} handleClose={this.props.handleClose} options={this.props.options} type={this.props.type} />,
-      popupWithTab: <PopupWithTab displayPublisherUI={this.props.displayPublisherUI} app={{ ...app, state: { ...app.state, styles: styles } }} handleClose={this.props.handleClose} options={this.props.options} type={this.props.type} />
+      card: <Card app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
+      cardWithTab: <CardWithTab app={{ ...app, state: { ...app.state, styles: styles } }} options={this.props.options} type={this.props.type} />,
+      popup: <Popup app={{ ...app, state: { ...app.state, styles: styles } }} handleClose={this.props.handleClose} options={this.props.options} type={this.props.type} />,
+      popupWithTab: <PopupWithTab app={{ ...app, state: { ...app.state, styles: styles } }} handleClose={this.props.handleClose} options={this.props.options} type={this.props.type} />
       //popupType={this.props.popupType} popupTab={this.props.popupTab}
 
     }
@@ -97,20 +94,21 @@ class MainContent extends Component {
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-    let list = [componentList.getComponents()[0]];
+    let idList = window.location.href.split("/");
+    let id = idList[idList.length-1];
+    
 
     return (
-      <div style={{width:"100%", height:"100%", display:"flex", flexDirection:"row", marginTop:"33px" }}>
-        <SearchMapComponent name="tag" attribute="name" placeholder="Search..." imgLeft={searchimg} onTextChange={()=>{}}
-        callBackFunc={(e, json) =>
-          { 
-          app.dispatch({search: e.target.value})}
-        }
-        style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"1px solid gray",
-        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
-        <div style={{flexDirection:"row", display:"flex", justifyContent:"space-between"}}>
-        {this.props.displayPublisherUI!==false &&<FilterByPublisher app={app} list={list} />}
-        {/* <FilterByTimePopularity app={app} list={list} /> */}
+      <div style={{display:"flex", flexDirection:"column", color:"white", justifyContent:'center', alignItems:'center'}}>
+        <h1 style={{color:"white"}}>{state.currentPublisher.getJson().publisherName}</h1>
+        <p style={{color:"white"}}>{state.currentPublisher.getJson().promo}</p>
+
+        <div style={{display:"flex", flexDirection:"row"}}>
+          <a href ={state.currentPublisher.getJson().website}>website</a>
+          <a href ={state.currentPublisher.getJson().insta}>insta</a>
+          <a href ={state.currentPublisher.getJson().facebook}>facebook</a>
+          <a href ={state.currentPublisher.getJson().twitter}>twitter</a>
+
         </div>
       </div>
 
@@ -174,8 +172,8 @@ class Popup extends Component {
             styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div>
 
-          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
-            <MainContent  displayPublisherUI={this.props.displayPublisherUI} app={app} />
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+            <MainContent app={app} />
           </div>
 
 
@@ -219,8 +217,8 @@ class PopupWithTab extends Component {
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
             styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
-            <MainContent  displayPublisherUI={this.props.displayPublisherUI} app={app} />
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+            <MainContent app={app} />
           </div>
         </div>
 
@@ -249,9 +247,9 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div  style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
-          <MainContent  displayPublisherUI={this.props.displayPublisherUI} app={app} />
+          <MainContent app={app} />
         </div>
       </div>
     )
@@ -273,7 +271,7 @@ class CardWithTab extends Component {
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
-          <MainContent displayPublisherUI={this.props.displayPublisherUI} app={app} />
+          <MainContent app={app} />
         </div>
         
       </div>
