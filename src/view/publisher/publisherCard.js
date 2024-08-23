@@ -175,12 +175,12 @@ class MainContent extends Component {
                   maxHeight: "400px",
                   minHeight: "400px",
                   borderRadius: "11px",
-                  position: "relative",
+                  position: "relative", justifyContent:"center"
                 }}>
                   <Link className="hover-btn-highlight" to={`/purchase/${app.state.currentFeature?.getJson().mpId}`} style={{
                     ...styles.buttons.buttonAdd, textDecoration: "none", background: styles.colors.color7,
                     fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize: "30px", fontFamily: "inria", 
-                    position: "absolute", 
+                    position: "absolute",
                     bottom: "10px", 
                     left: "50%", 
                     transform: "translateX(-50%)",
@@ -194,8 +194,11 @@ class MainContent extends Component {
                     src={app.state.currentMedia}
                     style={{
                       borderRadius: "11px",
-                      objectFit: "contain",
-                      width: "100%",
+                      objectFit: "contain", justifySelf:"center",
+                      width:"40vw",
+                      maxHeight: "420px",
+                      borderRadius:"11px",
+                      minHeight: "420px",
                       height: "100%",
                     }}
                   />
