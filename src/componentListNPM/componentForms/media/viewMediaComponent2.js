@@ -36,7 +36,7 @@ export default class ViewMedia2 extends Component {
       width: `${15 * s}vmin`,
       height: 'fit-content',
       minHeight: `${15 * s}vmin`,
-      objectFit: 'contain',
+      objectFit: 'cover',
       borderRadius: '1vmin',
       cursor: 'pointer',
       userSelect:"none" 
@@ -148,7 +148,7 @@ export default class ViewMedia2 extends Component {
 
         style={containerStyle}
       >
-        <div className="hover-arr" style={{ scale: "88%", marginRight: '-.5vmin' }}>
+        <div className="hover-arr" style={{ scale: this.props.arrowScale?this.props.arrowScale: "88%", marginRight: '-.5vmin' }}>
           <img onClick={this.handlePrev} draggable={false}
             style={{ ...arrStyle, }} src={arr} />
         </div>
@@ -157,8 +157,9 @@ export default class ViewMedia2 extends Component {
         {visibleItems.map((mediaItem, index) => (
           <div
             onClick={(e) => {
+              console.log("Media item clicked:", mediaItem);  // Debugging line
               if (this.props.onClick) {
-                this.props.onClick(e, this.props);
+                this.props.onClick(e, { media: mediaItem });
               }else{
                 const mimeType = this.getMimeType(mediaItem);
                 const isVideo = mimeType.includes('video');
@@ -171,9 +172,9 @@ export default class ViewMedia2 extends Component {
           </div>
         ))}
 
-        <div  className="hover-arr" style={{ scale: "88%" }}>
+        <div  className="hover-arr" style={{ scale: this.props.arrowScale?this.props.arrowScale: "88%" }}>
           <img onClick={this.handleNext} draggable={false}
-            style={{ ...arrStyle, transform: "rotate(180deg)", marginLeft: '-1.5vmin' }} src={arr} />
+            style={{ ...arrStyle, transform: "rotate(180deg)", marginLeft: '-1.5vmin', }} src={arr} />
         </div>
 
       </div>

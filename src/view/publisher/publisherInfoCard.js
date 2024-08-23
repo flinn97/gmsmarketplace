@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import "../../App.css";
 
 import { MapComponent } from '../../mapTech/mapComponentInterface';
+import FB from '../../pics/facebook_logo.png';
+import Insta from '../../pics/instagram_logo.png';
+import Twitter from '../../pics/x_logo.webp';
 
-/**
- * condensed version of the cards.
- * Works with themes.
- * props
- * theme
- * type
- * app
- * options
- * options can include cardType, cardContent, tabType, 
- */
+
 export default class PublisherInfoCard extends Component {
   constructor(props) {
     super(props);
@@ -95,19 +89,40 @@ class MainContent extends Component {
     let componentList = state.componentList;
     let styles = state.styles;
     let idList = window.location.href.split("/");
-    let id = idList[idList.length-1];
-    
+    let id = idList[idList.length - 1];
+
 
     return (
-      <div style={{display:"flex", flexDirection:"column", color:"white", justifyContent:'center', alignItems:'center'}}>
-        <h1 style={{color:"white"}}>{state.currentPublisher.getJson().publisherName}</h1>
-        <p style={{color:"white"}}>{state.currentPublisher.getJson().promo}</p>
+      <div style={{ display: "flex", flexDirection: "column", color: "white", justifyContent: 'center', alignItems: 'center', maximumWidth:"80%" }}>
+        <h1 style={{ color: styles.colors.colorWhite, marginTop:"1px", fontSize:"40px", fontFamily:"inria" }}>
+          {state.currentPublisher.getJson().publisherName}
+          </h1>
+        <p style={{ color: styles.colors.colorWhite, marginTop:"4px", fontSize:"19px", fontFamily:"inria", width:"58%", }}>
+          {state.currentPublisher.getJson().promo}
+          </p>
 
-        <div style={{display:"flex", flexDirection:"row"}}>
-          <a href ={state.currentPublisher.getJson().website}>website</a>
-          <a href ={state.currentPublisher.getJson().insta}>insta</a>
-          <a href ={state.currentPublisher.getJson().facebook}>facebook</a>
-          <a href ={state.currentPublisher.getJson().twitter}>twitter</a>
+        <div
+          style={{
+            display: "flex", flexDirection: "row", justifyContent: "space-around", 
+            width: "100%", marginTop: "22px", maxWidth:"400px",
+            background: styles.colors.color8 + "35", padding: "3px 24px", textAlign:"center", paddingTop:"6px", borderRadius:"14px"
+          }}>
+            {state.currentPublisher.getJson().website &&
+          <a className='hover-img' style={{ color: styles.colors.color9, textUnderlineOffset:"3px", marginBottom:"2px", fontSize:"19px", fontFamily:"inria" }} 
+          href={state.currentPublisher.getJson().website}>Website</a>}
+
+          {state.currentPublisher.getJson().insta &&
+            <a href={state.currentPublisher.getJson().insta}>
+             <img className='hover-img-ico app-icon' src={FB} ></img>
+              </a>}
+          {state.currentPublisher.getJson().facebook &&
+            <a href={state.currentPublisher.getJson().facebook}>
+              <img className='hover-img-ico app-icon' src={Insta} ></img>
+              </a>}
+          {state.currentPublisher.getJson().twitter &&
+            <a href={state.currentPublisher.getJson().twitter}> 
+            <img className='hover-img-ico app-icon' src={Twitter} ></img>
+            </a>}
 
         </div>
       </div>
@@ -132,7 +147,7 @@ class TabContent extends Component {
 
     return (
       <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "top", alignItems: "top", borderBottom: "1px solid grey", fontSize: "2.5vh", height: "24vh", }}>
-       
+
       </div>
     )
   }
@@ -268,12 +283,12 @@ class CardWithTab extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height:window.innerWidth<state.phoneUIChange?"75vh":"85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
-        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh"}}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth<state.phoneUIChange?"60%": "70%" }} className='scroller2'>
+      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
+        <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
-        
+
       </div>
     )
   }

@@ -191,15 +191,18 @@ handleChange = (event) => {
         // }
         // await auth.createInitialStages(list);
           
+        await auth.getAllMPItems(list);
         let user = await auth.getCurrentUser();
-        
+
         if(user&&user!=="undefined"){
-          
+          if(window.location.href.includes("login")){
+            window.location.href="../"
+          }
           this.setState({splash:true});
           user = JSON.parse(user);
           
           await auth.getuser(user.email, list, this.dispatch);
-          await auth.getAllMPItems(list);
+          
          
           
         

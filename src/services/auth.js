@@ -5,8 +5,15 @@ import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, on
 import hashService from "./hashService.js";
 
 class Auth {
+    loginReturnURL= "../"
     urlEnpoint = "MP"
 
+    setLoginReturnURL(url){
+        this.loginReturnURL= url;
+    }
+    getLoginReturnURL(){
+        return this.loginReturnURL
+    }
     async getCurrentUser() {
         return localStorage.getItem("user");
     }
@@ -110,6 +117,7 @@ class Auth {
 
             await componentList.addComponents(rawData, false);
             let user = componentList.getComponent("user");
+ 
 
             if (dispatch) {
            
@@ -208,7 +216,9 @@ class Auth {
 
             if (componentList !== undefined && dispatch !== undefined) {
                 await localStorage.setItem("user", JSON.stringify(saveUser));
-                
+                if(window.location.href.includes("login")){
+                    window.location.href=this.loginReturnURL
+                  }
 
                 await this.getuser(email, componentList, dispatch);
 
