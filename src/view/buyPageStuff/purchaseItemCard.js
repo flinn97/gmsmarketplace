@@ -76,8 +76,10 @@ export default class PurchaseItemCard extends Component {
         display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px",
       }}>
 
-        <Link className="hover-btn-highlight"
-          to={"/"} 
+        <div className="hover-btn-highlight"
+          onClick={()=>{
+            window.history.back();
+          }}
           style={{
             ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
             fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", marginTop:"-22px", fontSize:"18px", fontFamily:"inria",
@@ -88,7 +90,7 @@ export default class PurchaseItemCard extends Component {
             src={backarrow}
           />
           Back
-        </Link>
+        </div>
 
         {/* top row */}
         <div style={{

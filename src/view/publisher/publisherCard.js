@@ -147,8 +147,16 @@ class MainContent extends Component {
       <div style={{
         display: "flex", flexDirection: "column", color: "white", paddingTop: "22px",
         justifyContent: 'center', alignItems: 'center', background: styles.colors.color2, borderRadius: "22px"
-      }}>
-        {features.length > 0 && (
+      }}> 
+    {features?.length>0&&(<>
+      <Link to={`../purchase/${features[0].getJson().mpId}`}><img src={features[0].getJson().picURL}/></Link>
+      <div style={{display:"flex", flexDirection:"row"}}>
+      <Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}/></Link>
+      <Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}/></Link>
+      <Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}/></Link>
+      </div>
+      </>)}
+        {/* {features.length > 0 && (
           <>
             <div style={{ marginBottom: '2px' }}>
               {isVideo ? (
@@ -157,6 +165,7 @@ class MainContent extends Component {
                     display: 'flex', justifyContent: 'center', alignItems: 'center', width: "40vw", maxHeight: "400px",
                     minHeight: "400px",
                   }}>
+                    
                   <VideoPlayer draggable={false}
                     disablePlayButton={this.props.disablePlayButton} options={{
                       autoplay: false,
@@ -217,7 +226,7 @@ class MainContent extends Component {
                 app={app}
               /></div>
           </>
-        )}
+        )} */}
       </div>
     );
   }
