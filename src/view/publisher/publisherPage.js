@@ -67,33 +67,38 @@ export default class PublisherPage extends Component {
 
         {state.currentPublisher && <>
 
-          <img className='banner-fade' src={state.currentPublisher.getJson().banner} />
+          <img className='banner-fade' src={state.currentPublisher.getJson().banner} style={{ objectFit: "cover", width: "100%", height: "280px" }} />
 
           <Link className="hover-btn-highlight"
-          to={"/"} 
-          style={{
-            ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
-            fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize:"18px", fontFamily:"inria",
-            position:"absolute", top:"40px", left:"4%"
-          }}
+            to={"/"}
+            style={{
+              ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
+              fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize: "18px", fontFamily: "inria",
+              position: "absolute", top: "40px", left: "4%"
+            }}
 
-        >
-          <img style={{ width: ".9rem", opacity: "98%", marginRight: ".75rem" }}
-            src={backarrow}
-          />
-          Back
-        </Link>
+          >
+            <img style={{ width: ".9rem", opacity: "98%", marginRight: ".75rem" }}
+              src={backarrow}
+            />
+            Back
+          </Link>
 
           <PublisherInfoCard app={app} type="card" options={{ cardType: "bigcard" }} />
 
-          <div style={{width:"66%", justifyContent:"flex-start", display:"flex", fontSize:"18px", fontFamily:"inria",
-            flexDirection:"row", color:styles.colors.color8+"52"}}>Featured:</div>
+          <div style={{
+            width: "100%", justifyContent: "center", display: "flex", fontSize: "18px", fontFamily: "inria", textAlign: "center",
+            justifyItems: "center", justifySelf: "center", alignContent: "center", marginTop: "11px",
+            flexDirection: "row", color: styles.colors.color8 + "52"
+          }}>
+            <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize: "32px", marginTop:"33px", marginBottom:"11px" }}>Featured</div>
+          </div>
           <PublisherCard app={app} type="card" options={{ cardType: "bigcard" }} />
-<div style={{width:"100%", marginTop:"22px", opacity:".8"}}><hr></hr></div>
-          
+          <div style={{ width: "100%", marginTop: "22px", opacity: ".2", mixBlendMode: "luminosity" }}><hr></hr></div>
+          <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize: "32px", marginTop:"33px" }}>All Products</div>
           <SearchCard app={app} type="card" options={{ cardType: "bigcard" }} displayPublisherUI={false} />
           <div style={{
-            width: "100%", paddingLeft: "100px",
+            width: "100%", paddingLeft: "100px", marginBottom: "440px",
             height: "fit-content", paddingRight: "100px", alignItems: "center", display: "flex", flexDirection: "column", marginBottom: "100px", marginTop: "2px",
           }}>
 
@@ -102,6 +107,8 @@ export default class PublisherPage extends Component {
             {/* <PromotionalCard app={app} type="card" options={{cardType:"bigcard"}}/> */}
             <MPMapCard app={app} type="card" options={{ cardType: "bigcard" }} />
           </div>
+
+          <div style={{ width: "100%", marginTop: "22px", opacity: ".2", mixBlendMode: "luminosity", marginBottom:"22px" }}><hr></hr></div>
         </>}
         {/* <PublisherCard app={app} type="card" options={{cardType:"bigcard"}}/> */}
 

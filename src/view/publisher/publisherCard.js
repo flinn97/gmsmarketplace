@@ -120,12 +120,12 @@ class MainContent extends Component {
 
   handleMediaClick(mediaItem) {
     const selectedMedia = mediaItem;
-  
+
     if (typeof selectedMedia === 'string') {
       // Find the corresponding feature for the clicked media
       const selectedFeature = this.state.features.find(feature => feature.getJson().picURL === selectedMedia);
-  
-      this.props.app.dispatch({ 
+
+      this.props.app.dispatch({
         currentMedia: selectedMedia,
         currentFeature: selectedFeature, // Set the currentFeature
       });
@@ -139,23 +139,28 @@ class MainContent extends Component {
     let state = app.state;
     let styles = state.styles;
     let features = this.state.features;
-
+console.log(features);
     let mimeType = this.getMimeType(app.state.currentMedia);
     let isVideo = mimeType ? mimeType.includes('video') : false;
 
     return (
       <div style={{
-        display: "flex", flexDirection: "column", color: "white", paddingTop: "22px",
-        justifyContent: 'center', alignItems: 'center', background: styles.colors.color2, borderRadius: "22px"
-      }}> 
-    {features?.length>0&&(<>
-      <Link to={`../purchase/${features[0].getJson().mpId}`}><img src={features[0].getJson().picURL}/></Link>
-      <div style={{display:"flex", flexDirection:"row"}}>
-      <Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}/></Link>
-      <Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}/></Link>
-      <Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}/></Link>
-      </div>
-      </>)}
+        display: "flex", flexDirection: "column", color: "white", paddingTop: "22px", width:"82vw",
+        justifyContent: 'center', alignItems: 'center', background: styles.colors.color2+'44', borderRadius: "22px"
+      }}>
+        {features?.length > 0 && (<>
+          <Link to={`../purchase/${features[0].getJson().mpId}`}><img src={features[0].getJson().picURL}
+            style={{ width: "1500px", height: "300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: "80vw", marginTop: "11px" }}>
+            <Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}
+              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+            <Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}
+              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+            <Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}
+              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+          </div>
+        </>)}
         {/* {features.length > 0 && (
           <>
             <div style={{ marginBottom: '2px' }}>
