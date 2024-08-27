@@ -150,15 +150,21 @@ console.log(features);
       }}>
         {features?.length > 0 && (<>
           <Link to={`../purchase/${features[0].getJson().mpId}`}><img src={features[0].getJson().picURL}
-            style={{ width: "1500px", height: "300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+            style={{ width: "82vw", 
+              height: "15.63vw", 
+              borderRadius: "11px", 
+              objectFit: "contain" }} /></Link>
 
-          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: "80vw", marginTop: "11px" }}>
+          <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: "82vw", marginTop: "11px" }}>
             <Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}
-              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+              style={{width: "25.73vw", 
+                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>
             <Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}
-              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+              style={{ width: "25.73vw", 
+                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>
             <Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}
-              style={{ width: "494px", height:"300px", borderRadius: "11px", objectFit: "cover" }} /></Link>
+              style={{ width: "25.73vw", 
+                height: "15.63vw",  borderRadius: "11px", objectFit: "cover" }} /></Link>
           </div>
         </>)}
         {/* {features.length > 0 && (
