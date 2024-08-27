@@ -37,7 +37,7 @@ export default class FilterByPublisher extends Component {
 
     
     
-    <div className="menu-bubble" style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
+    <div  style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
       {/* <div className="DR-Map-Section"
     style={{color: state.activeItem!==undefined?"white":"#ffd34e", marginTop:"1px", 
     padding:"2px 8px", fontSize:"1.1rem", flexDirection:"row", }}
@@ -50,7 +50,7 @@ export default class FilterByPublisher extends Component {
     
       app={app} name="publisher" cells={[
         {type:"attribute", style:{activeClass: "DR-Active-Item"},
-        name: "publisherName", hasLink:true, useId:"hash", to:"publisher/"}
+        name: "publisherName", hasLink:true, useId:"hash", to:"publisher/", class: "DR-Attribute-Item a",}
       ]} />
       <div className="tail" style={{left:11}}></div>
     </div>
