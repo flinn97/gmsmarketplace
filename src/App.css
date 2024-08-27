@@ -551,7 +551,10 @@ hovering:hover .hover {
 }
 
 .app-icon {
-  width:22px
+  width:35px;
+  background: rgba(128, 128, 128, 0.12); 
+  padding: 6px; 
+  border-radius:14px;
 }
 
 .banner-fade {

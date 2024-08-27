@@ -4,7 +4,7 @@ import "../../App.css";
 import { MapComponent } from '../../mapTech/mapComponentInterface';
 import FB from '../../pics/facebook_logo.png';
 import Insta from '../../pics/instagram_logo.png';
-import Twitter from '../../pics/x_logo.webp';
+import Twitter from '../../pics/x_logo.png';
 
 
 export default class PublisherInfoCard extends Component {
@@ -93,31 +93,33 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", color: "white", justifyContent: 'center', alignItems: 'center', maximumWidth:"80%" }}>
-        <h1 style={{ color: styles.colors.colorWhite, marginTop:"1px", fontSize:"40px", fontFamily:"inria" }}>
+      <div style={{ display: "flex", flexDirection: "column", color: "white", justifyContent: 'flex-start', alignItems: 'flex-start', width:"80vw", marginTop:"58px" }}>
+        <h1 style={{ color: styles.colors.colorWhite, marginTop:"1px", fontSize:"22px", fontFamily:"inria" }}>
           {state.currentPublisher.getJson().publisherName}
           </h1>
-        <p style={{ color: styles.colors.colorWhite, marginTop:"4px", fontSize:"19px", fontFamily:"inria", width:"58%", }}>
+        <p style={{ color: styles.colors.colorWhite+"82", marginTop:"11px", fontSize:"20px", fontFamily:"inria", width:"58%", paddingLeft:"14px", }}>
           {state.currentPublisher.getJson().promo}
           </p>
 
         <div
           style={{
-            display: "flex", flexDirection: "row", justifyContent: "space-around", 
-            width: "100%", marginTop: "22px", maxWidth:"400px",
-            background: styles.colors.color8 + "35", padding: "3px 24px", textAlign:"center", paddingTop:"6px", borderRadius:"14px"
+            display: "flex", flexDirection: "row", justifyContent: "space-between", 
+            width: "100%", marginTop: "22px", maxWidth:"540px",
+            textAlign:"center", paddingTop:"6px", borderRadius:"14px"
           }}>
             {state.currentPublisher.getJson().website &&
-          <a className='hover-img' style={{ color: styles.colors.color9, textUnderlineOffset:"3px", marginBottom:"2px", fontSize:"19px", fontFamily:"inria" }} 
-          href={state.currentPublisher.getJson().website}>Website</a>}
+          <a className='hover-img' style={{ color: styles.colors.colorWhite, textUnderlineOffset:"3px", marginBottom:"2px", fontSize:"19px", textDecoration:"none",
+            background: styles.colors.color8 + "15", padding: "3px 22px", paddingTop:"6px", borderRadius:"14px", fontFamily:"roboto", marginRight:"40px" }} 
+          href={state.currentPublisher.getJson().website}>{state.currentPublisher.getJson().publisherName+" Website"}</a>}
 
           {state.currentPublisher.getJson().insta &&
             <a href={state.currentPublisher.getJson().insta}>
-             <img className='hover-img-ico app-icon' src={FB} ></img>
+             <img className='hover-img-ico app-icon' src={Insta} 
+             ></img>
               </a>}
           {state.currentPublisher.getJson().facebook &&
             <a href={state.currentPublisher.getJson().facebook}>
-              <img className='hover-img-ico app-icon' src={Insta} ></img>
+              <img className='hover-img-ico app-icon' src={FB} ></img>
               </a>}
           {state.currentPublisher.getJson().twitter &&
             <a href={state.currentPublisher.getJson().twitter}> 
