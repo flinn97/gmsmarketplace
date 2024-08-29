@@ -313,6 +313,25 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   transition: all 0.3s ease-out;
 }
 
+.hover-grey {
+  opacity: 1;
+  transition: all 0.8s ease-out;
+}
+.hover-grey:active {
+  opacity: .7;
+  scale: .85;
+  -webkit-mask-image: linear-gradient( black, black, black, transparent);
+  mask-image: linear-gradient(black, black, black, transparent);
+  mix-blend-mode: luminosity;
+  transition: all 0.8s ease-out;
+}
+.hover-grey:hover {
+  opacity: .7;
+
+  mix-blend-mode: luminosity;
+  transition: all 0.8s ease-out;
+}
+
 
 .picturegallery {
   display: "flex";
