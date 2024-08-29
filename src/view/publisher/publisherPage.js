@@ -74,7 +74,7 @@ export default class PublisherPage extends Component {
             style={{
               ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
               fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize: "18px", fontFamily: "inria",
-              position: "absolute", top: "40px", left: "4%"
+              position: "absolute", top: "40px", left: "4%", zIndex: 1020 
             }}
 
           >
