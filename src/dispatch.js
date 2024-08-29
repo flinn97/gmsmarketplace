@@ -9,6 +9,7 @@ import './index.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Login from './view/login.js';
 import BuyPopup from './view/buyPageStuff/buyPopup';
+import LoginLogout from './view/components/loginLogoutProfile';
 // import DeletePopup from './view/deletePopup';
 // import KeepDel from './view/keepDelete';
 
@@ -126,6 +127,7 @@ export default class Dispatch extends Component {
               {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
               <div style={{ position: "fixed", top: "0px", left: "0px", width: "100vw", justifyContent:"center",padding:"2px", paddingBottom:"11px", textAlign: "center"  }}>
                 <img style={{ width: "100px", marginBottom: "12px" }} src={logo} />
+                <div style={{justifySelf:'flex-end'}}><LoginLogout app={app}/></div>
               </div>
               <div style={{ width: "100%", marginTop: "100px" }}>
                 {state.popupSwitch === "buyPopup" && state.currentComponent !== undefined && <BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
