@@ -79,11 +79,21 @@ import LoginLogout from './view/components/loginLogoutProfile';
 export default class Dispatch extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      
 
+    };
+    
   }
   componentDidMount() {
-
+   
   }
+
+  componentWillUnmount() {
+   
+  }
+
+  
 
 
   render() {
@@ -99,7 +109,7 @@ export default class Dispatch extends Component {
     return (
       <BrowserRouter>
 
-       
+
 
         <div style={{
           width: "100%",
@@ -108,39 +118,47 @@ export default class Dispatch extends Component {
           {/* {state.user ? ( */}
           <>
 
-      
-              {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
-              <div style={{ position: "fixed", top: "0px", left: "0px", width: "100vw", justifyContent:"center",padding:"2px", paddingBottom:"11px", textAlign: "center"  }}>
-                <img style={{ width: "100px", marginBottom: "12px" }} src={logo} />
-                <div style={{justifySelf:'flex-end'}}><LoginLogout app={app}/></div>
+
+            {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
+            <div style={{
+              position: "fixed", top: "0px", left: "0px", width: "100vw", height:"100px",
+              justifyContent: "center", padding: "2px", display: "flex",
+              textAlign: "center", flexDirection: "row", transition: "top 0.3s ease-in-out",
+              background:styles.colors.color1+'22',
+              zIndex: 1000 
+            }}>
+              <img style={{ width: "100px", marginTop: "-2px" }} src={logo} alt="Logo" />
+              <div style={{ position: "absolute", right: "2vw", top: "3vh", cursor: "pointer", }}>
+                <LoginLogout app={app} />
               </div>
-              <div style={{ width: "100%", marginTop: "100px" }}>
-                {state.popupSwitch === "gotFreePopup" && state.currentComponent !== undefined &&
+            </div>
+
+            <div style={{ width: "100%", marginTop:"100px"}}>
+              {state.popupSwitch === "gotFreePopup" && state.currentComponent !== undefined &&
                 <FreePopup type="popup" options={{ cardType: "popupSmallest" }} app={app}
                   handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
-                {state.popupSwitch === "buyPopup" && state.currentComponent !== undefined && <BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
-                <Routes>
-                  {state.switchCase?.map((obj, index) =>
-                    <Route path={obj.path} element={<obj.comp app={app} />} />
-                  )}
-                  {/* <Route path="/signup" element={<Register app={app} />} /> */}
-                  {state.idSwitchCase?.map((obj, index) =>
-                    <Route path={obj.path + "/:id"} element={<obj.comp app={app} />} />
+              {state.popupSwitch === "buyPopup" && state.currentComponent !== undefined && <BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
+              <Routes>
+                {state.switchCase?.map((obj, index) =>
+                  <Route path={obj.path} element={<obj.comp app={app} />} />
+                )}
+                {/* <Route path="/signup" element={<Register app={app} />} /> */}
+                {state.idSwitchCase?.map((obj, index) =>
+                  <Route path={obj.path + "/:id"} element={<obj.comp app={app} />} />
 
-                  )}
+                )}
 
-                  {state.switchCase?.filter(obj => obj.idLink === true).map((obj, index) =>
-                    <Route path={obj.path + "/:id"} element={<obj.idLinkComp app={app} />} />
+                {state.switchCase?.filter(obj => obj.idLink === true).map((obj, index) =>
+                  <Route path={obj.path + "/:id"} element={<obj.idLinkComp app={app} />} />
 
-                  )}
-                  {!state.user&&<Route path={"/login"} element ={<Login app={app}/>} />}
+                )}
+                {!state.user && <Route path={"/login"} element={<Login app={app} />} />}
 
-                </Routes>
-              </div>
-            </
-          {/* ) : (<Login app={app} />)} */}
+              </Routes>
+            </div>
+          </>
+
         </div>
-        {/* )} */}
 
 
       </BrowserRouter>
