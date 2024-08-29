@@ -68,14 +68,23 @@
 }
 
 .DR-Link, .Button-Type1 {
-  background: #e8d259;
+  /* background: #e8d259; */
   color: "#111319";
   font-size: 1.1rem;
-  padding: 6px 18px;
-  margin-bottom: 11px;
-  margin-top: 18px;
+  height: fit-content;
   width: fit-content;
   cursor: pointer;
+}
+
+.Button-Type1 {
+  background: linear-gradient(#e8d259, #f5df61, #c7b342);
+  padding: 6px 20px;
+  margin-bottom: 11px;
+  margin-top: 18px;
+  color: "#111319";
+  font-size: 1.1rem;
+  
+  width: fit-content;
 }
 
 .Button-Type2 {
@@ -105,14 +114,18 @@
 } */
 
 .DR-Link:hover{
-  transform: scale(0.98);
-  box-shadow: inset 2px 2px #00000055, inset -2px -2px  #ffffff55;
-  color: "#111319";
+  
+  color: #111319;
+  font-size: 1.1rem;
+  font-family: 'inria';
 }
 
 .Button-Type1:hover,.Button-Type2:hover{
-  transform: scale(0.98);
-  color: "#111319";
+  transform: scale(0.97);
+  -webkit-mask-image: linear-gradient(black, black, black, black,  #333333,  #33333344);
+  mask-image: linear-gradient(black, black, black, black, #333333,  #33333344);
+  height:44px;
+  color: #111319;
 }
 
 
@@ -272,6 +285,7 @@
 }
 
 .Ellipsis-Text {
+  margin-top: -12px;
   display: block;
   /* overflow: hidden;
   text-overflow: ellipsis; */
@@ -281,9 +295,10 @@
   min-height: 5.5rem;
   max-height: 5.5rem;
   padding: 8px;
-  margin-bottom: 21px;
+  margin-bottom: 31px;
   font-size: .89rem;
   text-align: justify;
+  
 }
 
 
@@ -305,7 +320,7 @@
 
 .DR-Active-Item{
   height: 100%;
-  color: #ffd34e;
+  /* color: #ffd34e; */
   text-decoration: underline rgba(255, 255, 255, 0.123);
   text-underline-offset: 2px;
 }

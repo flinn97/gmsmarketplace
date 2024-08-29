@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import "../../App.css"
-import DisplayPublisher from './displayPublisher';
+import "../../App.css";
 
-import { MapComponent } from '../../mapTech/mapComponentInterface';
-import FilterCard from './filterCard';
+import StripeEl from './stripeL';
+import { Link } from 'react-router-dom';
+import auth from '../../services/auth';
 
 /**
  * condensed version of the cards.
@@ -15,7 +15,7 @@ import FilterCard from './filterCard';
  * options
  * options can include cardType, cardContent, tabType, 
  */
-export default class MPMapCard extends Component {
+export default class FreePopup extends Component {
   constructor(props) {
     super(props);
 
@@ -26,6 +26,7 @@ export default class MPMapCard extends Component {
    * 
    * OPTIONS
    */
+
 
   render() {
     let app = { ...this.props.app };
@@ -88,46 +89,39 @@ class MainContent extends Component {
 
 
 
+
   render() {
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-
+    let idList = window.location.href.split("/");
+    let id = idList[idList.length - 1];
+    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    let loreList = componentList.getList("mpLore", id, "topDisplayID")
+    let encounterList = componentList.getList("mpEncounter", id, "topDisplayID")
+    let imageList = componentList.getList("mpImage", id, "topDisplayID")
 
     return (
-      <div style={{ color: styles.colors.colorWhite + "99", display: "flex", height: "fit-content", flexDirection: "column" }}>
+      <div style={{
+        padding: "22px", marginTop: "22px",
+        background: "",
+        borderRadius: "22px", height: "100%"
+      }}>
+        {!state.user ? <div style={{ color: styles.colors.colorWhite + "f2", fontWeight: "500", fontSize: "21px", width: "450px", alignSelf: "center" }}>Please first <Link onClick={() => {
+          dispatch({ popupSwitch: "", currentComponent: undefined })
+          auth.setLoginReturnURL(window.location.href);
+        }} to="/login">Login  to  GMS</Link> to buy this product</div>
+          : <div style={{ display: "flex", flexDirection: "row" }}>
+            <div
+              style={{ color: styles.colors.colorWhite + "f2", fontWeight: "500", fontSize: "21px", alignSelf: "center" }}>
+              This content has been added to your
+            </div>
+            <Link style={{ color: styles.colors.color9 + "f2", fontWeight: "500", fontSize: "21px", marginLeft:"1rem", alignSelf: "center" }} onClick={()=>{
+          }} to="https://gms.arcanevaultassembly.com/library">GMS Library</Link>
+          </div>}
 
-      
-<MapComponent app={app} name={state.filter}
-filterFunc={
-  (comp)=>{
-
-    let returnVal = state.pubilsherFilter(comp)
-    return returnVal
-  }
-  }
-           filters={[
-            
-            { type: "textAndTag2", attributes: "title,promotional,description", search: state.search },
-          ]}
-          theme="defaultRow" cells={[
-
-            { type: "img",   hasLink: true, to: "/purchase/", class: "Img-Midsize", },
-            { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
-            {type:'custom', custom: DisplayPublisher,}, 
-            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item", style:{marginTop:"-11px",}, },
-            
-            { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text", },
-            { name: "See More", class: "DR-Attribute-Item Button-Type1 a Button-Type1", hasLink: true, to: "/purchase/" },
-            { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
-            
-            // {type:"attribute", name:"publisherName", class: "Button-Type1 Ellipsis-Text a", hasLink: true, to: "/publisher/", useId:"publisherID"}
-
-          ]}
-
-        />
       </div>
 
     )
@@ -186,11 +180,11 @@ class Popup extends Component {
     return (
       <div className="popup-box" style={{ zIndex: "1010" }}>
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
-          <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
-          } onClick={this.props.handleClose}>x</div>
+          <div style={{///EXIT BUTTON
+            ...styles.buttons.buttonClose, position: "absolute", right: 32,
+          }} onClick={this.props.handleClose}>x</div>
 
-          <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
 
@@ -233,9 +227,9 @@ class PopupWithTab extends Component {
         <div ref={this.wrapperRef} className="popupCard" style={{ zIndex: "1010", ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
 
           <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"] }}> <TabContent app={app} /> <div style={ ///EXIT BUTTON
-            styles.buttons.closeicon
+            styles.buttons.buttonClose
           } onClick={this.props.handleClose}>x</div></div>
-          <div  style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
+          <div className='scroller2' style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
             <MainContent app={app} />
           </div>
         </div>
@@ -265,7 +259,7 @@ class Card extends Component {
     let styles = state.styles;
 
     return (
-      <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
+      <div className='scroller2' style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"] }}>
         <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"] }}>
           <MainContent app={app} />
         </div>
@@ -288,7 +282,7 @@ class CardWithTab extends Component {
     return (
       <div style={{ ...styles[this.props.options?.cardType ? this.props.options?.cardType : "biggestCard"], width: window.innerWidth < state.phoneUIChange ? "95vw" : "35vw", height: window.innerWidth < state.phoneUIChange ? "75vh" : "85vh", position: 'relative', border: "none", borderRadius: "3px" }}>
         <div style={{ ...styles[this.props.options?.tabType ? this.props.options?.tabType : "colorTab1"], height: "25vh" }}> <TabContent app={app} /></div>
-        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }}>
+        <div style={{ ...styles[this.props.options?.cardContent ? this.props.options.cardContent : "cardContent"], height: window.innerWidth < state.phoneUIChange ? "60%" : "70%" }} className='scroller2'>
           <MainContent app={app} />
         </div>
 

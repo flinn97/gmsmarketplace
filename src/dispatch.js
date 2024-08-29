@@ -9,6 +9,7 @@ import './index.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Login from './view/login.js';
 import BuyPopup from './view/buyPageStuff/buyPopup';
+import FreePopup from './view/buyPageStuff/gotFreePopup.js';
 // import DeletePopup from './view/deletePopup';
 // import KeepDel from './view/keepDelete';
 
@@ -114,40 +115,46 @@ export default class Dispatch extends Component {
           height: "96vh",
         }}>
           {/* {state.user ? ( */}
-            <>
+          <>
 
-              {/* <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
+            {/* <Nav  app={app} type="topBarNav"  template="legato"  theme="legatoDark"
      options={{
-      
+     
      }}
   
      
      /> */}
-              {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
-              <div style={{ position: "fixed", top: "0px", left: "0px", width: "100vw", justifyContent:"center",padding:"2px", paddingBottom:"11px", textAlign: "center"  }}>
-                <img style={{ width: "100px", marginBottom: "12px" }} src={logo} />
-              </div>
-              <div style={{ width: "100%", marginTop: "100px" }}>
-                {state.popupSwitch === "buyPopup" && state.currentComponent !== undefined && <BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app} handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
-                <Routes>
-                  {state.switchCase?.map((obj, index) =>
-                    <Route path={obj.path} element={<obj.comp app={app} />} />
-                  )}
-                  {/* <Route path="/signup" element={<Register app={app} />} /> */}
-                  {state.idSwitchCase?.map((obj, index) =>
-                    <Route path={obj.path + "/:id"} element={<obj.comp app={app} />} />
+            {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
+            <div style={{ position: "fixed", top: "0px", left: "0px", width: "100vw", justifyContent: "center", padding: "2px", textAlign: "center" }}>
+              <img style={{ width: "100px", marginBottom: "12px", marginTop: "-3px" }} src={logo} />
+            </div>
+            <div style={{ width: "100%", marginTop: "100px" }}>
+              {state.popupSwitch === "buyPopup" && state.currentComponent !== undefined &&
+                <BuyPopup type="popup" options={{ cardType: "popupCreate" }} app={app}
+                  handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
 
-                  )}
+              {state.popupSwitch === "gotFreePopup" && state.currentComponent !== undefined &&
+                <FreePopup type="popup" options={{ cardType: "popupSmallest" }} app={app}
+                  handleClose={() => { app.dispatch({ popupSwitch: "", currentComponent: undefined, payment: "" }) }} />}
+              <Routes>
+                {state.switchCase?.map((obj, index) =>
+                  <Route path={obj.path} element={<obj.comp app={app} />} />
+                )}
+                {/* <Route path="/signup" element={<Register app={app} />} /> */}
+                {state.idSwitchCase?.map((obj, index) =>
+                  <Route path={obj.path + "/:id"} element={<obj.comp app={app} />} />
 
-                  {state.switchCase?.filter(obj => obj.idLink === true).map((obj, index) =>
-                    <Route path={obj.path + "/:id"} element={<obj.idLinkComp app={app} />} />
+                )}
 
-                  )}
-                  {!state.user&&<Route path={"/login"} element ={<Login app={app}/>} />}
+                {state.switchCase?.filter(obj => obj.idLink === true).map((obj, index) =>
+                  <Route path={obj.path + "/:id"} element={<obj.idLinkComp app={app} />} />
 
-                </Routes>
-              </div>
-            </>
+                )}
+                {!state.user && <Route path={"/login"} element={<Login app={app} />} />}
+
+              </Routes>
+            </div>
+          </>
           {/* ) : (<Login app={app} />)} */}
         </div>
         {/* )} */}
