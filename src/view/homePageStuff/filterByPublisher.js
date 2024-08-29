@@ -33,11 +33,11 @@ export default class FilterByPublisher extends Component {
 
 <div style={{color:styles.colors.colorWhite, textDecorationColor:"#ffddead11", fontSize:".85rem", marginLeft:"-.9rem" }}>Publishers</div>
 
-    <div className="hover-div" style={{marginTop:"21px"}}>
+    <div className="hover-div" style={{marginTop:"21px", }}>
 
     
     
-    <div  style={{ width: "fit-content", flexDirection:"column", display:"flex", marginLeft:"1px"}}>
+    <div  style={{ maxWidth: "278px", flexDirection:"column", display:"flex", marginLeft:"-14px", marginTop:"18px", background:styles.colors.color7+"f9",  borderRadius:"1px 11px 11px 11px"}}>
       {/* <div className="DR-Map-Section"
     style={{color: state.activeItem!==undefined?"white":"#ffd34e", marginTop:"1px", 
     padding:"2px 8px", fontSize:"1.1rem", flexDirection:"row", }}
@@ -50,7 +50,8 @@ export default class FilterByPublisher extends Component {
     
       app={app} name="publisher" cells={[
         {type:"attribute", style:{activeClass: "DR-Active-Item"},
-        name: "publisherName", hasLink:true, useId:"hash", to:"publisher/", class: "DR-Attribute-Item a",}
+        name: "publisherName", hasLink:true, useId:"hash", to:"publisher/",
+        style:{color:styles.colors.colorWhite, padding:"2px 8px", fontSize:"1rem",}}
       ]} />
       <div className="tail" style={{left:11}}></div>
     </div>
