@@ -124,7 +124,7 @@ export default class Dispatch extends Component {
               position: "fixed", top: "0px", left: "0px", width: "100vw", height:window.innerWidth>700?"98px":"70px",
               justifyContent: "center", padding: "2px", display: "flex",
               textAlign: "center", flexDirection: "row", transition: "top 0.3s ease-in-out",
-              background:styles.colors.color1+'22',
+              background:styles.colors.color1+'22', userSelect:"none",
               zIndex: 1000 
             }}>
               <img style={{ width: window.innerWidth>700?"98px":"70px", marginTop: "-2px" }} src={logo} alt="Logo" />
