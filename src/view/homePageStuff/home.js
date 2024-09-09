@@ -39,13 +39,29 @@ export default class Home extends Component {
 
     return (
       <div className='scroller2' style={{
-        ...center, width: "100%", height: "100vh", display: "flex",
-        flexDirection: "column", alignItems: "center", fontFamily: "inria", marginTop: "14px", marginBottom: "100px",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        fontFamily: "inria",
+        marginTop: "14px",
+        marginBottom: "100px",
+        padding: "10px",
+        boxSizing: "border-box",
+        flexGrow: 1,    // This allows the content to grow and fill the screen
+        overflowY: "auto", // Ensure scrolling works properly
+        height: "100vh",   // Set height to 100vh to fill the screen
       }} >
         <SearchCard app={app} type="card" options={{ cardType: "bigcard" }} />
         <div style={{
-          width: "100%", paddingLeft: "100px",
-          height: "fit-content", paddingRight: "100px", alignItems: "center", display: "flex", flexDirection: "column", marginBottom: "100px", marginTop: "2px",
+            width: "100%",
+            padding: "0 5vw", // Adjust padding to be responsive
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "150px",
+            marginTop: "2px",
+            flexGrow: 1 // Allow this section to grow as well
         }}>
 
 

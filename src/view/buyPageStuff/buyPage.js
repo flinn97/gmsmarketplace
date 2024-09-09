@@ -37,7 +37,7 @@ export default class BuyPage extends Component {
 
 
     return (
-      <div className='scroller2' style={{...center, width: "100vw", height: "100vh", display: "flex",flexDirection: "column",
+      <div className='scroller2' style={{...center, width: "100vw", height: "100vh", minHeight:"100vh", display: "flex",flexDirection: "column",
        marginTop: "50px", justifyContent:"space-between", overflowY: "auto"}} >
 
 

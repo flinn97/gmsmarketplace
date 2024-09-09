@@ -139,7 +139,7 @@ class MainContent extends Component {
     let state = app.state;
     let styles = state.styles;
     let features = this.state.features;
-console.log(features);
+
     let mimeType = this.getMimeType(app.state.currentMedia);
     let isVideo = mimeType ? mimeType.includes('video') : false;
 

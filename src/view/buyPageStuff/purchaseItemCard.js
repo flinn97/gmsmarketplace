@@ -73,7 +73,7 @@ export default class PurchaseItemCard extends Component {
 
     return (
       <div style={{
-        display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px",
+        display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px", width:window.innerWidth>700?"":"80vw"
       }}>
 
         <div className="hover-btn-highlight"
@@ -97,6 +97,8 @@ export default class PurchaseItemCard extends Component {
           display: "flex", flexDirection: "row", width: "100%", height: "100%", textAlign: "center",
           justifyContent: "center", justifyItems: "center", alignContent: "center", alignItems: "center"
         }}>
+          
+          {window.innerWidth>700 &&
           <div style={{ display: "flex", flexDirection: "column", color: "white", width: "40vw", margin: "12px" }}>
 
             {isVideo ? (
@@ -142,7 +144,7 @@ export default class PurchaseItemCard extends Component {
                   labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
               </div>}
          
-          </div>
+          </div>}
 
           <div style={{
             display: "flex", flexDirection: "column",
@@ -155,14 +157,14 @@ export default class PurchaseItemCard extends Component {
               theme={this.props.theme}
               cells={[
                 { type: "attribute", name: "title", class: "Main-Title", },
-                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: "1.38rem", fontFamily: "inria", fontWeight: "200" }, },
+                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: window.innerWidth>700?"1.38rem":".8rem", fontFamily: "inria", fontWeight: "200" }, },
                 { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", },
               ]
               }
             />
 
 
-            <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", paddingBottom: "24px", userSelect: "none" }}>
+            <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", paddingBottom: window.innerWidth>700?"24px":"11px", userSelect: "none", paddingTop:window.innerWidth>700?"":"74px" }}>
 
               <PayWithStripeButton app={app} obj={obj} />
 
@@ -185,6 +187,7 @@ export default class PurchaseItemCard extends Component {
           </div>
 
         </div>
+        <div style={{width:window.innerWidth>700?"":"80vw"}}>
         <MapComponent filter={filter}
           name={obj?.getJson().mptype}
           theme={this.props.theme}
@@ -192,7 +195,7 @@ export default class PurchaseItemCard extends Component {
             { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },
           ]
           }
-        />
+        /></div>
       </div>
     )
   }

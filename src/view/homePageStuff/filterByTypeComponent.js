@@ -30,8 +30,8 @@ export default class FilterByTypeComponent extends Component {
     let searchTypes = ["Campaign", "Map", "Lore", "Encounter", "Artwork",]
 
     const styling = {
-      width: "100px", padding: "11px 4px", margin: "1px", fontSize: "1rem", alignContent: "center", justifyItems: "center",
-      cursor: "pointer", borderRadius: "11px", minHeight: "101px",
+      width: window.innerWidth>700?"100px":"70px", padding: window.innerWidth>700?"11px 4px":"8px 3px", margin: "1px", fontSize: window.innerWidth>700?"1rem":".8rem", alignContent: "center", justifyItems: "center",
+      cursor: "pointer", borderRadius: "11px", minHeight: window.innerWidth>700?"101px":"40px",
       justifyContent: "center", display: "flex", flexDirection: "column",
     }
 
@@ -45,7 +45,7 @@ export default class FilterByTypeComponent extends Component {
     };
 
     return (
-      <div style={{ width: "fit-content", color: styles.colors.colorWhite + "99", userSelect: "none", }}>
+      <div style={{ width: "fit-content", color: styles.colors.colorWhite + "99", userSelect: "none", marginLeft:window.innerWidth>700?"":"-22px" }}>
 
 
 
@@ -62,8 +62,8 @@ export default class FilterByTypeComponent extends Component {
               border: (type + "s") === this.state.currentSel ? "2px solid " + styles.colors.color3 + "44" : ""
             }}>
 
-            <img src={typeIcons[type] || placeholder} alt={"ico"} style={{ width: "fit-content", alignSelf: "center", justifySelf: "center", width: "35px", marginBottom: "6px" }} />
-            <div style={{ fontFamily: "inria", fontSize: "1.12rem", color: styles.colors.colorWhite + "e8", width: "fit-content", alignSelf: "center", justifySelf: "center", }}>{type !== "Lore" ? type + "s" : type}
+            <img src={typeIcons[type] || placeholder} alt={"ico"} style={{ width: "fit-content", alignSelf: "center", justifySelf: "center", width:window.innerWidth>700? "35px":"22px", marginBottom: window.innerWidth>700?"6px":"5px" }} />
+            <div style={{ fontFamily: "inria", fontSize: window.innerWidth>700?"1.12rem":".8rem", color: styles.colors.colorWhite + "e8", width: "fit-content", alignSelf: "center", justifySelf: "center", }}>{type !== "Lore" ? type + "s" : type}
             </div>
           </div>
           )}

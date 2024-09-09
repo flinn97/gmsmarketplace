@@ -121,13 +121,13 @@ export default class Dispatch extends Component {
 
             {/* //notification: int variable of watching something? Or string pointing to type that gets info from object for notification. Object contains function for notifications, and it goes and interacts with it. Either give it a string or a User Object. */}
             <div style={{
-              position: "fixed", top: "0px", left: "0px", width: "100vw", height:"100px",
+              position: "fixed", top: "0px", left: "0px", width: "100vw", height:window.innerWidth>700?"98px":"70px",
               justifyContent: "center", padding: "2px", display: "flex",
               textAlign: "center", flexDirection: "row", transition: "top 0.3s ease-in-out",
               background:styles.colors.color1+'22',
               zIndex: 1000 
             }}>
-              <img style={{ width: "100px", marginTop: "-2px" }} src={logo} alt="Logo" />
+              <img style={{ width: window.innerWidth>700?"98px":"70px", marginTop: "-2px" }} src={logo} alt="Logo" />
               <div style={{ position: "absolute", right: "2vw", top: "3vh", cursor: "pointer", }}>
                 <LoginLogout app={app} />
               </div>
