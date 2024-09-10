@@ -87,7 +87,7 @@ class MainContent extends Component {
     let app = this.props.app;
     let state = app.state;
     let componentList = state.componentList;
-    debugger
+    
     let features = await auth.getFeaturesByUser(componentList, state.currentPublisher.getJson()._id);
     features = features.filter((obj)=>{return obj.getJson().owner === state.currentPublisher.getJson()._id})
     features = features.sort((a, b) => {
