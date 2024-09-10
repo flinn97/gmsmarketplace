@@ -156,15 +156,15 @@ class MainContent extends Component {
               objectFit: "contain" }} /></Link>
 
           <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", width: "82vw", marginTop: "28px" }}>
-            <Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}
+            {features[1].getJson().mpId &&<Link to={`../purchase/${features[1].getJson().mpId}`}><img src={features[1].getJson().picURL}
               style={{width: "25.73vw", 
-                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>
-            <Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}
+                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>}
+            {features[2].getJson().mpId &&<Link to={`../purchase/${features[2].getJson().mpId}`}><img src={features[2].getJson().picURL}
               style={{ width: "25.73vw", 
-                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>
-            <Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}
+                height: "15.63vw",   borderRadius: "11px", objectFit: "cover" }} /></Link>}
+            {features[3].getJson().mpId &&<Link to={`../purchase/${features[3].getJson().mpId}`}><img src={features[3].getJson().picURL}
               style={{ width: "25.73vw", 
-                height: "15.63vw",  borderRadius: "11px", objectFit: "cover" }} /></Link>
+                height: "15.63vw",  borderRadius: "11px", objectFit: "cover" }} /></Link>}
           </div>
         </>)}
         {/* {features.length > 0 && (
