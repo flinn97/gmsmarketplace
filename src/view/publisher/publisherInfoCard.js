@@ -93,7 +93,7 @@ class MainContent extends Component {
 
 
     return (
-      <div style={{ display: "flex", flexDirection: "column", color: "white", justifyContent: 'flex-start', alignItems: 'flex-start', width:"80vw", marginTop:"58px" }}>
+      <div style={{ display: "flex", flexDirection: "column", color: "white", justifyContent: 'flex-start', alignItems: 'flex-start', width:"80vw", marginTop:window.innerWidth>700?"58px":"12px" }}>
         <h1 style={{ color: styles.colors.colorWhite, marginTop:"1px", fontSize:"22px", fontFamily:"inria" }}>
           {state.currentPublisher.getJson().publisherName}
           </h1>
