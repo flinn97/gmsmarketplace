@@ -61,13 +61,23 @@ export default class PublisherPage extends Component {
 
     return (
       <div className='scroller2' style={{
-        ...center, width: "100%", height: "100vh", display: "flex",
-        flexDirection: "column", alignItems: "center", fontFamily: "inria", marginTop: "52px", marginBottom: "100px",
+        width: "100%",
+        height:"100vh",
+    minHeight: "100vh", // Ensure the container has a minimum height
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    fontFamily: "inria",
+    marginBottom: "100px",
+    paddingTop: "4vh",
+    overflowY: "auto", // Ensure the container can scroll vertically
+    boxSizing: "border-box",
+    scrollBehavior: "smooth", // Optional: for smooth scrolling
       }}  >
 
         {state.currentPublisher && <>
 
-          <img className='banner-fade' src={state.currentPublisher.getJson().banner} style={{ objectFit: "cover", width: "100%", height: "280px" }} />
+          <img className='banner-fade' src={state.currentPublisher.getJson().banner} style={{ objectFit: "cover", width: "100%", height: window.innerWidth>700?"280px":"98px"}} />
 
           <Link className="hover-btn-highlight"
             to={"/"}
@@ -91,11 +101,11 @@ export default class PublisherPage extends Component {
             justifyItems: "center", justifySelf: "center", alignContent: "center", marginTop: "11px",
             flexDirection: "row", color: styles.colors.color8 + "52"
           }}>
-            <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize: "32px", marginTop:"33px", marginBottom:"11px" }}>Featured</div>
+            <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize: window.innerWidth>700?"32px":"22px", marginTop:"33px", marginBottom:"11px" }}>Featured</div>
           </div>
           <PublisherCard app={app} type="card" options={{ cardType: "bigcard" }} />
           <div style={{ width: "100%", marginTop: "22px", opacity: ".2", mixBlendMode: "luminosity" }}><hr></hr></div>
-          <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize: "32px", marginTop:"33px" }}>All Products</div>
+          <div style={{ color: styles.colors.colorWhite+"94", fontFamily: "inria", fontSize:window.innerWidth>700?"32px":"22px", marginTop:"33px" }}>All Products</div>
           <SearchCard app={app} type="card" options={{ cardType: "bigcard" }} displayPublisherUI={false} />
           <div style={{
             width: "100%", paddingLeft: "100px", marginBottom: "440px",

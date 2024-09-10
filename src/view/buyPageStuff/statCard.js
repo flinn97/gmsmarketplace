@@ -80,16 +80,17 @@ class MainContent extends Component {
     let id = idList[idList.length - 1];
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
 
-    let styleOne = { fontFamily: "inria", fontSize: "1.21rem", lineHeight: "5rem" };
-    let styleIco = { width: "1.21rem", marginBottom: "-.22rem", marginRight: "11px" };
+    let styleOne = { fontFamily: "inria", fontSize: window.innerWidth>700?"1.21rem":".8rem", lineHeight: window.innerWidth>700?"5rem":"1rem", display:"flex", flexDirection:window.innerWidth>700?"row":"column", };
+    let styleIco = { width: window.innerWidth>700?"1.21rem":"1.1rem", height: window.innerWidth>700?"1.21rem":"1.1rem", marginBottom: "-.22rem", marginRight: window.innerWidth>700?"11px":"8px" };
 
     return (
       <div style={{
         color: styles.colors.color8, display: "flex", flexDirection: "row", justifyContent: "space-between",
-        background: styles.colors.color1 + "f1", borderRadius: "12px",
-        width: "100%", padding: "11px", paddingRight: "110px",
+        background: styles.colors.color1 + "f1", borderRadius: "12px", marginTop:window.innerWidth>700?"":"8vw",
+        width: "100%", minWidth:window.innerWidth>700?"":"70vw", padding: window.innerWidth>700?"11px":"", paddingRight: window.innerWidth>700?"110px":"",
       }}>
-        <div style={{ color: styles.colors.colorWhite, fontSize: "1.1rem", fontFamily: "inria", marginLeft: "44px" }}>Includes:</div>
+       { window.innerWidth>700 &&
+        <div style={{ color: styles.colors.colorWhite, fontSize: window.innerWidth>700?"1.1rem":".8rem", fontFamily: "inria", marginLeft: "44px" }}>Includes:</div>}
 
         <div style={styleOne}>
           <img src={encSwords} style={styleIco} />

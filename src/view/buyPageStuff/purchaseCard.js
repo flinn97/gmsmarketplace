@@ -81,7 +81,7 @@ class MainContent extends Component {
       <div style={{
         display: "flex", flexDirection: "column", color: styles.colors.colorWhite, justifyItems: "center",
         background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")", borderRadius: "11px",
-        margin: "10px", padding: "41px",
+        margin: "10px", padding: window.innerWidth>700?"41px":"20px",
       }}>
 
         <PurchaseItemCard

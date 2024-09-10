@@ -107,9 +107,9 @@ class MainContent extends Component {
           app.dispatch({search: e.target.value})}
         }
         style={{borderRadius:"50px",  background:"#ffdead05", width:"50vw", color:"white", border:"1px solid gray",
-        height:"3rem", fontSize:"1.8rem", paddingLeft:"50px", paddinRight:"1rem", marginRight:"29px"}}/>
+        height:window.innerWidth>700?"3rem":"1.8rem", fontSize:window.innerWidth>700?"1.8rem":"1rem", paddingLeft:window.innerWidth>700?"50px":"52px", paddinRight:"1rem", marginRight:window.innerWidth>700?"29px":"-20px"}}/>
         <div style={{flexDirection:"row", display:"flex", justifyContent:"space-between"}}>
-        {this.props.displayPublisherUI!==false &&<FilterByPublisher app={app} list={list} />}
+        {this.props.displayPublisherUI!==false && window.innerWidth>700 && <FilterByPublisher app={app} list={list} />}
         {/* <FilterByTimePopularity app={app} list={list} /> */}
         </div>
       </div>
