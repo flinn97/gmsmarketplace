@@ -26,14 +26,18 @@ export default class LoginLogout extends Component {
                         {!user ?
                             <Link onClick={() => { this.setState({ showStuff: false }) }} to="../login" style={{ fontFamily: "inria", color: styles.colors.colorWhite, textDecoration: "none", fontSize:window.innerWidth>700?"17px":"14px" }}>Log In</Link>
                             :
-                            <div onClick={auth.logout} style={{ fontFamily: "inria", fontSize:window.innerWidth>700?"17px":"14px" }}>Log Out</div>}
-                        {!user.getJson().picURL && <img src={userHead} style={{width:window.innerWidth>700?"22px":"19px", height:window.innerWidth>700?"20px":"18px", opacity:"80%"}}/>}
+
+                            <div onClick={auth.logout} style={{ fontFamily: "inria", fontSize:"17px" }}>Log Out</div>}
+                        {!user?.getJson().picURL && <img src={userHead} style={{width:"22px", height:"20px", opacity:"80%"}}/>}
+
                     </div>
                     <div>
-                    {(user && user.getJson().picURL) && 
+                    {(user && user?.getJson().picURL) && 
                     <img
-                            src={user.getJson().picURL}
-                            style={{width:window.innerWidth>700?"25px":"20px", height:window.innerWidth>700?"25px":"20px", opacity:"90%", borderRadius:"50%", margin: "6px 12px", }}
+
+                            src={user?.getJson().picURL}
+                            style={{width:"25px", height:"25px", opacity:"90%", borderRadius:"50%", margin: "6px 12px", }}
+
                         />}
 
                     </div>
