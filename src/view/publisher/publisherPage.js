@@ -20,11 +20,12 @@ export default class PublisherPage extends Component {
   }
   async componentDidMount() {
 
+
     let app = this.props.app;
     let dispatch = app.dispatch;
     let state = app.state;
     let componentList = state.componentList;
-    await dispatch({ currentPublisher: undefined })
+    await dispatch({ currentPublisher: undefined, publisherPageActive:true })
     let hash = window.location.href.split("/");
     hash = hash[hash.length - 1];
     let publisher = componentList.getComponent("publisher", hash, "hash");
@@ -81,6 +82,9 @@ export default class PublisherPage extends Component {
 
           <Link className="hover-btn-highlight"
             to={"/"}
+            onClick={()=>{
+              dispatch({pubilsherFilter: ()=>{return true},})
+            }}
             style={{
               ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
               fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", fontSize: "18px", fontFamily: "inria",

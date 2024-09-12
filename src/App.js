@@ -140,6 +140,14 @@ handleChange = (event) => {
 }
 
   async componentDidMount(){
+    window.addEventListener('popstate',  () => {
+      if(this.state.publisherPageActive){
+        this.setState({publisherPageActive:false, pubilsherFilter: ()=>{return true},});
+        }
+    
+      // Your custom logic here
+  });
+  
     // if(this.state.navFactory){
     //   let f = this.state.navFactory.getNavThemeFactory();
     //   let styles = f["defaultSideNav"];
