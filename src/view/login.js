@@ -29,7 +29,7 @@ export default class Login extends Component {
 
 
     async handleSubmission() {
-
+        
 
         let user = await authService.login(this.state.email, this.state.password, this.props.app.state.componentList, this.props.app.dispatch);
         if (user.error) {
@@ -129,10 +129,10 @@ export default class Login extends Component {
                                 alignSelf: "center",
                             }}></div>
 
-                        <Link style={{
+                        <a style={{
                             ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px",
                             color: styles?.colors?.colorWhite + "98", fontSize: styles?.fonts?.fontNormal,
-                        }} to="../register">Register</Link>
+                        }} href="https://gms.arcanevaultassembly.com/playerregister">Register</a>
 
                         {this.state.forgot ?(<div onClick={()=>{this.setState({forgot:false})}} style={{
                                 ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px", 

@@ -140,6 +140,7 @@ handleChange = (event) => {
 }
 
   async componentDidMount(){
+    
     window.addEventListener('popstate',  () => {
       if(this.state.publisherPageActive){
         this.setState({publisherPageActive:false, pubilsherFilter: ()=>{return true},});

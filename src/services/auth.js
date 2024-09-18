@@ -89,6 +89,7 @@ class Auth {
                 IDlist.push(list[key]?.getJson()?._id)
             }
             let rawData = [];
+            let publisher;
 
    
 
@@ -99,6 +100,9 @@ class Auth {
                 if (!IDlist.includes(data._id)) {
                    
                     rawData.push(data);
+                }
+                else{
+                    publisher = componentList.getComponent("publisher", data._id)
                 }
             }
             const components1 =  query(collection(db, this.urlEnpoint + "users", this.urlEnpoint + "APP", "components"), where('_id', '==', email), orderBy("date"));
@@ -116,7 +120,7 @@ class Auth {
 
 
             await componentList.addComponents(rawData, false);
-            let user = componentList.getComponent("user");
+            let user = publisher|| componentList.getComponent("user");
  
 
             if (dispatch) {
