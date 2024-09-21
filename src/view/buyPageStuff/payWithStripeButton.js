@@ -42,7 +42,7 @@ export default class PayWithStripeButton extends Component {
           }
 
           if (obj.getJson().stripePrice === "" || obj.getJson().stripePrice === "000" || obj.getJson().stripePrice === "0") {
-            let json = { ...currentComponent.getJson(), type: "mpItem", owner: state.user.getJson()._id }
+            let json = { ...currentComponent.getJson(), type: "mpItem", owner: state.user.getJson()._id, _id: Math.floor(Math.random()*1000000).toString()}
             json.date = await serverTimestamp();
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
             this.setState({
