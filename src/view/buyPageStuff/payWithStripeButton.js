@@ -29,11 +29,12 @@ export default class PayWithStripeButton extends Component {
     // console.log(obj.getJson().stripePrice)
     return (
       <div style={{
-        ...styles.buttons.buttonAdd, color: styles.colors.colorBlack, width: "280px", boxShadow: "1px 4px 6px -6px" + styles.colors.color1,
+        ...styles.buttons.buttonAdd, color: styles.colors.colorBlack, width: window.innerWidth > 700?"280px":"200px", 
+        boxShadow: "1px 4px 6px -6px" + styles.colors.color1,
         justifyItems: "center", textAlign: "center", margin: "5px", borderRadius: "25px",
         mixBlendMode: this.state.downloaded ? "luminosity" : "normal", border: "2px solid grey",
         pointerEvents: this.state.downloaded ? "none" : "all", userSelect: "none",
-        background: styles.colors.color3, fontWeight: "bold", fontSize: "1.2rem", padding: "11px 8px"
+        background: styles.colors.color3, fontWeight: "bold", fontSize:window.innerWidth > 700? "1.2rem":".9rem", padding: "11px 8px"
       }} title='Add to your GMS library.'
         onClick={async () => {
           if (!state.user) {

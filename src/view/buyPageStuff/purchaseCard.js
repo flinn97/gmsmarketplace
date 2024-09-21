@@ -79,9 +79,14 @@ class MainContent extends Component {
 
     return (
       <div style={{
-        display: "flex", flexDirection: "column", color: styles.colors.colorWhite, justifyItems: "center",
-        background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")", borderRadius: "11px",
-        margin: "10px", padding: window.innerWidth>700?"41px":"20px",
+        display: "flex",
+        flexDirection: "column",
+        color: styles.colors.colorWhite,
+        justifyItems: "center",
+        background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")",
+        borderRadius: "11px",
+        margin: "10px",
+        padding: window.innerWidth > 700 ? "41px" : "20px",
       }}>
 
         <PurchaseItemCard
@@ -119,11 +124,10 @@ class MainContent extends Component {
           }}>Test</div>
         </div> */}
 
-
-<div style={{ width: "68%", height: "100%",display:"flex", flexDirection:"column", minHeight:"200px",}}>
-         
-         <StatCard app={app} type="card" options={{ cardType: "bigcard" }} />
-       </div>
+{window.innerWidth > 700 &&
+<div style={{ width: "100%", display: "flex", flexDirection: "column", minHeight: "200px", marginTop: "68px" }}>
+    <StatCard app={app} type="card" options={{ cardType: "bigcard" }} />
+  </div>}
       </div>
     )
   }

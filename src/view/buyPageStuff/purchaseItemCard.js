@@ -72,10 +72,16 @@ export default class PurchaseItemCard extends Component {
     let isVideo = mimeType ? mimeType.includes('video') : false;
 
     return (
-      <div style={{
-        display: "flex", flexDirection: "column", width: "100%", height: "100%", marginBottom: "40px", width:window.innerWidth>700?"":"80vw"
+      <div 
+      className={window.innerWidth > 700?"":"scroller2"}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        marginBottom: "40px",
+        width: window.innerWidth > 700 ? "" : "80vw"
       }}>
-
+{window.innerWidth > 700 &&
         <div className="hover-btn-highlight"
           onClick={()=>{
             window.history.back();
@@ -90,11 +96,11 @@ export default class PurchaseItemCard extends Component {
             src={backarrow}
           />
           Back
-        </div>
+        </div>}
 
         {/* top row */}
         <div style={{
-          display: "flex", flexDirection: "row", width: "100%", height: "100%", textAlign: "center",
+          display: "flex", flexDirection: "row", width: "100%", textAlign: "center",
           justifyContent: "center", justifyItems: "center", alignContent: "center", alignItems: "center"
         }}>
           
@@ -156,18 +162,26 @@ export default class PurchaseItemCard extends Component {
               name={obj?.getJson().mptype}
               theme={this.props.theme}
               cells={[
-                { type: "attribute", name: "title", class: "Main-Title", },
-                { type: "prepost", name: "price", class: "Main-Price", preText: "$", preStyle: { marginRight: "4px", fontSize: window.innerWidth>700?"1.38rem":".8rem", fontFamily: "inria", fontWeight: "200" }, },
-                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", },
+                { type: "attribute", name: "title", class: "Main-Title", style:{fontSize:window.innerWidth > 700?"":"1.4rem"} },
+                { type: "prepost", name: "price", class: "Main-Price", preText: "$", style:{fontSize:window.innerWidth > 700?"":"1rem"},
+                  preStyle: { marginRight: "4px", fontSize: window.innerWidth>700?"1.38rem":".85rem", fontFamily: "inria", fontWeight: "200" }, },
+                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", style:{fontSize:window.innerWidth > 700?"":".95rem"} },
               ]
               }
             />
 
 
-            <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", paddingBottom: window.innerWidth>700?"24px":"11px", userSelect: "none", paddingTop:window.innerWidth>700?"":"74px" }}>
+            <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", 
+            paddingBottom: window.innerWidth>700?"24px":"11px", userSelect: "none", 
+              paddingTop:window.innerWidth>700?"":"14px" }}>
 
-              <PayWithStripeButton app={app} obj={obj} />
-
+              
+              {window.innerWidth < 700 &&
+              (<div style={{background:styles.colors.color1, padding:"10px", border:"1px solid gold"}}>
+                Please open on a larger browser window to learn more and purchase this product</div>
+              )||(
+<PayWithStripeButton app={app} obj={obj} />
+              )}
               {/* <div 
               {/* <div 
               ///remove this
@@ -192,7 +206,8 @@ export default class PurchaseItemCard extends Component {
           name={obj?.getJson().mptype}
           theme={this.props.theme}
           cells={[
-            { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", },
+            { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", 
+              style:{fontSize:window.innerWidth > 700?"":".95rem", maxWidth:window.innerWidth > 700?"":"70vw",}},
           ]
           }
         /></div>
