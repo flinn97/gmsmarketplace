@@ -78,7 +78,7 @@ class MainContent extends Component {
     let styles = state.styles;
     let idList = window.location.href.split("/");
     let id = idList[idList.length - 1];
-    let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
+    let component = componentList.getComponents().find(obj => obj?.getJson()._id === id);
 
     let styleOne = { fontFamily: "inria", fontSize: window.innerWidth>700?"1.21rem":".8rem", lineHeight: window.innerWidth>700?"5rem":"1rem", display:"flex", flexDirection:window.innerWidth>700?"row":"column", };
     let styleIco = { width: window.innerWidth>700?"1.21rem":"1.1rem", height: window.innerWidth>700?"1.21rem":"1.1rem", marginBottom: "-.22rem", marginRight: window.innerWidth>700?"11px":"8px" };
@@ -94,26 +94,26 @@ class MainContent extends Component {
 
         <div style={styleOne}>
           <img src={encSwords} style={styleIco} />
-          Encounters: {Math.floor(component.getJson().encCount / 5) * 5}{" "}
-          {component.getJson().encCount >= 6 && "+"}
+          Encounters: {Math.floor(component?.getJson().encCount / 5) * 5}{" "}
+          {component?.getJson().encCount >= 6 && "+"}
         </div>
 
         <div style={styleOne}>
           <img src={imgSquareIco} style={styleIco} />
-          Artwork: {Math.floor(component.getJson().imageCount / 5) * 5}{" "}
-          {component.getJson().imageCount >= 6 && "+"}
+          Artwork: {Math.floor(component?.getJson().imageCount / 5) * 5}{" "}
+          {component?.getJson().imageCount >= 6 && "+"}
         </div>
 
         <div style={styleOne}>
           <img src={loreFeather} style={styleIco} />
-          Lore: {Math.floor(component.getJson().loreCount / 5) * 5}{" "}
-          {component.getJson().loreCount >= 6 && "+"}
+          Lore: {Math.floor(component?.getJson().loreCount / 5) * 5}{" "}
+          {component?.getJson().loreCount >= 6 && "+"}
         </div>
 
         <div style={styleOne}>
           <img src={mapPin} style={styleIco} />
-          Maps: {component.getJson().mapCount < 6 ? component.getJson().mapCount : Math.floor(component.getJson().mapCount / 5) * 5}{" "}
-          {component.getJson().mapCount >= 6 && "+"}
+          Maps: {component?.getJson().mapCount < 6 ? component?.getJson().mapCount : Math.floor(component?.getJson().mapCount / 5) * 5}{" "}
+          {component?.getJson().mapCount >= 6 && "+"}
         </div>
       </div>
 

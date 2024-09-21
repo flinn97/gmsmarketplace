@@ -58,7 +58,7 @@ export default class PayWithStripeButton extends Component {
         }}>
         {!this.state.downloaded &&
           (<div>
-            {obj.getJson().price === "" || obj.getJson().price === "0.00" || obj.getJson().price === "0" ?
+            {obj?.getJson().price === "" || obj?.getJson().price === "0.00" || obj?.getJson().price === "0" ?
               "Free Download" : "Buy Now"}
           </div>) || (<div>
             - Downloaded -
