@@ -3,8 +3,11 @@ import "../../App.css";
 
 import StripeEl from './stripeL';
 import { Link } from 'react-router-dom';
-import auth from '../../services/auth';
-
+ import Login from '../login';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { doc, getDocs, collection, getDoc, updateDoc, addDoc, where, query, setDoc, deleteDoc, onSnapshot, querySnapshot, Timestamp, serverTimestamp, orderBy, limit } from "firebase/firestore";
+import { db, storage, auth } from '../../firbase.config.js';
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser } from "firebase/auth";
 /**
  * condensed version of the cards.
  * Works with themes.
@@ -109,10 +112,19 @@ class MainContent extends Component {
         background: "",
         borderRadius: "22px", height: "100%"
       }}>
-        {!state.user ? <div style={{ color: styles.colors.colorWhite + "f2", fontWeight: "500", fontSize: "21px", width: "450px", alignSelf: "center" }}>Please first <Link onClick={() => {
-          dispatch({ popupSwitch: "", currentComponent: undefined })
-          auth.setLoginReturnURL(window.location.href);
-        }} to="/login">Login  to  GMS</Link> to buy this product</div>
+        {!state.user ? <Login app={app} callbackFunc={async (user)=>{
+          debugger
+          let json = { ...state.currentComponent.getJson(), type: "mpItem", owner: user.email, _id: Math.floor(Math.random()*1000000).toString()}
+          json.date = await serverTimestamp();
+          await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
+          dispatch({
+            downloaded: true,
+          })
+        }}/>
+        // <div style={{ color: styles.colors.colorWhite + "f2", fontWeight: "500", fontSize: "21px", width: "450px", alignSelf: "center" }}>Please first <Link onClick={() => {
+        //   dispatch({ popupSwitch: "", currentComponent: undefined })
+        //   auth.setLoginReturnURL(window.location.href);
+        // }} to="/login">Login  to  GMS</Link> to buy this product</div>
           : <div style={{ display: "flex", flexDirection: "row" }}>
             <div
               style={{ color: styles.colors.colorWhite + "f2", fontWeight: "500", fontSize: "21px", alignSelf: "center" }}>

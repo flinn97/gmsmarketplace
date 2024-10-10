@@ -35,7 +35,12 @@ export default class Login extends Component {
         if (user.error) {
             // console.log(user);
             this.setState({ errorMessage: user.error });
+            return
         }
+        if(this.props.callbackFunc){
+            this.props.callbackFunc(user)
+        }
+        
     };
 
     render() {
@@ -133,6 +138,18 @@ export default class Login extends Component {
                             ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px",
                             color: styles?.colors?.colorWhite + "98", fontSize: styles?.fonts?.fontNormal,
                         }} href="https://gms.arcanevaultassembly.com/playerregister">Register</a>
+                        <div onClick={async()=>{
+                        const newUrl = '../';
+                        debugger
+                         await authService.googleJustSignIn(this.props.app.state.componentList, this.props.app.dispatch);
+
+
+
+                    }} className='hover-img' style={{
+                        ...styles?.buttons?.buttonAdd, marginTop: "24px", background:"",
+                        padding: "8px 14px", width: "280px", border: "", boxShadow:"", textDecoration:"underline 1px", textUnderlineOffset:"3px", textDecorationColor:styles.colors.color8,
+                        color: styles?.colors?.colorWhite, fontSize: styles?.fonts?.fontSmall, alignContent:"center", alignSelf:"center",
+                    }}>Sign Up With Google</div>
 
                         {this.state.forgot ?(<div onClick={()=>{this.setState({forgot:false})}} style={{
                                 ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px", 

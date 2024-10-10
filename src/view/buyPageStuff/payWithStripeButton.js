@@ -32,21 +32,22 @@ export default class PayWithStripeButton extends Component {
         ...styles.buttons.buttonAdd, color: styles.colors.colorBlack, width: window.innerWidth > 700?"280px":"200px", 
         boxShadow: "1px 4px 6px -6px" + styles.colors.color1,
         justifyItems: "center", textAlign: "center", margin: "5px", borderRadius: "25px",
-        mixBlendMode: this.state.downloaded ? "luminosity" : "normal", border: "2px solid grey",
-        pointerEvents: this.state.downloaded ? "none" : "all", userSelect: "none",
+        mixBlendMode: state.downloaded ? "luminosity" : "normal", border: "2px solid grey",
+        pointerEvents: state.downloaded ? "none" : "all", userSelect: "none",
         background: styles.colors.color3, fontWeight: "bold", fontSize:window.innerWidth > 700? "1.2rem":".9rem", padding: "11px 8px"
       }} title='Add to your GMS library.'
         onClick={async () => {
-          if (!state.user) {
-            dispatch({ popupSwitch: "buyPopup", currentComponent: obj })
-            return
-          }
+          
 
           if (obj.getJson().stripePrice === "" || obj.getJson().stripePrice === "000" || obj.getJson().stripePrice === "0") {
+            if (!state.user) {
+              dispatch({ popupSwitch: "gotFreePopup", currentComponent: obj })
+              return
+            }
             let json = { ...currentComponent.getJson(), type: "mpItem", owner: state.user.getJson()._id, _id: Math.floor(Math.random()*1000000).toString()}
             json.date = await serverTimestamp();
             await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-            this.setState({
+            dispatch({
               downloaded: true,
             })
             dispatch({ popupSwitch: "gotFreePopup", currentComponent: obj })
@@ -56,7 +57,7 @@ export default class PayWithStripeButton extends Component {
 
           }
         }}>
-        {!this.state.downloaded &&
+        { !state.downloaded &&
           (<div>
             {obj?.getJson().price === "" || obj?.getJson().price === "0.00" || obj?.getJson().price === "0" ?
               "Free Download" : "Buy Now"}

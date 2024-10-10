@@ -1,7 +1,7 @@
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { doc, getDocs, collection, getDoc, updateDoc, addDoc, where, query, setDoc, deleteDoc, onSnapshot, querySnapshot, Timestamp, serverTimestamp, orderBy, limit } from "firebase/firestore";
 import { db, storage, auth } from '../firbase.config.js';
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import hashService from "./hashService.js";
 
 class Auth {
@@ -199,7 +199,64 @@ class Auth {
 
 
     }
+    provider=new GoogleAuthProvider();
+    async googleJustSignIn(componentList, dispatch){
+        const auth = getAuth();
+        let user = null;
+        let errorMessage = null;
+        
+        try {
+            // Step 1: Start the Google sign-in flow (without signing in yet).
+            const result = await signInWithPopup(auth, this.provider);
+    
+            // Step 2: Extract user email from the result
+            const email = result.user.email;
+    
+            // Step 3: Check if the user exists by email
+            let foundUser
+            const components = await query(collection(db, "GMSusers", "GMSAPP", "components"), where('_id', '==', email));
+        let comps = await getDocs(components);
+        for (const key in comps.docs) {
+            let data = comps.docs[key].data()
+            foundUser=data
+        }
+    
+            if (foundUser) {
+                // User exists, proceed with signing in
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;  // Optional: Use token if needed
+                user = result.user;
+    
+                // Optionally store the user info in localStorage
+                await localStorage.setItem("user", JSON.stringify(user));
+            } else {
+                // User does not exist, cancel the sign-in process
+                throw new Error("User does not exist. Please register first.");
+            }
+        } catch (error) {
+            // Handle errors such as user not existing or other auth errors
+            errorMessage = error.message;
+        }
+        if (user) {
+            let saveUser = user;
+          
+ 
+            if (componentList !== undefined && dispatch !== undefined) {
+                await localStorage.setItem("user", JSON.stringify(saveUser));
+                if(window.location.href.includes("login")){
+                    window.location.href=this.loginReturnURL
+                  }
+                await this.getuser(user.email, componentList, dispatch);
+            
 
+            }
+
+
+        }
+    
+        // Return the user or error message depending on what happened
+            return user||errorMessage;
+    }
     async login(email, password, componentList, dispatch) {
 
 
