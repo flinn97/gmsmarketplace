@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import authService from '../services/auth';
 import { Link } from 'react-router-dom';
 import logo from '../pics/logoava2.png';
+import google from '../pics/Sign Up/6929234_google_logo_icon.png';
+
 
 export default class Login extends Component {
     constructor(props) {
@@ -60,18 +62,18 @@ export default class Login extends Component {
         return (
             <div style={{
                 padding: "5%", transition: "all ease-out", justifyContent: "center", flexDirection: "row", display: "flex",
-                width: "100%", paddingTop: "35px",
+                width: "100%", paddingTop: "35px", 
             }}>
 
                 <div
                     style={{
                         display: "flex", flexDirection: "column", justifyContent: "center", width: "950px",
-                        background: styles.colors.color2 + "2e", borderRadius: "28px", height: "620px", paddingBottom: "40px",
+                        background: styles.colors.color2 + "2e", borderRadius: "28px", height: "540px", paddingBottom: "80px",
                         alignContent: "center",
                         alignItems: "center",
                         alignSelf: "center",
                     }}>
-                    <img src={logo} style={{ width: "214px", userSelect: "none", }} draggable="false" />
+                    <img src={logo} style={{ width: "144px", userSelect: "none", }} draggable="false" />
 
                     <div style={{ opacity: ".94", paddingBottom: "40px", width: "fit-content" }}>
 
@@ -147,9 +149,10 @@ export default class Login extends Component {
 
                     }} className='hover-img' style={{
                         ...styles?.buttons?.buttonAdd, marginTop: "24px", background:"",
-                        padding: "8px 14px", width: "280px", border: "", boxShadow:"", textDecoration:"underline 1px", textUnderlineOffset:"3px", textDecorationColor:styles.colors.color8,
+                        padding: "8px 14px", width: "fit-content", textDecoration:"underline 1px", textUnderlineOffset:"3px", textDecorationColor:styles.colors.color8,
                         color: styles?.colors?.colorWhite, fontSize: styles?.fonts?.fontSmall, alignContent:"center", alignSelf:"center",
-                    }}>Sign Up With Google</div>
+                        
+                    }}><img src={google} style={{ width: "22px" }} /></div>
 
                         {this.state.forgot ?(<div onClick={()=>{this.setState({forgot:false})}} style={{
                                 ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px", 

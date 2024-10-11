@@ -165,7 +165,7 @@ export default class PurchaseItemCard extends Component {
                 { type: "attribute", name: "title", class: "Main-Title", style:{fontSize:window.innerWidth > 700?"":"1.4rem"} },
                 { type: "prepost", name: "price", class: "Main-Price", preText: "$", style:{fontSize:window.innerWidth > 700?"":"1rem"},
                   preStyle: { marginRight: "4px", fontSize: window.innerWidth>700?"1.38rem":".85rem", fontFamily: "inria", fontWeight: "200" }, },
-                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", style:{fontSize:window.innerWidth > 700?"":".95rem"} },
+                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", style:{fontSize:window.innerWidth > 700?"":".45rem", height:"fit-content"} },
               ]
               }
             />
