@@ -31,7 +31,7 @@ export default class Login extends Component {
 
 
     async handleSubmission() {
-        
+
 
         let user = await authService.login(this.state.email, this.state.password, this.props.app.state.componentList, this.props.app.dispatch);
         if (user.error) {
@@ -39,10 +39,10 @@ export default class Login extends Component {
             this.setState({ errorMessage: user.error });
             return
         }
-        if(this.props.callbackFunc){
+        if (this.props.callbackFunc) {
             this.props.callbackFunc(user)
         }
-        
+
     };
 
     render() {
@@ -62,7 +62,7 @@ export default class Login extends Component {
         return (
             <div style={{
                 padding: "5%", transition: "all ease-out", justifyContent: "center", flexDirection: "row", display: "flex",
-                width: "100%", paddingTop: "35px", 
+                width: "100%", paddingTop: "35px",
             }}>
 
                 <div
@@ -73,16 +73,16 @@ export default class Login extends Component {
                         alignItems: "center",
                         alignSelf: "center",
                     }}>
-                    <img src={logo} style={{ width: "144px", userSelect: "none", }} draggable="false" />
+                    {/* <img src={logo} style={{ width: "144px", userSelect: "none", }} draggable="false" /> */}
 
                     <div style={{ opacity: ".94", paddingBottom: "40px", width: "fit-content" }}>
 
 
                         {/* <div style={{fontFamily: styles?.fonts?.fontTitle, fontSize: styles?.fonts?.fontHeader5, color: styles?.colors?.color5}}>Login</div>                      */}
-                        <div style={{ color: styles.colors.color3, marginTop: ".4rem", marginBottom: "7px", marginTop: "22px" }}>Email</div>
+                        <div style={{ color: styles.colors.color3, marginTop: ".4rem", marginBottom: "7px", marginTop: "22px" , fontSize: window.innerWidth > 800 ? "1rem" : "1.4rem", }}>Email</div>
                         <input autoComplete='off' style={{
-                            width: "344px", padding: "4px 9px", color: "#ffffffe4", height: "1.6rem", rows: "1",
-                            fontSize: "1rem", border: "1px solid " + styles.colors.colorWhite,
+                            width: "344px", padding: "4px 9px", color: "#ffffffe4", height: window.innerWidth > 800 ? "1.6rem" : "2rem", rows: "1",
+                            fontSize: window.innerWidth > 800 ? "1rem" : "1.4rem", border: "1px solid " + styles.colors.colorWhite,
                             borderRadius: "4px", background: styles.colors.color2 + "5c", borderWidth: "0px",
                             alignItems: "left", textAlign: "left", justifyContent: "center",
                         }} id="pwd" onChange={this.handleChange} name="email" />
@@ -91,10 +91,10 @@ export default class Login extends Component {
 
 
                         {!this.state.forgot && <>
-                            <div style={{ color: styles.colors.color3, marginTop: ".4rem", marginBottom: "7px", marginTop: "22px" }}>Password</div>
+                            <div style={{ color: styles.colors.color3, marginTop: ".4rem", marginBottom: "7px", marginTop: "22px", fontSize: window.innerWidth > 800 ? "1rem" : "1.4rem", }}>Password</div>
                             <input autoComplete='off' style={{
-                                width: "344px", padding: "4px 9px", color: "#ffffffe4", height: "1.6rem", rows: "1",
-                                fontSize: "1rem", border: "1px solid " + styles.colors.colorWhite,
+                                width: "344px", padding: "4px 9px", color: "#ffffffe4", height: window.innerWidth > 800 ? "1.6rem" : "2rem", rows: "1",
+                                fontSize: window.innerWidth > 800 ? "1rem" : "1.4rem", border: "1px solid " + styles.colors.colorWhite,
                                 borderRadius: "4px", background: styles.colors.color2 + "5c", borderWidth: "0px",
                                 alignItems: "left", textAlign: "left", justifyContent: "center",
                             }} type="password" id="pwd" onChange={this.handleChange} name="password" /></>}
@@ -111,18 +111,18 @@ export default class Login extends Component {
                     <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", width: "fit-content", }}>
                         <button className="hover-btn"
                             style={{
-                                ...styles?.buttons?.buttonAdd, marginTop: "24px", padding: "8px 34px", width: "155px",border: "1px solid " + styles.colors.colorWhite,
-                                color: styles?.colors?.color3, fontSize: styles?.fonts?.fontSubheader1,
+                                ...styles?.buttons?.buttonAdd, marginTop: "24px", padding: "8px 34px", width: "200px", border: "1px solid " + styles.colors.colorWhite,
+                                color: styles?.colors?.color3, fontSize: window.innerWidth > 800 ? "1.2rem" : "1.6rem"
                             }}
-                            class="hover-btn" onClick={() => { 
-                                if(!this.state.forgot){
+                            class="hover-btn" onClick={() => {
+                                if (!this.state.forgot) {
                                     this.handleSubmission()
-                             }
-                             else{
-                                this.setState({errorMessage:"An email was sent to your account."});
-                                authService.sendForgotPasswordChange(this.state.email);
-                             }
-                              }}>
+                                }
+                                else {
+                                    this.setState({ errorMessage: "An email was sent to your account." });
+                                    authService.sendForgotPasswordChange(this.state.email);
+                                }
+                            }}>
                             {this.state.forgot ? ("Submit") : ("Login")}</button>
 
 
@@ -135,34 +135,43 @@ export default class Login extends Component {
                                 alignItems: "center",
                                 alignSelf: "center",
                             }}></div>
+                        {!this.state.forgot && (<div onClick={async () => {
+                            const newUrl = '../';
+                            debugger
+                            await authService.googleJustSignIn(this.props.app.state.componentList, this.props.app.dispatch);
 
-                        <a style={{
-                            ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px",
-                            color: styles?.colors?.colorWhite + "98", fontSize: styles?.fonts?.fontNormal,
+
+
+                        }} className='hover-img' title="Login or Sign Up using your Google Account" style={{
+                            ...styles?.buttons?.buttonAdd, marginTop: "12px", background: "", justifyContent: "center",
+                            padding: "0px 0px", paddingLeft: "14px", textDecorationColor: styles.colors.color8, alignItems: "center",
+                            color: styles?.colors?.colorWhite, fontSize: styles?.fonts?.fontSmall, alignContent: "center", alignSelf: "center", textDecoration: "",
+                            border: "solid 2px #4285F4F0", borderRadius: "11px", width: "200px",
+                        }}> <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                                <img src={google} style={{ width: "28px", marginRight: "10px", height: "28px", marginTop: "1.5px" }} />
+                                <div style={{
+                                    background: "#4285F4F0", borderRadius: "0px 8px 8px 0px", padding: "4px 11px", fontSize: "13.87px", textDecoration: "", width: "150px",
+                                    textAlign: "center", paddingTop: "6px"
+                                }}>Sign in with Google</div>
+                            </div>
+
+                        </div>)}
+
+                        <a className='hover-img' style={{
+                            ...styles?.buttons?.buttonAdd,  marginTop: "22px", padding: "8px 19px", width: "200px",
+                            color: styles?.colors?.colorWhite + "98", fontSize: window.innerWidth > 800 ? "1.2rem" : "1.6rem"
                         }} href="https://gms.arcanevaultassembly.com/playerregister">Register</a>
-                        <div onClick={async()=>{
-                        const newUrl = '../';
-                        debugger
-                         await authService.googleJustSignIn(this.props.app.state.componentList, this.props.app.dispatch);
 
 
-
-                    }} className='hover-img' style={{
-                        ...styles?.buttons?.buttonAdd, marginTop: "24px", background:"",
-                        padding: "8px 14px", width: "fit-content", textDecoration:"underline 1px", textUnderlineOffset:"3px", textDecorationColor:styles.colors.color8,
-                        color: styles?.colors?.colorWhite, fontSize: styles?.fonts?.fontSmall, alignContent:"center", alignSelf:"center",
-                        
-                    }}><img src={google} style={{ width: "22px" }} /></div>
-
-                        {this.state.forgot ?(<div onClick={()=>{this.setState({forgot:false})}} style={{
-                                ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px", 
-                                color: styles?.colors?.colorWhite + "98", fontSize: styles?.fonts?.fontNormal,
-                            }} >Back</div>):(
-                            <div onClick={() => {
+                        {this.state.forgot ? (<div onClick={() => { this.setState({ forgot: false }) }} style={{
+                            ...styles?.buttons?.buttonAdd, marginTop: "22px", padding: "8px 19px", width: "200px",
+                            color: styles?.colors?.colorWhite + "98", fontSize: window.innerWidth > 800 ? "1.2rem" : "1.6rem"
+                        }} >Back</div>) : (
+                            <div className='hover-img' onClick={() => {
                                 this.setState({ forgot: true })
                             }} style={{
-                                ...styles?.buttons?.buttonAdd, marginTop: "12px", padding: "8px 19px", width: "155px", 
-                                color: styles?.colors?.colorWhite + "98", fontSize: "14px",
+                                ...styles?.buttons?.buttonAdd, marginTop: "24px", padding: "8px 19px", width: "200px",
+                                color: styles?.colors?.colorWhite + "98", fontSize: window.innerWidth > 800 ? ".91rem" : "1rem", border:"", background:"",
                             }}>Forgot Password?</div>)}
 
                     </div>
