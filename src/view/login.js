@@ -137,7 +137,7 @@ export default class Login extends Component {
                             }}></div>
                         {!this.state.forgot && (<div onClick={async () => {
                             const newUrl = '../';
-                            debugger
+                            
                             await authService.googleJustSignIn(this.props.app.state.componentList, this.props.app.dispatch);
 
 

@@ -113,7 +113,7 @@ class MainContent extends Component {
         borderRadius: "22px", height: "100%"
       }}>
         {!state.user ? <Login app={app} callbackFunc={async (user)=>{
-          debugger
+          
           let json = { ...state.currentComponent.getJson(), type: "mpItem", owner: user.email, _id: Math.floor(Math.random()*1000000).toString()}
           json.date = await serverTimestamp();
           await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
