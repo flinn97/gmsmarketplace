@@ -1,7 +1,7 @@
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { doc, getDocs, collection, getDoc, updateDoc, addDoc, where, query, setDoc, deleteDoc, onSnapshot, querySnapshot, Timestamp, serverTimestamp, orderBy, limit } from "firebase/firestore";
 import { db, storage, auth } from '../firbase.config.js';
-import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword, onAuthStateChanged, getAuth, sendPasswordResetEmail, updateEmail, deleteUser, signInWithPopup, GoogleAuthProvider, getRedirectResult, signInWithRedirect } from "firebase/auth";
 import hashService from "./hashService.js";
 
 class Auth {
@@ -257,6 +257,8 @@ class Auth {
         // Return the user or error message depending on what happened
             return user||errorMessage;
     }
+
+
     async login(email, password, componentList, dispatch) {
 
 

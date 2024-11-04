@@ -2,6 +2,7 @@ import { Component } from 'react';
 import "../../App.css"
 import PurchaseCard from './purchaseCard';
 import StatCard from './statCard';
+import auth from '../../services/auth';
 
 // import mummy from "../pics/runesTest1/2red.png";
 // import kinstone from "../pics/runesTest1/1red.png";
@@ -14,11 +15,7 @@ export default class BuyPage extends Component {
     }
 
   }
-  async componentDidMount() {
 
-
-
-  }
 
 
   render() {
