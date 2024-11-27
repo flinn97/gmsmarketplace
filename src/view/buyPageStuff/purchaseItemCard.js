@@ -191,7 +191,7 @@ export default class PurchaseItemCard extends Component {
               paddingTop: window.innerWidth > 700 ? "" : "14px"
             }}>
 
-
+{/* //TAYLOR switch this to >700 */}
               {window.innerWidth < 700 &&
                 (<div style={{ background: styles.colors.color1, padding: "10px", border: "1px solid gold" }}>
                   Please open on a larger browser window to learn more and purchase this product</div>
