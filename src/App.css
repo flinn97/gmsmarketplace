@@ -422,6 +422,11 @@ input:-webkit-autofill:hover, input:-webkit-autofill:active  {
   height: 9px;
 }
 
+.ql-syntax {
+  white-space: pre-wrap;      /* Allows the text to wrap */
+  word-break: break-word;     /* Breaks long words to prevent overflow */
+}
+
 .scroller2::-webkit-scrollbar-thumb {
   background-color: rgba(128, 128, 128, 0.7); /* Adjust color/transparency for .scroller2 */
   border-radius: 6px; 

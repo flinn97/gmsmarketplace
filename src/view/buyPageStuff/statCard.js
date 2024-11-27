@@ -80,41 +80,51 @@ class MainContent extends Component {
     let id = idList[idList.length - 1];
     let component = componentList.getComponents().find(obj => obj?.getJson()._id === id);
 
-    let styleOne = { fontFamily: "inria", fontSize: window.innerWidth>700?"1.21rem":".8rem", lineHeight: window.innerWidth>700?"5rem":"1rem", display:"flex", flexDirection:window.innerWidth>700?"row":"column", };
-    let styleIco = { width: window.innerWidth>700?"1.21rem":"1.1rem", height: window.innerWidth>700?"1.21rem":"1.1rem", marginBottom: "-.22rem", marginRight: window.innerWidth>700?"11px":"8px" };
+    let styleOne = { fontFamily: "inria", fontSize: window.innerWidth > 700 ? "1.21rem" : ".8rem", 
+      lineHeight: window.innerWidth > 700 ? "5rem" : "1rem", display: "flex", flexDirection: window.innerWidth > 700 ? "row" : "column", };
+    let styleIco = { width: window.innerWidth > 700 ? "1.21rem" : "1.1rem", height: window.innerWidth > 700 ? "1.21rem" : "1.1rem", marginBottom: "-.22rem", marginRight: window.innerWidth > 700 ? "11px" : "8px" };
 
     return (
       <div style={{
         color: styles.colors.color8, display: "flex", flexDirection: "row", justifyContent: "space-between",
-        background: styles.colors.color1 + "f1", borderRadius: "12px", marginTop:window.innerWidth>700?"":"8vw",
-        width: "100%", minWidth:window.innerWidth>700?"":"70vw", padding: window.innerWidth>700?"11px":"", paddingRight: window.innerWidth>700?"110px":"",
+        background: styles.colors.color1 + "f1", borderRadius: "12px", marginTop: window.innerWidth > 700 ? "" : "8vw",
+        width: "100%", minWidth: window.innerWidth > 700 ? "" : "70vw", padding: window.innerWidth > 700 ? "11px" : "", paddingRight: window.innerWidth > 700 ? "110px" : "",
       }}>
-       { window.innerWidth>700 &&
-        <div style={{ color: styles.colors.colorWhite, fontSize: window.innerWidth>700?"1.1rem":".8rem", fontFamily: "inria", marginLeft: "44px" }}>Includes:</div>}
+        {window.innerWidth > 700 &&
+          <div style={{ color: styles.colors.colorWhite, fontSize: window.innerWidth > 700 ? "1.1rem" : ".8rem", fontFamily: "inria", marginLeft: "24px", }}>Estimated Content:</div>}
 
         <div style={styleOne}>
+          <div style={{ borderLeft: "1px solid #353535", ...styleOne, marginRight: "8px" }}></div>
+
           <img src={encSwords} style={styleIco} />
           Encounters: {Math.floor(component?.getJson().encCount / 5) * 5}{" "}
           {component?.getJson().encCount >= 6 && "+"}
+          
         </div>
 
         <div style={styleOne}>
+          <div style={{ borderLeft: "1px solid #353535", ...styleOne, marginRight: "8px" }}></div>
           <img src={imgSquareIco} style={styleIco} />
           Artwork: {Math.floor(component?.getJson().imageCount / 5) * 5}{" "}
           {component?.getJson().imageCount >= 6 && "+"}
+          
         </div>
 
         <div style={styleOne}>
+          <div style={{ borderLeft: "1px solid #353535", ...styleOne, marginRight: "8px" }}></div>
           <img src={loreFeather} style={styleIco} />
           Lore: {Math.floor(component?.getJson().loreCount / 5) * 5}{" "}
           {component?.getJson().loreCount >= 6 && "+"}
+          
         </div>
 
         <div style={styleOne}>
+          <div style={{ borderLeft: "1px solid #353535", ...styleOne, marginRight: "8px" }}></div>
           <img src={mapPin} style={styleIco} />
           Maps: {component?.getJson().mapCount < 6 ? component?.getJson().mapCount : Math.floor(component?.getJson().mapCount / 5) * 5}{" "}
           {component?.getJson().mapCount >= 6 && "+"}
         </div>
+        
       </div>
 
     )
