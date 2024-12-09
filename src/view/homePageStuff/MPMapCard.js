@@ -117,9 +117,9 @@ filterFunc={
             { type: "img",   hasLink: true, to: "/purchase/", class: "Img-Midsize", },
             { type: "attribute", name: "publisher", class: "DR-Attribute-Item Publisher", },
             {type:'custom', custom: DisplayPublisher,}, 
-            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item", style:{marginTop:"-11px",}, },
+            { type: "attribute", name: "title", class: "Bold-Title DR-Attribute-Item", style:{marginTop:"-11px", fontSize:window.innerWidth < 700?".98rem":"1.3rem"}, },
             
-            { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text", },
+            { type: "richReader", name:"promotional", class:"DR-Attribute-Item Ellipsis-Text", style:{fontSize:window.innerWidth < 700?".75rem":".89rem"}},
             { name: "See More", class: "DR-Attribute-Item Button-Type1 a Button-Type1", hasLink: true, to: "/purchase/" },
             { type: "prepost", name: "price", class: "DR-Attribute-Item Shimmer", preText:"$", preStyle:{marginRight:"4px", fontSize:"1.2rem", fontFamily:"inria"}, },
             

@@ -7,6 +7,7 @@ import { MapComponent } from '../../mapTech/mapComponentInterface.js';
 import PurchaseItemCard from './purchaseItemCard.js';
 import toolService from '../../services/toolService.js';
 import StatCard from './statCard.js';
+import ParentFormComponent from '../../componentListNPM/componentForms/parentFormComponent.js';
 
 export default class PurchaseCard extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class PurchaseCard extends Component {
     let state = app.state;
     let componentList = state.componentList;
     let styles = state.styles;
-
+   
 
     if (this.props.theme) {
       if (Object.prototype.toString.call(this.props.theme) === "[object String]") {
@@ -75,7 +76,7 @@ class MainContent extends Component {
     let component = componentList.getComponents().find(obj => obj.getJson()._id === id);
     let imgs = component?.getJson().picURLs;
     let iList = imgs?Object.values(imgs):"";
-    
+   
 
     return (
       <div style={{
@@ -83,10 +84,11 @@ class MainContent extends Component {
         flexDirection: "column",
         color: styles.colors.colorWhite,
         justifyItems: "center",
-        background: "linear-gradient( #b0c9df22, #b0c9df09, " + styles.colors.color1 + ")",
+        background: `linear-gradient( #b0c9df22, #b0c9df09, ${styles.colors.color1})`,
         borderRadius: "11px",
         margin: "10px",
         padding: window.innerWidth > 700 ? "41px" : "20px",
+        paddingBottom: "90px", // Add padding at the bottom
       }}>
 
         <PurchaseItemCard
@@ -96,33 +98,11 @@ class MainContent extends Component {
           imageList={iList}
           app={app}
           obj={component}
-        //list={component}
 
           theme="defaultPage"
-        //   cells={[{
-        //     type: "img", class: "Img-Large",
-        //     style: { border: "1px solid white", margin: "20px" }
-        //   },
-        //   { type: "attribute", name: "name", class: "Bold-Title" },
-        //   { type: "richReader", name: "promotional", class: "DR-Full-Item" },
-        //   { type: "richReader", name: "description", class: "DR-Full-Item DR-Full-Description" }]}
-        //   filter={{ search: id, attribute: "_id" }} 
+       
         />
 
-
-        {/* <div style={{ display: "flex", flexDirection: "column", padding: "14px", }}>
-          <div style={{ ...styles.buttons.buttonAdd, color: styles.colors.color3 }} title='Add to your GMS library.' onClick={() => { dispatch({ popupSwitch: "buyPopup", currentComponent: component }) }}>Buy Now</div>
-
-          <div style={{
-            color: styles.colors.colorWhite, cursor: "pointer", fontSize: "1.1rem",
-            padding: "2px 4px", background: styles.colors.color8 + "22", width: "100px", justifyItems: "center", textAlign: "center", borderRadius: "6px", margin: "5px"
-          }} onClick={async () => {
-            
-            let json = { ...component.getJson(), type: "mpItem", owner: state.user.getJson()._id }
-            json.date = await serverTimestamp();
-            await setDoc(doc(db, "GMSusers", "GMSAPP", "components", json._id), json);
-          }}>Test</div>
-        </div> */}
 
 {window.innerWidth > 700 &&
 <div style={{ width: "100%", display: "flex", flexDirection: "column", minHeight: "200px", marginTop: "68px" }}>

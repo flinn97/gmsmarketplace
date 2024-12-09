@@ -72,116 +72,134 @@ export default class PurchaseItemCard extends Component {
     let isVideo = mimeType ? mimeType.includes('video') : false;
 
     return (
-      <div 
-      className={window.innerWidth > 700?"":"scroller2"}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        marginBottom: "40px",
-        width: window.innerWidth > 700 ? "" : "80vw"
-      }}>
-{window.innerWidth > 700 &&
-        <div className="hover-btn-highlight"
-          onClick={()=>{
-            window.history.back();
-          }}
-          style={{
-            ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
-            fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", marginTop:"-22px", fontSize:"18px", fontFamily:"inria",
-          }}
+      <div
+        className={window.innerWidth > 700 ? "" : "scroller2"}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginBottom: "40px",
+          width: window.innerWidth > 700 ? "100%" : "80vw"
+        }}>
+        {window.innerWidth < 700 &&
+          <img filter={filter}
+            alt="Loading..."
+            src={app.state.currentMedia}
+            style={{
+              width: "98%", marginTop: "-82px", marginBottom: "-102px",
+              maxHeight: "440px",
+              minHeight: "440px",
+              borderRadius: "11px",
+              objectFit: "contain",
+            }}></img>
+        }
 
-        >
-          <img style={{ width: ".9rem", opacity: "98%", marginRight: ".75rem" }}
-            src={backarrow}
-          />
-          Back
-        </div>}
+        {window.innerWidth > 700 &&
+          <div className="hover-btn-highlight"
+            onClick={() => {
+              window.history.back();
+            }}
+            style={{
+              ...styles.buttons.buttonAdd, textDecoration: "none", fontStyle: "italic", background: styles.colors.color7 + "aa",
+              fontWeight: "bold", letterSpacing: ".05rem", padding: "8px 13px", marginTop: "-22px", fontSize: "18px", fontFamily: "inria",
+            }}
+
+          >
+            <img style={{ width: ".9rem", opacity: "98%", marginRight: ".75rem" }}
+              src={backarrow}
+            />
+            Back
+          </div>}
 
         {/* top row */}
         <div style={{
           display: "flex", flexDirection: "row", width: "100%", textAlign: "center",
           justifyContent: "center", justifyItems: "center", alignContent: "center", alignItems: "center"
         }}>
-          
-          {window.innerWidth>700 &&
-          <div style={{ display: "flex", flexDirection: "column", color: "white", width: "40vw", margin: "12px" }}>
 
-            {isVideo ? (
-              <div
-                style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', width: "40vw", maxHeight: "440px",
-                  minHeight: "440px",
-                }}>
-                {/* Placeholder for video thumbnail */}
-                <VideoPlayer draggable={false}
+          {window.innerWidth > 700 &&
+            <div style={{ display: "flex", flexDirection: "column", color: "white", width: "40vw", margin: "12px" }}>
 
-                  disablePlayButton={this.props.disablePlayButton} options={{
-                    autoplay: 'muted', objectFit: "contain",
-                    bigPlayButton: true,
-                    controls: true,
-                    width: "35vw",
-                    height: "440px",
-                    sources: [{
-                      src: app.state.currentMedia, // Assuming mediaItem is the URL
-                      type: this.getMimeType(app.state.currentMedia) // Dynamically determine the MIME type
-                    }]
-                  }} />
-              </div>
-            ) : (
-              <img filter={filter}
-                alt="Loading..."
-                src={app.state.currentMedia}
-                style={{
-                  width: "40vw",
-                  maxHeight: "440px",
-                  minHeight: "440px",
-                  borderRadius: "11px",
-                  objectFit: "contain",
-                }}
-              />
-            )}
+              {isVideo ? (
+                <div
+                  style={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', width: "40vw", maxHeight: "440px",
+                    minHeight: "440px",
+                  }}>
+                  {/* Placeholder for video thumbnail */}
+                  <VideoPlayer draggable={false}
 
-            {window.innerWidth > 800 &&
-              <div style={{ width: "100%", background: styles.colors.color1 + "82", marginTop: "-.4vh" }}>
-                <ViewMedia2 app={app} media={imageList} inputStyle={{ objectFit: "scale-down" }}
-                  wrapperStyle={{ objectFit: "scale-down" }} disablePlayButton={true}
-                  scale={.7} nToShow={5}
-                  labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
-              </div>}
-         
-          </div>}
+                    disablePlayButton={this.props.disablePlayButton} options={{
+                      autoplay: 'muted', objectFit: "contain",
+                      bigPlayButton: true,
+                      controls: true,
+                      width: "35vw",
+                      height: "440px",
+                      sources: [{
+                        src: app.state.currentMedia, // Assuming mediaItem is the URL
+                        type: this.getMimeType(app.state.currentMedia) // Dynamically determine the MIME type
+                      }]
+                    }} />
+                </div>
+              ) : (
+                <img filter={filter}
+                  alt="Loading..."
+                  src={app.state.currentMedia}
+                  style={{
+                    width: "40vw",
+                    maxHeight: "440px",
+                    minHeight: "440px",
+                    borderRadius: "11px",
+                    objectFit: "contain",
+                  }}
+                />
+              )}
+
+              {window.innerWidth > 800 &&
+                <div style={{ width: "100%", background: styles.colors.color1 + "82", marginTop: "-.4vh" }}>
+                  <ViewMedia2 app={app} media={imageList} inputStyle={{ objectFit: "scale-down" }}
+                    wrapperStyle={{ objectFit: "scale-down" }} disablePlayButton={true}
+                    scale={.7} nToShow={5}
+                    labelStyle={{ fontSize: "2.1vh", marginBottom: "1vh" }} />
+                </div>}
+
+            </div>}
 
           <div style={{
             display: "flex", flexDirection: "column",
             padding: "14px", justifyContent: "center", alignContent: "center", width: "100%"
           }}>
-            
+
 
             <MapComponent filter={filter}
               name={obj?.getJson().mptype}
               theme={this.props.theme}
               cells={[
-                { type: "attribute", name: "title", class: "Main-Title", style:{fontSize:window.innerWidth > 700?"":"1.4rem"} },
-                { type: "prepost", name: "price", class: "Main-Price", preText: "$", style:{fontSize:window.innerWidth > 700?"":"1rem"},
-                  preStyle: { marginRight: "4px", fontSize: window.innerWidth>700?"1.38rem":".85rem", fontFamily: "inria", fontWeight: "200" }, },
-                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", style:{fontSize:window.innerWidth > 700?"":".45rem", height:"fit-content"} },
+                { type: "attribute", name: "title", class: "Main-Title", style: { fontSize: window.innerWidth > 700 ? "" : "1.4rem" } },
+                {
+                  type: "prepost", name: "price", class: "Main-Price", preText: "$", style: { fontSize: window.innerWidth > 700 ? "" : "1rem" },
+                  preStyle: { marginRight: "4px", fontSize: window.innerWidth > 700 ? "1.38rem" : ".85rem", fontFamily: "inria", fontWeight: "200" },
+                },
+                { type: "richReader", name: "promotional", class: "DP-Attribute-Item Ellipsis", style: { fontSize: window.innerWidth > 700 ? "" : ".69rem", height: "fit-content", marginBottom: window.innerWidth > 700 ? "" : "-102px" } },
               ]
               }
             />
 
 
-            <div style={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "center", 
-            paddingBottom: window.innerWidth>700?"24px":"11px", userSelect: "none", 
-              paddingTop:window.innerWidth>700?"":"14px" }}>
+            <div style={{
+              display: "flex", flexDirection: "row", width: "100%", justifyContent: "center",
+              paddingBottom: window.innerWidth > 700 ? "24px" : "11px", userSelect: "none",
+              paddingTop: window.innerWidth > 700 ? "" : "14px"
+            }}>
 
-              
+{/* //TAYLOR switch this to >700 */}
               {window.innerWidth < 700 &&
-              (<div style={{background:styles.colors.color1, padding:"10px", border:"1px solid gold"}}>
-                Please open on a larger browser window to learn more and purchase this product</div>
-              )||(
-<PayWithStripeButton app={app} obj={obj} />
-              )}
+                (<div style={{ background: styles.colors.color1, padding: "10px", border: "1px solid gold" }}>
+                  Please open on a larger browser window to learn more and purchase this product</div>
+                ) || (
+                  <PayWithStripeButton app={app} obj={obj} />
+                )
+                 }
+
               {/* <div 
               {/* <div 
               ///remove this
@@ -201,16 +219,24 @@ export default class PurchaseItemCard extends Component {
           </div>
 
         </div>
-        <div style={{width:window.innerWidth>700?"":"80vw"}}>
-        <MapComponent filter={filter}
-          name={obj?.getJson().mptype}
-          theme={this.props.theme}
-          cells={[
-            { type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis", 
-              style:{fontSize:window.innerWidth > 700?"":".95rem", maxWidth:window.innerWidth > 700?"":"70vw",}},
-          ]
-          }
-        /></div>
+        <div style={{
+          width: "90vw",
+          marginLeft: "-12px",
+          wordWrap: "break-word",
+          paddingBottom: "20px",
+        }}>
+          <MapComponent filter={filter}
+            name={obj?.getJson().mptype}
+            theme={this.props.theme}
+            cells={[
+              {
+                type: "richReader", name: "description", class: "DP-Attribute-Item Ellipsis",
+                style: { fontSize: window.innerWidth > 700 ? "" : ".95rem", maxWidth: window.innerWidth > 700 ? "" : "70vw", }
+              },
+            ]
+            }
+          />
+        </div>
       </div>
     )
   }
